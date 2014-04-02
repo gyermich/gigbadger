@@ -89,6 +89,10 @@
   text-transform: uppercase;
  }
 
+ #logo {
+  color: #4E817B;
+ }
+
  /*==========================================================================
    Misc & Adjust
   ========================================================================== */
@@ -350,19 +354,20 @@
    --- Header & menu ----
  =========================== */
  .navbar {
-  line-height: 100px;
-  height: 100px;
-  background-color: rgba(0,0,0,0.3);
+  line-height: 60px;
+  height: 60px;
+  background-color: #4E827B;
   display: block;
   vertical-align: middle;
   text-align: center;
   margin-bottom: 0;
-  padding-bottom:0;
+  padding-bottom:40px;
  }
 
  .navbar .navbar-collapse {
-  margin-bottom: 0;
-  padding-bottom:0;
+}
+/*  margin-bottom: 0;
+  padding-bottom:0;*/
  }
 
  .nav li {
@@ -398,11 +403,11 @@
  .navbar .navbar-nav > .active > a {
   color: #fff;
  }
- .navbar .navbar-nav > .active > a {
+/* .navbar .navbar-nav > .active > a {
   padding-bottom: 22px;
- }
+ }*/
 
- h1 a.navbar-brand {
+ a.navbar-brand {
   font-size: 24px;
   color: #fff;
   font-weight: 900;
