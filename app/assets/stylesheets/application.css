@@ -435,6 +435,15 @@
   margin-top: -5px !important;
  }
 
+ .form_center {
+  width: 350px;
+  margin:0 auto;
+ }
+
+ .form_center h3{
+  text-align: center;
+ }
+
 
 
  /*===========================

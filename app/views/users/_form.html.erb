@@ -9,9 +9,6 @@
         <div class="tab-pane active in" id="login">
           <form class="form-horizontal" action='' method="POST">
             <fieldset>
-              <div id="legend">
-                <legend class="">Login</legend>
-              </div>
               <div class="control-group">
                 <!-- Username -->
                 <label class="control-label"  for="username">Username</label>
@@ -32,7 +29,7 @@
               <div class="control-group">
                 <!-- Button -->
                 <div class="controls">
-                  <button class="btn btn-success">Login</button>
+                  <button class="btn btn-theme pull-left">Login</button>
                 </div>
               </div>
             </fieldset>
@@ -79,7 +76,13 @@
              <%= f.label :password_confirmation, "Confirm Password:" %><br />
              <%= f.password_field :password_confirmation %>
            </div>
-           <div class="btn btn-primary"><%= f.submit "Sign Up" %></div>
+           <div class="control group">
+           <div class="controls">
+           <div class="button">
+           <%= f.submit "Sign Up", class: "btn btn-theme pull-left" %>
+         </div>
+         </div>
+         </div>
          <% end %>
         </div>
       </div>
