@@ -1,7 +1,9 @@
 Badger::Application.routes.draw do
 
-  root "tasks/index"
 
+  root "welcome#index"
+
+  get "welcome/index"
   get "session/create"
   get "session/destroy"
 
