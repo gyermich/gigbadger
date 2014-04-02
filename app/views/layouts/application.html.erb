@@ -11,8 +11,24 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
+  <div class="navbar navbar-static-top" role="navigation" style="padding-bottom: 0; margin-bottom: 0;">
+     <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <!-- <span class="fa fa-bars color-white"></span> -->
+        </button>
+        <a class="navbar-brand" href="/">GiveBadger</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right" data-0="margin-top:20px;" data-300="margin-top:5px;">
+          <li><a href="#section-about">Folks</a></li>
+          <li><a href="#section-works">Tasks</a></li>
+          <li><a href="#section-contact">New Task</a></li>
+          <li><a href="/login">Sign Up/Log In</a></li>
+        </ul>
+      </div><!--/.navbar-collapse -->
+    </div>
+  </div>
     <%= yield %>
-
   </body>
 </html>
