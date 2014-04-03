@@ -8,9 +8,9 @@ Badger::Application.routes.draw do
   get "session/destroy"
   get "session/destroy"
 
-  post "login", "session#create",  as: "login"
-  get "logout", "session#destroy", as: "logout"
-  get "signup", "users#new",       as: "signup"
+  post "login", to: "session#create",  as: "login"
+  get "logout", to: "session#destroy", as: "logout"
+  get "signup", to: "users#new",       as: "signup"
 
   resources :categories
   resources :tasks

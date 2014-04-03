@@ -24,7 +24,12 @@
           <li><a href="/#section-about">Peeps</a></li>
           <li><a href="/#section-works">Gigs</a></li>
           <li><a href="/#section-contact">New Gig</a></li>
-          <li><a href="/signup">Sign Up/Log In</a></li>
+            <% if current_user %>
+              <li><%= link_to "#{current_user.name}'s account", user_path(current_user) %> </li>
+              <li><%= link_to "Log out", logout_path %></li>
+            <% else %>
+              <li><%= link_to "Sign Up/Log In", signup_path %></li>
+            <% end %>
         </ul>
       </div><!--/.navbar-collapse -->
     </div>
