@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     else
       render :new
     end
-    end
+  end
 
   def edit
   end
@@ -30,6 +30,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :city, :zipcode, :bio)
+    params.require(:user).permit(:name, :email, :city, :zipcode, :bio, :password, :password_confirmation)
   end
 end
