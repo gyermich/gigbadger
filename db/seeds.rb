@@ -12,9 +12,9 @@
 # create task 
 # create task category with task_id and category_id
 
-require 'user_seed'
-require 'task_seed'
+require 'populate'
+require 'category_seed'
 
-UserSeed.all 
+CategorySeed.all
+Populate.all 
 
-TaskSeed.all
