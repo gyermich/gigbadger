@@ -23,7 +23,7 @@
         <ul class="nav navbar-nav navbar-right" data-0="margin-top:20px;" data-300="margin-top:5px;">
           <li><a href="/#section-about">Badgers</a></li>
           <li><a href="/#section-works">Gigs</a></li>
-          <li><a href="/#section-contact">New Gig</a></li>
+          <li><a href="/tasks/new">New Gig</a></li>
             <% if current_user %>
               <li><%= link_to "#{current_user.name}'s account", user_path(current_user) %> </li>
               <li><%= link_to "Log out", logout_path %></li>
