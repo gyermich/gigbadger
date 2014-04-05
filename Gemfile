@@ -7,6 +7,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby'
 gem 'pg'
+gem 'faker'
 
 group :doc do
   gem 'sdoc', require: false
