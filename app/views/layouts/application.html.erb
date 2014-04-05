@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gig Badger</title>
+    <title>GigBadger</title>
     <%= stylesheet_link_tag    "application", media: "all" %>
     <%= stylesheet_link_tag    "bootstrap.css" %>
     <%= stylesheet_link_tag    "overwrites.css" %>
@@ -21,10 +21,15 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right" data-0="margin-top:20px;" data-300="margin-top:5px;">
-          <li><a href="/#section-about">Peeps</a></li>
+          <li><a href="/#section-about">Badgers</a></li>
           <li><a href="/#section-works">Gigs</a></li>
-          <li><a href="/#section-contact">New Gig</a></li>
-          <li><a href="/login">Sign Up/Log In</a></li>
+          <li><a href="/tasks/new">New Gig</a></li>
+            <% if current_user %>
+              <li><%= link_to "#{current_user.name}'s account", user_path(current_user) %> </li>
+              <li><%= link_to "Log out", logout_path %></li>
+            <% else %>
+              <li><%= link_to "Sign Up/Log In", signup_path %></li>
+            <% end %>
         </ul>
       </div><!--/.navbar-collapse -->
     </div>

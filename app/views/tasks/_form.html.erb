@@ -1,0 +1,57 @@
+  <%= form_for(@task) do |f| %>
+    <% if @task.errors.any? %>
+      <% @task.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+    <% end %>
+    <p>
+      <div class="field">
+        <%= f.label :name %> <br>
+        <%= f.text_field :name %>
+      </div>
+    </p>
+    <p>
+      <div class="field">
+       <%= f.label :summary %> <br>
+       <%= f.text_area :summary, rows:"10", cols:"30" %>
+      </div>
+    </p>
+    <p>
+      <div class="field">
+        <%= f.label :due_date, "Date:" %> <br>
+        <%= f.date_field :due_date %>
+      </div>
+    </p>
+    <p>
+      <div class="field">
+        <%= f.label :due_time, "Time:" %> <br>
+        <%= f.time_field :due_time %>
+      </div>
+    </p>
+    <p>
+      <div class="field">
+        <%= f.label :num_workers %> <br>
+        <!-- Todo: change to select -->
+        <%= f.number_field :num_workers %>
+      </div>
+    </p>
+    <p>
+      <div class="field">
+        <%= f.label :paid, "Paid?" %> <br>
+        <%= f.check_box :paid, {}, "true", "false" %>
+      </div>
+    </p>
+    <p>
+      <div class="field">
+        <%= f.label :pay, "Price per gig(in $):" %> <br>
+        <!-- Todo: change column type to float -->
+        <%= f.number_field :pay %>
+      </div>
+    </p>
+    <div class="field">
+      <%= f.hidden_field :owner_id, value: current_user.id %>
+    </div>
+    <div class="button">
+      <%= f.submit class: "btn btn-theme pull-left" %>
+    </div>
+  <% end %>
