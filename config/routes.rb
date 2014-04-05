@@ -1,6 +1,5 @@
 Badger::Application.routes.draw do
 
-
   root "welcome#index"
 
   get "welcome/index"
@@ -15,7 +14,4 @@ Badger::Application.routes.draw do
   resources :categories
   resources :tasks
   resources :users
-
-
-
 end

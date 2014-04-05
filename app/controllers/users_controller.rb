@@ -22,6 +22,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.destroy
+    redirect_to :back
   end
 
   private

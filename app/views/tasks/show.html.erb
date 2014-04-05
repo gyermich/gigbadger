@@ -1,0 +1,10 @@
+<h2><%= @task.name %></h2>
+
+<%= @task.inspect %>
+
+<% if current_user && current_user.id == @task.owner_id %>
+  <%= link_to 'Edit Gig', edit_task_path(@task) %> |
+  <%= link_to 'Delete', @task, method: :delete, data: {confirm: 'Are you sure?'} %>
+<% else %>
+  Added by <%= "#{User.find_by_id(@task.owner_id).name}"%></br>
+<% end %>
