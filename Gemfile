@@ -8,6 +8,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby'
 gem 'pg'
 gem 'faker'
+gem 'devise'
 
 group :doc do
   gem 'sdoc', require: false
