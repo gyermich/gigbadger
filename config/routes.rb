@@ -1,15 +1,16 @@
 Badger::Application.routes.draw do
 
+  devise_for :users
   root "welcome#index"
 
   get "welcome/index"
-  get "session/create"
-  get "session/destroy"
-  get "session/destroy"
+  # get "session/create"
+  # get "session/destroy"
+  # get "session/destroy"
 
-  post "login", to: "session#create",  as: "login"
-  get "logout", to: "session#destroy", as: "logout"
-  get "signup", to: "users#new",       as: "signup"
+  # post "login", to: "session#create",  as: "login"
+  # get "logout", to: "session#destroy", as: "logout"
+  # get "signup", to: "users#new",       as: "signup"
 
   resources :categories
   resources :tasks
