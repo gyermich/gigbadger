@@ -24,16 +24,21 @@
           <li><a href="/#section-about">Badgers</a></li>
           <li><a href="/#section-works">Gigs</a></li>
           <li><a href="/tasks/new">New Gig</a></li>
-            <% if current_user %>
+            <% if current_user && user_signed_in? %>
               <li><%= link_to "#{current_user.name}'s account", user_path(current_user) %> </li>
-              <li><%= link_to "Log out", logout_path %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
             <% else %>
-              <li><%= link_to "Sign Up/Log In", signup_path %></li>
+              <li><%= link_to "Sign In", new_user_session_path %></li>
+              <li><%= link_to "Sign Up", new_user_registration_path %></li>
             <% end %>
         </ul>
       </div><!--/.navbar-collapse -->
     </div>
   </div>
+    <div class="notice_cont align-center">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
     <%= yield %>
   </body>
 </html>
