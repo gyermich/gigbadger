@@ -8,11 +8,15 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @categories = Category.all
   end
 
   def create
+    # @category = Category.find(params[:category])
     @task = Task.create(task_params)
     if @task.save
+      @task.categories = params[:category_id].present? ? Category.find(params[:category]) : [ ] 
+      # TaskCategory.create_record(@task, @category)
       redirect_to task_path(@task), notice: "Yay! Your gig is posted!"
     else
       render :new
