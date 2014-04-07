@@ -379,7 +379,6 @@
 }
 /*  margin-bottom: 0;
   padding-bottom:0;*/
- }
 
  .nav li {
   height: 100%;
@@ -708,7 +707,7 @@
      width: 100%;
   left: 0;
   top: 0;
-  color: rgba(220, 220, 220);
+  color: rgb(220, 220, 220);
  }
 
 
