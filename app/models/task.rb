@@ -5,4 +5,13 @@ class Task < ActiveRecord::Base
   has_many    :task_categories
   # throws an error on task create:
   # belongs_to  :owner_id, class_name: "User"
+  # belongs_to :user, foreign_key: "owner_id"
+
+  def owner
+    User.find(owner_id)
+  end
+
+  # def self.find_by_categories(categories)
+  #   TaskCategory.joins(:category).where("category.id = ?", categories)
+  # end
 end
