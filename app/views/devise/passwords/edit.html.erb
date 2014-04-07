@@ -1,41 +1,43 @@
-<div class="container">
-  <div class="row centered-form">
-    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="align-center">
-            <h1 class="panel-title">Change your password</h1>
+<div id="padded_container">
+  <div class="container">
+    <div class="row centered-form">
+      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="align-center">
+              <h1 class="panel-title">Change your password</h1>
+            </div>
           </div>
-        </div>
-        <div class="panel-body">
-          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-            <%= devise_error_messages! %>
-            <%= f.hidden_field :reset_password_token %>
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+              <%= devise_error_messages! %>
+              <%= f.hidden_field :reset_password_token %>
 
-         <div class="row">
-           <div class="col-xs-6 col-sm-6 col-md-6">
-             <div class="form-group">
-              <% f.label :password %>
-              <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control input" %>
+           <div class="row">
+             <div class="col-xs-6 col-sm-6 col-md-6">
+               <div class="form-group">
+                <% f.label :password %>
+                <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control input" %>
+               </div>
+             </div>
+             <div class="col-xs-6 col-sm-6 col-md-6">
+               <div class="form-group">
+                 <% f.label :password_confirmation %>
+                 <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "form-control input" %>
+               </div>
              </div>
            </div>
-           <div class="col-xs-6 col-sm-6 col-md-6">
-             <div class="form-group">
-               <% f.label :password_confirmation %>
-               <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "form-control input" %>
+            <div class="row">
+              <div class="text_container">
+               <div><%= f.submit "Change my password", class: "btn btn-info btn-theme btn-block" %></div>
+               </div>
              </div>
-           </div>
-         </div>
-          <div class="row">
-            <div class="text_container">
-             <div><%= f.submit "Change my password", class: "btn btn-info btn-theme btn-block" %></div>
-             </div>
-           </div>
-         <% end %>
-        </div>
-        <div class="text_container">
-          <%= render "devise/shared/links" %>
-        </div>
+           <% end %>
+          </div>
+          <div class="text_container">
+            <%= render "devise/shared/links" %>
+          </div>
+      </div>
     </div>
   </div>
 </div>

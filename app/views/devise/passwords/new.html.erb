@@ -1,32 +1,34 @@
-<div class="container">
-  <div class="row centered-form">
-    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="align-center">
-            <h1 class="panel-title">Forgot your password?</h1>
-          </div>
-        </div>
-        <div class="panel-body">
-          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-            <%= devise_error_messages! %>
-
-          <div class="row">
-            <div class="text_container">
-             <% f.label :email %><br />
-               <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control input" %>
+<div id="padded_container">
+  <div class="container">
+    <div class="row centered-form">
+      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="align-center">
+              <h1 class="panel-title">Forgot your password?</h1>
             </div>
           </div>
-          <div class="row">
-            <div class="text_container">
-             <div><%= f.submit "Send me reset password instructions", class: "btn btn-info btn-theme btn-block" %></div>
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= devise_error_messages! %>
+
+            <div class="row">
+              <div class="text_container">
+               <% f.label :email %><br />
+                 <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control input" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text_container">
+               <div><%= f.submit "Send me reset password instructions", class: "btn btn-info btn-theme btn-block" %></div>
+               </div>
              </div>
-           </div>
-         <% end %>
-        </div>
-        <div class="text_container">
-          <%= render "devise/shared/links" %>
-        </div>
+           <% end %>
+          </div>
+          <div class="text_container">
+            <%= render "devise/shared/links" %>
+          </div>
+      </div>
     </div>
   </div>
 </div>
