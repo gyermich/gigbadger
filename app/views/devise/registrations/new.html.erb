@@ -1,18 +1,74 @@
-<h2>Sign up</h2>
+<div class="container">
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="align-center">
+                <h1 class="panel-title">Sign Up</h1>
+              </div>
+            </div>
+            <div class="panel-body">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <% f.label :name %>
+                      <%= f.text_field :name, autofocus: true, placeholder: "Name", class: "form-control input" %>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                       <% f.label :email %>
+                       <%= f.email_field :email, autofocus: true, placeholder: "Email", class: "form-control input" %>
+                    </div>
+                  </div>
+                </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                   <% f.label :city %>
+                   <%= f.text_field :city, autofocus: true, placeholder: "City", class: "form-control input" %>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <% f.label :zipcode %>
+                    <%= f.text_field :zipcode, autofocus: true, placeholder: "Zipcode", class: "form-control input" %>
+                  </div>
+                </div>
+              </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+              <div class="row">
+                <div class="text_container">
+                  <div class="form-group">
+                   <% f.label :bio %>
+                   <%= f.text_area :bio, autofocus: true, placeholder: "Tell us about yourself", class: "form-control input"  %>
+                  </div>
+                </div>
+              </div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                   <% f.label :password %>
+                   <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control input" %>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <% f.label :password_confirmation %>
+                    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "form-control input" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text_container">
+                <%= f.submit "Register", class: "btn btn-info btn-theme btn-block"%>
+            </div>
+             <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
