@@ -9,6 +9,7 @@ gem 'bcrypt-ruby'
 gem 'pg'
 gem 'faker'
 gem 'devise'
+gem 'net-ssh', '~> 2.8.1', :git => "https://github.com/net-ssh/net-ssh"
 
 group :doc do
   gem 'sdoc', require: false
@@ -19,6 +20,10 @@ group :development do
   gem 'guard-rspec'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
 end
 
 group :test do
@@ -26,3 +31,5 @@ group :test do
   gem 'factory_girl_rails'
   gem 'resque_spec'
 end
+
+gem 'therubyracer', platforms: :ruby
