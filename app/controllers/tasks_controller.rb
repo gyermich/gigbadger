@@ -22,6 +22,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
+      @task.categories = params[:task][:categories].present? ? Category.find_all_by_id(params[:task][:categories]) : [ ] 
       redirect_to task_path(@task)
     else
       render :edit
