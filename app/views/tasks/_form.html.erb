@@ -13,7 +13,7 @@
     <p>
       <div class="field">
       <%= f.label :category %><br>
-      <%= select_tag options_from_collection_for_select(@categories, 'id', 'name') %>
+      <%= collection_check_boxes(:task, :categories, Category.all, :id, :name)%>
       </div>
     </p>
     <p>
