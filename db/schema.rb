@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407002636) do
+ActiveRecord::Schema.define(version: 20140408182322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20140407002636) do
   create_table "tasks", force: true do |t|
     t.integer  "owner_id"
     t.boolean  "paid",        default: false
-    t.integer  "pay"
-    t.string   "status",      default: "active"
+    t.float    "pay"
+    t.string   "status",      default: "pending"
     t.string   "summary"
     t.string   "name"
     t.date     "due_date"
