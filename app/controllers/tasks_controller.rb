@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @task = Task.all
+    @task = Task.where(status: "available")
   end
 
   def new
