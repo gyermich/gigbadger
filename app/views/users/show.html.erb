@@ -1,0 +1,21 @@
+<br>
+<br>
+<div class="center_align">
+<!-- use this method for rating only: -->
+<%= rating_for @user,  dimension = nil, options = {readonly: true} %>
+
+</div>
+<div class="center-align">
+<!-- <%= rating_for_user @user, current_user%> -->
+</div>
+
+
+<!-- avg = cached_average ? cached_average.avg : 0
+
+avg = if cacched_average
+        avg =cached_average.avg
+      else
+         avg = 0
+      end
+
+ternary operator or operation -->
