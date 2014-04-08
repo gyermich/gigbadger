@@ -11,6 +11,6 @@
 
 <ul>
 <% User.joins(:rate_average_without_dimension).order('rating_caches.avg DESC').each do |user| %>
-  <li><%= link_to user.name, user_path(user) %></li>
+  <li><%= link_to user.name, user_path(user) %> <%= rating_for user,  dimension = nil, options = {readonly: true} %></li>
 <% end %>
 </ul>
