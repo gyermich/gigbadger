@@ -1,32 +1,3 @@
-<table class="table">
-  <thead>
-   <tr>
-   <!-- below can be image of owner or something -->
-    <th></th>
-    <th>Name</th>
-    <th>Summary</th>
-    <th>Gig Price</th>
-    <th>Due Date</th>
-   </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |gig| %>
-    <tr>
-    <td></td>
-    <td><%= gig.name %></td>
-    <td><%= gig.summary %></td>
-    <td><% if gig.paid == true %>
-          <%= gig.pay %>
-        <% else %>
-          Unpaid
-        <% end %>
-    </td>
-    <td><%= gig.due_date %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <%= form_for @filterrific do |f| %>
   <div>
     Search

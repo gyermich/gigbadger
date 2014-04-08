@@ -12,5 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-datepicker
 //= require filterrific-jquery
 //= require_tree .
+$(document).ready(function() {
+
+  $('.js-datepicker').datepicker();
+   $('#overlayTrigger').click(function(event) {
+     event.preventDefault();
+     $('body').chardinJs('start');
+   });
+});
