@@ -10,7 +10,7 @@
    </tr>
   </thead>
   <tbody>
-    <% @task.each do |gig| %>
+    <% @tasks.each do |gig| %>
     <tr>
     <td></td>
     <td><%= gig.name %></td>
@@ -26,3 +26,45 @@
     <% end %>
   </tbody>
 </table>
+
+<%= form_for @filterrific do |f| %>
+  <div>
+    Search
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      :class => 'filterrific-periodically-observed'
+    ) %>
+  </div>
+  <div>
+    Category
+    <%= f.select(
+      :with_category_ids,
+      Category.options_for_select,
+      { :include_blank => '- Any -' }
+    ) %>
+    <%# See below for the Category.options_for_select presenter method %>
+  </div>
+  <div>
+    Due Date
+    <%= f.text_field(:with_due_date, :class => 'js-datepicker') %>
+  </div>
+  <div>
+    Sorted by
+    <%= f.select(:sorted_by, Task.options_for_sorted_by) %>
+    <%# See below for the Student.options_for_sorted_by presenter method %>
+  </div>
+  <div>
+    <%= link_to(
+      'Reset filters',
+      reset_filterrific_tasks_path,
+    ) %>
+  </div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+  <%= render_filterrific_spinner %>
+<% end %>
+
+<%= render(
+  :partial => 'tasks/list',
+  :locals => { :tasks => @tasks }
+) %>

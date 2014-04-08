@@ -93,6 +93,8 @@ GEM
     faker (1.3.0)
       i18n (~> 0.5)
     ffi (1.9.3)
+    filterrific (1.2.0)
+      rails (>= 3.0.0)
     formatador (0.2.4)
     guard (2.6.0)
       formatador (>= 0.2.4)
@@ -262,6 +264,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  filterrific
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails

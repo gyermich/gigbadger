@@ -11,7 +11,78 @@ class Task < ActiveRecord::Base
     User.find(owner_id)
   end
 
-  def self.find_by_category(query)
-    TaskCategory.where(category_id: query.id)
-  end
+  # def self.find_by_category(query)
+  #   TaskCategory.where(category_id: query.id)
+  # end
+
+  filterrific(
+    :default_settings => { :sorted_by => 'created_at_desc' },
+    :filter_names => [
+      :search_query,
+      :sorted_by,
+      :with_category_ids,
+      :with_due_date
+    ]
+  )
+    scope :search_query, lambda { |query|
+      return nil  if query.blank?
+         # condition query, parse into individual keywords
+         terms = query.downcase.split(/\s+/)
+         # replace "*" with "%" for wildcard searches,
+         # append '%', remove duplicate '%'s
+         terms = terms.map { |e|
+           (e.gsub('*', '%') + '%').gsub(/%+/, '%')
+         }
+         # configure number of OR conditions for provision
+         # of interpolation arguments. Adjust this if you
+         # change the number of OR conditions.
+         num_or_conditions = 2
+         Task.where(
+           terms.map {
+             or_clauses = [
+               "LOWER(tasks.name) LIKE ?",
+               "LOWER(tasks.summary) LIKE ?" #need to figure out how to search through the whole summary string
+             ].join(' OR ')
+             "(#{ or_clauses })"
+           }.join(' AND '),
+           *terms.map { |e| [e] * num_or_conditions }.flatten
+         )
+    }
+    scope :sorted_by, lambda { |sort_option|
+      direction = (sort_option =~ /desc$/) ? 'desc' : 'asc'
+         case sort_option.to_s
+         when /^created_at_/
+           order("tasks.created_at #{ direction }")
+         when /^due_date_/
+           order("tasks.due_date #{ direction }")
+         when /^name_/
+           order("LOWER(tasks.name) #{ direction }, LOWER(tasks.name) #{ direction }")
+         else
+           raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
+         end
+    }
+    scope :with_category_ids, lambda { |category_ids|
+      # get a reference to the join table
+      task_categories = TaskCategory.arel_table
+      # get a reference to the filtered table
+      tasks = Task.arel_table
+      # let AREL generate a complex SQL query
+      where(
+        TaskCategory \
+          .where(task_categories[:task_id].eq(tasks[:id])) \
+          .where(task_categories[:category_id].in([*category_ids].map(&:to_i))) \
+          .exists
+      )
+    }
+    scope :with_due_date, lambda { |ref_date|
+      where('tasks.due_date >= ?', ref_date)
+    }
+
+    def self.options_for_sorted_by
+      [
+        ['Name (a-z)', 'name_asc'],
+        ['Due Date (newest first)', 'created_at_desc'],
+        ['Due Date (oldest first)', 'created_at_asc']
+      ]
+    end
 end

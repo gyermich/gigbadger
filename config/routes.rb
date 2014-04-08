@@ -7,6 +7,8 @@ Badger::Application.routes.draw do
   get "welcome/index"
 
   resources :categories
-  resources :tasks
+  resources :tasks do
+    get :reset_filterrific, :on => :collection
+  end
   resources :users
 end
