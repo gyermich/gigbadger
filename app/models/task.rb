@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
     User.find(owner_id)
   end
 
-  # def self.find_by_categories(categories)
-  #   TaskCategory.joins(:category).where("category.id = ?", categories)
-  # end
+  def self.find_by_category(query)
+    TaskCategory.where(category_id: query.id)
+  end
 end
