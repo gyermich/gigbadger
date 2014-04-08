@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
   has_many :user_tasks
   has_many :categories, through: :user_categories
   has_many :user_categories
+  letsrate_rateable
+  letsrate_rater
 end

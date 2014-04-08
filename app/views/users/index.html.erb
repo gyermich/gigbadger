@@ -3,3 +3,14 @@
     <li><%= user.name %></li>
   <% end %>
 </ul>
+
+
+<br>
+<br>
+<br>
+
+<ul>
+<% User.joins(:rate_average_without_dimension).order('rating_caches.avg DESC').each do |user| %>
+  <li><%= link_to user.name, user_path(user) %></li>
+<% end %>
+</ul>
