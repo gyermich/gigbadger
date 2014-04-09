@@ -9,6 +9,7 @@ gem 'bcrypt-ruby'
 gem 'pg'
 gem 'faker'
 gem 'devise'
+gem 'mailboxer'
 gem 'net-ssh', '~> 2.8.1', :git => "https://github.com/net-ssh/net-ssh"
 
 group :doc do
