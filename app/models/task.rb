@@ -12,10 +12,7 @@ class Task < ActiveRecord::Base
       :sorted_by,
       :with_category_ids,
       :with_due_date,
-      :paid,
-      :free,
-      :with_paid,
-      :without_paid
+      :with_paid
     ]
   )
     scope :search_query, lambda { |query|
@@ -67,7 +64,6 @@ class Task < ActiveRecord::Base
     }
 
     scope :with_paid, lambda { |option|
-
       if option == "Paid"
         where(paid: true)
       elsif option == "Free"
@@ -75,7 +71,6 @@ class Task < ActiveRecord::Base
       else
         all
       end
-
     }
 
     scope :with_due_date, lambda { |ref_date|
