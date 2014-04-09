@@ -1,47 +1,42 @@
 <div class="container" id="padded_container">
-<div class="row">
-<%= form_for @filterrific, :html => {class: "form-horizontal"} do |f| %>
-  <div class="form-group">
-    Search
-    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-    <%= f.text_field(
-      :search_query,
-      :class => 'filterrific-periodically-observed'
-    ) %>
-  </div>
-  <div class="form-group">
-    Category
-    <%= f.select(
-      :with_category_ids,
-      Category.options_for_select,
-      { :include_blank => '- Any -' }
-    ) %>
-    <%# See below for the Category.options_for_select presenter method %>
-  </div>
-  <div class="form-group">
-    Due Date
-    <%= f.date_field(:with_due_date) %>
-  </div>
-  <div class="form-group">
-    Sorted by
-    <%= f.select(:sorted_by, Task.options_for_sorted_by) %>
-    <%# See below for the Student.options_for_sorted_by presenter method %>
-  </div>
-</div>
-<div class="row">
-  <div>
-    <%= link_to(
-      'Reset filters',
-      reset_filterrific_tasks_path,
-    ) %>
-  </div>
-  <%# add an automated spinner to your form when the list is refreshed %>
-  <%= render_filterrific_spinner %>
-<% end %>
-</div>
 
-<%= render(
-  :partial => 'tasks/list',
-  :locals => { :tasks => @tasks }
-) %>
+  <%= form_for @filterrific, html: {class: "well form-inline"} do |f| %>
+
+  <div class="row">
+    <div class="form-group col-md-4 col-sm-4">
+      <div class="small">
+        Category
+      </div>
+      <%= f.select( :with_category_ids, Category.options_for_select, { include_blank: '- Any -' }, class: "form-control" )%>
+    </div>
+      <div class="form-group col-md-4 col-sm-4">
+        <div class="small">
+          Sorted by
+        </div>
+        <%= f.select(:sorted_by, Task.options_for_sorted_by, { }, class: "form-control")%>
+      </div>
+      <div class="form-group col-md-4 col-sm-4">
+        <div class="small">
+          Paid
+        </div>
+        <%= f.select(:with_paid, Task.options_for_paid, { :include_blank => '- Any -' }, class: "form-control")%>
+      </div>
+  </div>
+
+  <div class="row padded">
+    <div class="form-group col-md-4 col-sm-4 align-center">
+      <%= f.text_field( :search_query, class: 'filterrific-periodically-observed form-control', placeholder: "Search" )%>
+    </div>
+    <div class="form-group col-md-4 col-sm-4 align-center">
+      <%= f.text_field(:with_due_date, placeholder: "Due date after", class: "form-control js-datepicker span2") %>
+    </div>
+    <div class="form-group col-md-4 col-sm-4 align-center">
+      <%= button_to 'Reset filters', reset_filterrific_tasks_path, method: :get, class: "btn btn-info btn-theme btn-block"%>
+    </div>
+    <%= render_filterrific_spinner %>
+  </div>
+  <% end %>
+
+  <%= render( :partial => 'tasks/list', :locals => { :tasks => @tasks } )%>
+
 </div>

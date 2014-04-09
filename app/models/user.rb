@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+  mount_uploader :image, ImageUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,4 +11,5 @@ class User < ActiveRecord::Base
   has_many :user_categories
   letsrate_rateable
   letsrate_rater
+
 end
