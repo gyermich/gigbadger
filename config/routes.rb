@@ -1,6 +1,6 @@
 Badger::Application.routes.draw do
 
-  resources :messages
+  
 
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users
@@ -12,5 +12,7 @@ Badger::Application.routes.draw do
   resources :tasks do
     get :reset_filterrific, :on => :collection
   end
-  resources :users
+  resources :users do 
+    resources :messages
+  end
 end
