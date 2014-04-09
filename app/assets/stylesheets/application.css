@@ -155,9 +155,44 @@
   padding: 5px 15px;
  }
 
- .notice_cont {
-  position: absolute;
-  width: 100%;
+ #note {
+     position: absolute;
+     z-index: 101;
+     top: 60px;
+     left: 0;
+     right: 0;
+     bottom:;
+     background: #fde073;
+     text-align: center;
+     line-height: 1.2;
+     font-size: 16px;
+     overflow: hidden;
+     -webkit-box-shadow: 0 0 5px black;
+     -moz-box-shadow:    0 0 5px black;
+     box-shadow:         0 0 5px black;
+ }
+
+.padded {
+  padding-top: 10px;
+}
+ @-webkit-keyframes slideDown {
+     0%, 100% { -webkit-transform: translateY(-50px); }
+     10%, 90% { -webkit-transform: translateY(0px); }
+ }
+ @-moz-keyframes slideDown {
+     0%, 100% { -moz-transform: translateY(-50px); }
+     10%, 90% { -moz-transform: translateY(0px); }
+ }
+
+ .cssanimations.csstransforms #note {
+     -webkit-transform: translateY(-50px);
+     -webkit-animation: slideDown 2.5s 1.0s 1 ease forwards;
+     -moz-transform:    translateY(-50px);
+     -moz-animation:    slideDown 2.5s 1.0s 1 ease forwards;
+ }
+
+ .cssanimations.csstransforms #close {
+   display: none;
  }
 
  #padded_container {
