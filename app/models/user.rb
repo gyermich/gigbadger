@@ -9,4 +9,9 @@ class User < ActiveRecord::Base
   has_many :user_categories
   letsrate_rateable
   letsrate_rater
+  acts_as_messageable
+
+  def name
+    return email 
+  end
 end

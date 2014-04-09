@@ -1,5 +1,7 @@
 Badger::Application.routes.draw do
 
+  resources :messages
+
   post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users
 
