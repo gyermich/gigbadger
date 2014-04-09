@@ -11,7 +11,11 @@ class Task < ActiveRecord::Base
       :search_query,
       :sorted_by,
       :with_category_ids,
-      :with_due_date
+      :with_due_date,
+      :paid,
+      :free,
+      :with_paid,
+      :without_paid
     ]
   )
     scope :search_query, lambda { |query|
@@ -52,11 +56,8 @@ class Task < ActiveRecord::Base
          end
     }
     scope :with_category_ids, lambda { |category_ids|
-      # get a reference to the join table
       task_categories = TaskCategory.arel_table
-      # get a reference to the filtered table
       tasks = Task.arel_table
-      # let AREL generate a complex SQL query
       where(
         TaskCategory \
           .where(task_categories[:task_id].eq(tasks[:id])) \
@@ -64,6 +65,19 @@ class Task < ActiveRecord::Base
           .exists
       )
     }
+
+    scope :with_paid, lambda { |option|
+
+      if option == "Paid"
+        where(paid: true)
+      elsif option == "Free"
+        where(paid: false)
+      else
+        all
+      end
+
+    }
+
     scope :with_due_date, lambda { |ref_date|
       where('tasks.due_date >= ?', ref_date)
     }
@@ -73,6 +87,13 @@ class Task < ActiveRecord::Base
         ['Name (a-z)', 'name_asc'],
         ['Due Date (newest first)', 'created_at_desc'],
         ['Due Date (oldest first)', 'created_at_asc']
+      ]
+    end
+
+    def self.options_for_paid
+      [
+        ['Free'],
+        ['Paid']
       ]
     end
 end

@@ -3,7 +3,6 @@
 <%= form_for @filterrific, :html => {class: "form-horizontal"} do |f| %>
   <div class="form-group">
     Search
-    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
     <%= f.text_field(
       :search_query,
       :class => 'filterrific-periodically-observed'
@@ -16,7 +15,6 @@
       Category.options_for_select,
       { :include_blank => '- Any -' }
     ) %>
-    <%# See below for the Category.options_for_select presenter method %>
   </div>
   <div class="form-group">
     Due Date
@@ -25,7 +23,10 @@
   <div class="form-group">
     Sorted by
     <%= f.select(:sorted_by, Task.options_for_sorted_by) %>
-    <%# See below for the Student.options_for_sorted_by presenter method %>
+  </div>
+  <div class="form-group">
+    Paid
+    <%= f.select(:with_paid, Task.options_for_paid,{ :include_blank => '- Any -' }) %>
   </div>
 </div>
 <div class="row">
@@ -35,7 +36,6 @@
       reset_filterrific_tasks_path,
     ) %>
   </div>
-  <%# add an automated spinner to your form when the list is refreshed %>
   <%= render_filterrific_spinner %>
 <% end %>
 </div>
