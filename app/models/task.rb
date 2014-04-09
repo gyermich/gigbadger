@@ -5,10 +5,6 @@ class Task < ActiveRecord::Base
   has_many    :task_categories
   belongs_to  :owner, class_name: "User"
 
-  def owner
-    User.find(owner_id)
-  end
-
   filterrific(
     :default_settings => { :sorted_by => 'created_at_desc' },
     :filter_names => [

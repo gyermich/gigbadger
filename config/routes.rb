@@ -6,11 +6,18 @@ Badger::Application.routes.draw do
   root "welcome#index"
   get "welcome/index"
 
+  patch "/tasks/:id/"      => "tasks#post", :as => "post"
+
   resources :categories
   resources :tasks do
     get :reset_filterrific, :on => :collection
   end
+
   resources :users do 
     resources :messages
   end
+
+
+  resources :user_tasks
+
 end

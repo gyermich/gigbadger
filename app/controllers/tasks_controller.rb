@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :destroy, :update]
+  before_action :set_task, only: [:show, :edit, :destroy, :update, :post]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -29,8 +29,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.create(task_params)
     if @task.save
+
       @task.categories = params[:task][:categories].present? ? Category.find_all_by_id(params[:task][:categories]) : [ ]
-      redirect_to task_path(@task), notice: "Yay! Your gig is posted!"
+      redirect_to task_path(@task)
     else
       render :new
     end
@@ -46,6 +47,16 @@ class TasksController < ApplicationController
   end
 
   def edit
+  end
+
+  def post
+    @task.update(status: "available")
+
+    if @task.save
+      redirect_to tasks_path, notice: "Yay! Your gig is posted!"
+    else
+      redirect_to task_path
+    end
   end
 
   def show
