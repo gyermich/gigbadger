@@ -3,8 +3,24 @@ class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @task = Task.where(status: "available")
+    @filterrific = Filterrific.new(
+          Task,
+          params[:filterrific] || session[:filterrific_students]
+        )
+    @tasks = Task.where(status: "available").filterrific_find(@filterrific)
+
+    # Persist the current filter settings in the session as a plain old Hash.
+    session[:filterrific_tasks] = @filterrific.to_hash
+    respond_to do |format|
+          format.html
+          format.js
+    end
   end
+
+  def reset_filterrific
+      session[:filterrific_tasks] = nil
+      redirect_to action: :index
+    end
 
   def new
     @task = Task.new
@@ -13,8 +29,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.create(task_params)
     if @task.save
-      @task.categories = params[:task][:categories].present? ? Category.find_all_by_id(params[:task][:categories]) : [ ] 
-      redirect_to task_path(@task) 
+
+      @task.categories = params[:task][:categories].present? ? Category.find_all_by_id(params[:task][:categories]) : [ ]
+      redirect_to task_path(@task)
     else
       render :new
     end
@@ -22,7 +39,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      @task.categories = params[:task][:categories].present? ? Category.find_all_by_id(params[:task][:categories]) : [ ] 
+      @task.categories = params[:task][:categories].present? ? Category.find_all_by_id(params[:task][:categories]) : [ ]
       redirect_to task_path(@task)
     else
       render :edit
@@ -38,7 +55,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, notice: "Yay! Your gig is posted!"
     else
-      redirect_to task_path 
+      redirect_to task_path
     end
   end
 
