@@ -1,28 +1,47 @@
-<table class="table">
-  <thead>
-   <tr>
-   <!-- below can be image of owner or something -->
-    <th></th>
-    <th>Name</th>
-    <th>Summary</th>
-    <th>Gig Price</th>
-    <th>Due Date</th>
-   </tr>
-  </thead>
-  <tbody>
-    <% @task.each do |gig| %>
-    <tr>
-    <td></td>
-    <td><%= gig.name %></td>
-    <td><%= gig.summary %></td>
-    <td><% if gig.paid == true %>
-          <%= gig.pay %>
-        <% else %>
-          Unpaid
-        <% end %>
-    </td>
-    <td><%= gig.due_date %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container" id="padded_container">
+<div class="row">
+<%= form_for @filterrific, :html => {class: "form-horizontal"} do |f| %>
+  <div class="form-group">
+    Search
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      :class => 'filterrific-periodically-observed'
+    ) %>
+  </div>
+  <div class="form-group">
+    Category
+    <%= f.select(
+      :with_category_ids,
+      Category.options_for_select,
+      { :include_blank => '- Any -' }
+    ) %>
+    <%# See below for the Category.options_for_select presenter method %>
+  </div>
+  <div class="form-group">
+    Due Date
+    <%= f.date_field(:with_due_date) %>
+  </div>
+  <div class="form-group">
+    Sorted by
+    <%= f.select(:sorted_by, Task.options_for_sorted_by) %>
+    <%# See below for the Student.options_for_sorted_by presenter method %>
+  </div>
+</div>
+<div class="row">
+  <div>
+    <%= link_to(
+      'Reset filters',
+      reset_filterrific_tasks_path,
+    ) %>
+  </div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+  <%= render_filterrific_spinner %>
+<% end %>
+</div>
+
+<%= render(
+  :partial => 'tasks/list',
+  :locals => { :tasks => @tasks }
+) %>
+</div>

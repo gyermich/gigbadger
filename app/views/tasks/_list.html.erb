@@ -1,0 +1,27 @@
+<div id="filterrific_results">
+
+
+  <table class="table">
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Summary</th>
+      <th>Gig Price</th>
+      <th>Due Date</th>
+    </tr>
+    <% tasks.each do |gig| %>
+      <tr>
+        <td></td>
+            <td><%= gig.name %></td>
+            <td><%= gig.summary %></td>
+            <td><% if gig.paid == true %>
+                  <%= gig.pay %>
+                <% else %>
+                  Unpaid
+                <% end %>
+            </td>
+            <td><%= gig.due_date %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
