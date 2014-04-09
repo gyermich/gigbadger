@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/gyermich/letsrate
+  revision: f8fe6da465a0fc38ff05d67cb050e52650fa05ae
+  specs:
+    letsrate (1.0.9)
+
+GIT
   remote: https://github.com/net-ssh/net-ssh
   revision: 7f4d489f0ed47b344965d1c39d9160cb94371fd5
   specs:
@@ -41,6 +47,8 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.3.0.1)
+      railties (>= 3.0)
     builder (3.1.4)
     capistrano (3.1.0)
       i18n
@@ -94,6 +102,8 @@ GEM
     ffi (1.9.3)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
+    filterrific (1.2.0)
+      rails (>= 3.0.0)
     formatador (0.2.4)
     guard (2.6.0)
       formatador (>= 0.2.4)
@@ -259,6 +269,7 @@ DEPENDENCIES
   bcrypt-ruby
   better_errors
   binding_of_caller
+  bootstrap-datepicker-rails
   capistrano
   capistrano-bundler
   capistrano-rails
@@ -267,10 +278,12 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  filterrific
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails
   mailboxer
+  letsrate!
   net-ssh (~> 2.8.1)!
   pg
   rails (= 4.0.2)
