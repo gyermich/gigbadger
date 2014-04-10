@@ -14,6 +14,11 @@ gem 'net-ssh', '~> 2.8.1', :git => "https://github.com/net-ssh/net-ssh"
 gem 'letsrate', :git => 'git://github.com/gyermich/letsrate'
 gem 'filterrific'
 gem 'bootstrap-datepicker-rails'
+gem 'carrierwave'
+gem 'fog'
+gem 'figaro'
+gem 'mini_magick'
+
 
 group :doc do
   gem 'sdoc', require: false

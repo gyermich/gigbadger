@@ -36,10 +36,13 @@
       </div><!--/.navbar-collapse -->
     </div>
   </div>
-    <div class="notice_cont align-center">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </div>
+  <div id="note">
+    <% if notice %>
+        <p class="padded"><%= notice %> <a id="close">[close]</a></p>
+    <% elsif alert %>
+        <p class="padded"><%= alert %> <a id="close">[close]</a></p>
+    <% end %>
+  </div>
     <%= yield %>
   </body>
 </html>

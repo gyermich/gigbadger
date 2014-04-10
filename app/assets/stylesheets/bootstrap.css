@@ -2174,7 +2174,7 @@ textarea.input-lg {
     display: inline-block;
   }
   .form-inline select.form-control {
-    width: auto;
+    width: 100%;
   }
   .form-inline .radio,
   .form-inline .checkbox {
