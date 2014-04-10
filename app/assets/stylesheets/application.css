@@ -161,8 +161,8 @@
      top: 60px;
      left: 0;
      right: 0;
-     bottom:;
-     background: #fde073;
+     bottom: 0;
+     background: #FDE073;
      text-align: center;
      line-height: 1.2;
      font-size: 16px;
@@ -1112,7 +1112,7 @@
  .form-inline select.form-control {
    width: 100% !important;
  }
-
+}
 
  @media (min-width: 959px) and (max-width: 1199px) {
   .navbar-nav {
