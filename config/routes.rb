@@ -7,6 +7,7 @@ Badger::Application.routes.draw do
   get "welcome/index"
 
   patch "/tasks/:id/", to: "tasks#post", as: "post"
+  post "/tasks/:id/complete", to: "tasks#complete", as: "complete"
   get "/users/:id/profile", to: "users#profile", as: "user_profile"
 
   resources :categories

@@ -18,7 +18,7 @@
 
           <ul class="list-group small">
             <li class="list-group-item text-muted"><%= link_to 'My Profile', user_profile_path(@user) %></li>
-            <li class="list-group-item text-muted"><%= link_to 'Change Password', user_registration_path %></li>
+            <li class="list-group-item text-muted"><%= link_to 'Change Password', edit_user_registration_path %></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Joined</strong></span> <%= time_ago_in_words(@user.created_at) %> ago</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Last seen</strong></span> <%= time_ago_in_words(@user.last_sign_in_at) %> ago</li>
           </ul>
@@ -43,6 +43,8 @@
                         <td><%= link_to t.name, task_path(t) %></td>
                         <td><%=  t.due_date %></td>
                         <td><%=  t.status %></td>
+                        <td><%=  button_to "Complete", complete_path(t), class: "btn btn-theme" %></td>
+                        <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
                     </tr>
                     <% end %>
                   </tbody>

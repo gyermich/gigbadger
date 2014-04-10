@@ -4,7 +4,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @top_badgers = User.joins(:rate_average_without_dimension).order('rating_caches.avg DESC').first(10)
+    @top_badgers = User.joins(:rate_average_without_dimension)
+                       .order('rating_caches.avg DESC')
+                       .first(10)
   end
 
   def new
@@ -43,10 +45,6 @@ class UsersController < ApplicationController
   def profile
   end
 
-  def destroy
-    @user.destroy
-    redirect_to :back
-  end
 
   private
   def set_user
