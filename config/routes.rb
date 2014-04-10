@@ -13,7 +13,11 @@ Badger::Application.routes.draw do
     get :reset_filterrific, :on => :collection
   end
 
-  resources :users do 
+  
+  resources :users do
+    get "messages/inbox"    => "messages#inbox"
+    get "messages/sent"     => "messages#sent"
+    get "messages/trash"    => "messages#trash"
     resources :messages
   end
 

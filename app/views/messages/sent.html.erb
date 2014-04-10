@@ -1,0 +1,17 @@
+<h2>SENT MAIL</h2>
+
+<table class="table">
+  <tr>
+    <th>Sent To</th>
+    <th>Subject</th>
+    <th>Sent</th>
+
+  </tr>
+    <% @conversations.each do |message| %>
+      <tr>
+        <td><%= message.participants.last.name %></td>
+        <td><%= message.subject %></td>
+        <td><%= message.created_at %></td>
+      <tr>
+    <% end %>
+</table>
