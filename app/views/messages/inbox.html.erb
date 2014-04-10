@@ -13,6 +13,7 @@
         <td><%= message.subject %></td>
         <td><%= message.created_at %></td>
         <td><%= message.is_read?(current_user) %></td>
+        <td><%= link_to "open", user_message_path(current_user, message) %></td>
       </tr>
     <% end %>
 </table>

@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
   end
 
@@ -9,19 +9,21 @@ class MessagesController < ApplicationController
     create = current_user.send_message(recipient, params[:body], params[:subject])
 
     if create.save
-      redirect_to user_messages_sent_path
+      redirect_to user_messages_sent_path, notice: "Message sent"
     else
       render :new
     end
   end
 
   def show
+    conversation = current_user.mailbox
+    @messages = conversation.receipts_for(current_user)
     # shows conversation, last receipt shown first 
     # newest message received
   end
 
   def reply
-    receipt = Receipt.
+    receipt = Receipt.find(params[:id])
     current_user.reply_to_sender(receipt, params[:body])
   end
 

@@ -11,5 +11,5 @@
   <!-- button sends owner inquiry -->
   <%= button_to "Inquire", class: "btn btn-theme pull-left" %><br>
   <!-- below button sends owner offer to do gig, send to which page?? -->
-  <%= button_to "Offer", class: "btn btn-theme pull-left" %>
+  <%= button_to "Offer", check_badger_path(task_id: @task.id), controller: :badger, method: :put, class: "btn btn-theme pull-left" %>
 <% end %>

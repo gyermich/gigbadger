@@ -6,12 +6,16 @@ Badger::Application.routes.draw do
   root "welcome#index"
   get "welcome/index"
 
+
+  put "/badgers"             => "badgers#check_badger", as: :check_badger
   patch "/tasks/:id/"      => "tasks#post", :as => "post"
 
   resources :categories
   resources :tasks do
     get :reset_filterrific, :on => :collection
   end
+
+  resources :badgers
 
   
   resources :users do
