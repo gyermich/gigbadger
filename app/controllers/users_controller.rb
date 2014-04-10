@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @top_badgers = User.joins(:rate_average_without_dimension).order('rating_caches.avg DESC').first(10)
   end
 
   def new

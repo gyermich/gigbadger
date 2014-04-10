@@ -161,7 +161,7 @@
      top: 60px;
      left: 0;
      right: 0;
-     background: #fde073;
+     background: #FDE073;
      text-align: center;
      line-height: 1.2;
      font-size: 16px;
@@ -1138,7 +1138,6 @@
    width: 100% !important;
  }
 }
-
 
  @media (min-width: 959px) and (max-width: 1199px) {
   .navbar-nav {

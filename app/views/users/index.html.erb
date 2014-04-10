@@ -1,8 +1,4 @@
-<ul>
-  <% @users.each do |user| %>
-    <li><%= user.name %></li>
-  <% end %>
-</ul>
+
 
 
 <br>
@@ -10,8 +6,16 @@
 <br>
 
 <!--todo: move this to the controller(model?) -->
+<h1>Top Reviewed Users</h1>
 <ul>
-<% User.joins(:rate_average_without_dimension).order('rating_caches.avg DESC').each do |user| %>
+<% @top_badgers.each do |user| %>
   <li><%= link_to user.name, user_path(user) %> <%= rating_for user,  dimension = nil, options = {readonly: true} %></li>
 <% end %>
+</ul>
+
+<h1>All Users</h1>
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.name %></li>
+  <% end %>
 </ul>
