@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :edit, :destroy, :update]
+  before_action :set_user, only: [:show, :edit, :destroy, :update, :profile]
 
   def index
     @users = User.all
@@ -32,6 +32,14 @@ class UsersController < ApplicationController
   end
 
   def show
+    @created_tasks = Task.where(owner_id: @user.id)
+    @badger_tasks = @user.tasks
+      unless @user == current_user
+        redirect_to root_path, notice: "Sorry, you are not authorized to access this page."
+      end
+  end
+
+  def profile
   end
 
   def destroy

@@ -161,7 +161,6 @@
      top: 60px;
      left: 0;
      right: 0;
-     bottom:;
      background: #fde073;
      text-align: center;
      line-height: 1.2;
@@ -197,6 +196,36 @@
 
  #padded_container {
   padding-top: 80px;
+ }
+
+ #ww {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  background-color: #f2f2f2;
+ }
+
+ #ww img {
+  margin: 0 auto;
+ }
+
+ .rating {
+  margin: 0 auto;
+  width: 100px;
+ }
+
+ .profile-img {
+  width: 256px;
+  height:256px !important;
+ }
+
+ .account_img {
+  width: 100px;
+  height: 100px !important;
+ }
+
+ .centered {
+  margin: 0 auto;
+  width: 100px;
  }
 
  /* --- float --- */
@@ -428,6 +457,7 @@
   line-height: 100%;
   vertical-align: middle;
   color: #fff;
+  background-color: #4E827B;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: .1em;
@@ -921,11 +951,6 @@
   -webkit-border-radius: 4px;
  }
 
- /* google map */
- #map {
-  height: 500px;
- }
-
 
  /*====================
    Clients
@@ -1112,6 +1137,7 @@
  .form-inline select.form-control {
    width: 100% !important;
  }
+}
 
 
  @media (min-width: 959px) and (max-width: 1199px) {
@@ -1135,6 +1161,10 @@
   }
  }
  @media (max-width: 767px) {
+
+  .account_heading h1 {
+    text-align: center !important;
+  }
 
   .navbar.navbar-fixed-top {
     background-color:rgba(0,0,0,1);

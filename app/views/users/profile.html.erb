@@ -1,0 +1,16 @@
+<div id="ww">
+    <div class="container align-center">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <%= image_tag avatar(@user), class: "img-circle img-responsive profile-img" %>
+          <div class="rating">
+          <%= rating_for @user,  dimension = nil, options = {readonly: true} %>
+        </div>
+        <h1>Hi, I am <%= @user.name %>!</h1>
+        <p><%= @user.bio %></p>
+
+      </div><!-- /col-lg-8 -->
+    </div><!-- /row -->
+    </div> <!-- /container -->
+</div><!-- /ww -->
+<hr>
