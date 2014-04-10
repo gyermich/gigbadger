@@ -17,7 +17,8 @@
     </div>
 
           <ul class="list-group small">
-            <li class="list-group-item text-muted"><%= link_to 'See Profile', user_profile_path(@user) %></li>
+            <li class="list-group-item text-muted"><%= link_to 'My Profile', user_profile_path(@user) %></li>
+            <li class="list-group-item text-muted"><%= link_to 'Change Password', user_registration_path %></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Joined</strong></span> <%= time_ago_in_words(@user.created_at) %> ago</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Last seen</strong></span> <%= time_ago_in_words(@user.last_sign_in_at) %> ago</li>
           </ul>
