@@ -91,50 +91,36 @@
         <div class="row mar-bot40">
           <div class="col-md-offset-3 col-md-6">
             <div class="section-header">
-              <h2 class="section-heading animated" data-animation="bounceInUp">Hall of Fame</h2>
+              <h2 class="section-heading">Hall of Fame</h2>
               <p>Top reviewed badgers of all time.</p>
             </div>
           </div>
         </div>
 
           <div class="row align-center mar-bot40">
+          <% @users.each do |user| %>
             <div class="col-md-3">
               <div class="team-member">
-                <figure class="member-photo"><img src="profile.jpg" alt="" /></figure>
+                <figure class="member-photo"><%= image_tag avatar(user) %></figure>
                 <div class="team-detail">
-                  <h4>Jason Doe</h4>
-                  <span>stars*stars</span>
+                  <h4><%= link_to user.name, user_path(user) %> </h4>
+                  <div class="centered">
+                    <%= rating_for user,  dimension = nil, options = {readonly: true} %>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="team-member">
-                <figure class="member-photo"><img src="profile.jpg" alt="" /></figure>
-                <div class="team-detail">
-                  <h4>Timothy Clark</h4>
-                  <span>stars*stars</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="team-member">
-                <figure class="member-photo"><img src="profile.jpg" alt="" /></figure>
-                <div class="team-detail">
-                <h4>Vicky Tan</h4>
-                  <span>stars*stars</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="team-member">
-                <figure class="member-photo"><img src="profile.jpg" alt="" /></figure>
-                <div class="team-detail">
-                <h4>Kevin Peterson</h4>
-                  <span>stars*stars</span>
-                </div>
-              </div>
-            </div>
+            <% end %>
           </div>
+
+            <div class="row pad-top15">
+              <div class="col-md-offset-3 col-md-6">
+                <div class="section-header">
+                  <%= link_to "See all", users_path, class: "btn btn-theme" %>
+                </div>
+              </div>
+            </div>
+
 
     </div>
     </section>

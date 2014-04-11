@@ -31,7 +31,7 @@
       <%= f.text_field(:with_due_date, placeholder: "Due date after", class: "form-control js-datepicker span2") %>
     </div>
     <div class="form-group col-md-4 col-sm-4 align-center">
-      <%= button_to 'Reset filters', reset_filterrific_tasks_path, method: :get, class: "btn btn-info btn-theme btn-block"%>
+      <%= link_to 'Reset filters', reset_filterrific_tasks_path, class: "btn btn-info btn-theme btn-block"%>
     </div>
     <%= render_filterrific_spinner %>
   </div>
