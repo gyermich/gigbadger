@@ -1,6 +1,6 @@
 Badger::Application.routes.draw do
 
-  post '/rate' => 'rater#create', :as => 'rate'
+  post '/rate', to: 'rater#create', as:'rate'
   devise_for :users
 
   root "welcome#index"
@@ -8,7 +8,11 @@ Badger::Application.routes.draw do
 
 
   put "/badgers"             => "user_tasks#check_badger", as: :check_badger
-  patch "/tasks/:id/"      => "tasks#post", :as => "post"
+
+  patch "/tasks/:id/", to: "tasks#post", as: "post"
+  post "/tasks/:id/complete", to: "tasks#complete", as: "complete"
+  get "/users/:id/profile", to: "users#profile", as: "user_profile"
+
 
   resources :categories
   resources :tasks do
