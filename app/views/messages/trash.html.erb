@@ -1,0 +1,16 @@
+<h2>TRASHED MAIL</h2>
+
+<table class="table">
+  <tr>
+    <th>Sender</th>
+    <th>Subject</th>
+    <th>Date</th>
+  </tr>
+    <% @conversations.map do |message| %>
+      <tr>
+        <td><%= message.originator.name %></td>
+        <td><%= message.subject %></td>
+        <td><%= message.created_at %></td>
+      </tr>
+    <% end %>
+</table>

@@ -1,4 +1,4 @@
-<h2><%= @task.owner %></h2>
+<h2><%= @task.owner.name %></h2>
 
 <%= @task.inspect %>
 
@@ -9,7 +9,7 @@
 <% else %>
   Added by <%= @task.owner.name %></br>
   <!-- button sends owner inquiry -->
-  <%= button_to "Inquire", class: "btn btn-theme pull-left" %><br>
+  <%= button_to "Message", new_message_path(@task.owner), method: :get, placeholder: @task.name, class: "btn btn-theme pull-left" %><br>
   <!-- below button sends owner offer to do gig, send to which page?? -->
-  <%= button_to "Offer", class: "btn btn-theme pull-left" %>
+  <%= button_to "Offer", check_badger_path(task_id: @task.id), controller: :badger, method: :put, class: "btn btn-theme pull-left" %>
 <% end %>

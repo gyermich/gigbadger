@@ -63,10 +63,11 @@ GEM
     capistrano-rvm (0.1.1)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    carrierwave (0.9.0)
+    carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
+      mime-types (>= 1.16)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
@@ -115,6 +116,8 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5)
       ruby-hmac
+    foreigner (1.6.1)
+      activerecord (>= 3.0.0)
     formatador (0.2.4)
     guard (2.6.0)
       formatador (>= 0.2.4)
@@ -144,6 +147,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailboxer (0.11.0)
+      carrierwave (>= 0.5.8)
+      foreigner (>= 0.9.1)
+      rails (> 3.0.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.7.0)
@@ -300,6 +307,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   letsrate!
+  mailboxer
   mini_magick
   net-ssh (~> 2.8.1)!
   pg

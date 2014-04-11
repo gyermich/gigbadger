@@ -1,0 +1,14 @@
+<% @receipts.map do |receipt| %>
+  Received: <%= receipt.message.created_at %><br>
+  Message: <%= receipt.message.body %>
+<% end %>
+
+<div class="container" id="padded_container">
+  <%= form_tag({controller: "messages", action: "reply"}, method: :post) do %>
+    <%= text_field_tag :subject, @conversation.subject %>
+    <%= text_area_tag :body %>
+    <%= hidden_field_tag :conversation, @conversation.id %>
+    <%= submit_tag 'Send message' %>
+  <% end %>
+
+</div>

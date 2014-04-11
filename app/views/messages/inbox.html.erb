@@ -1,0 +1,20 @@
+<!-- RECEIVED MESSAGES -->
+
+<table class="table">
+  <tr>
+    <th>Sender</th>
+    <th>Subject</th>
+    <th>Received</th>
+    <th>Read?</th>
+  </tr>
+    <% @conversations.each do |message| %>
+      <tr>
+        <td><%= message.originator.name %></td>
+        <td><%= message.subject %></td>
+        <td><%= message.created_at %></td>
+        <td><%= message.is_read?(current_user) %></td>
+        <td><%= button_to "open", message_path(current_user, message), method: :get, class: "btn btn-theme pull-left"%></td>
+        <td><%= button_to "Delete Message", trash_message_path(message), method: :post, class: "btn btn-theme pull-left" %></td>
+      </tr>
+    <% end %>
+</table>
