@@ -1,1 +1,6 @@
-<%= @messages %>
+<% @receipts.map do |receipt| %>
+  Received: <%= receipt.message.created_at %><br>
+  Message: <%= receipt.message.body %>
+<% end %>
+
+<%= button_to "Reply", messages_reply_path(params[:format]), method: :get, class: "btn btn-theme pull-left" %>

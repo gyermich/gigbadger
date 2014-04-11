@@ -1,4 +1,4 @@
-class BadgersController < ApplicationController
+class UserTaskController < ApplicationController
 
   def create
     @task = Task.find(params[:task_id])
@@ -17,7 +17,7 @@ class BadgersController < ApplicationController
     if UserTask.badger_for_task?(@task, current_user)
       self.create
     else
-      redirect_to task_path(@task), notice:"You sent an offer before. Please be patient for a response."
+      redirect_to task_path(@task), notice:"You already sent an offer. Please wait for a response from owner."
     end
   end
 

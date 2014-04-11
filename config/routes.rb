@@ -7,7 +7,7 @@ Badger::Application.routes.draw do
   get "welcome/index"
 
 
-  put "/badgers"             => "badgers#check_badger", as: :check_badger
+  put "/badgers"             => "user_tasks#check_badger", as: :check_badger
   patch "/tasks/:id/"      => "tasks#post", :as => "post"
 
   resources :categories
@@ -17,13 +17,16 @@ Badger::Application.routes.draw do
 
   resources :badgers
 
+  get "messages/inbox"    => "messages#inbox"
+  get "messages/sent"     => "messages#sent"
+  get "messages/trash"    => "messages#trash"
+  get "messages/reply"    => "messages#conversation"
+  post "messages/reply"   => "messages#reply"
+
+  resources :messages
+
   
-  resources :users do
-    get "messages/inbox"    => "messages#inbox"
-    get "messages/sent"     => "messages#sent"
-    get "messages/trash"    => "messages#trash"
-    resources :messages
-  end
+  resources :users
 
 
   resources :user_tasks
