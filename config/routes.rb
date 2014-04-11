@@ -1,11 +1,12 @@
 Badger::Application.routes.draw do
 
-  post '/rate', to: 'rater#create', as:'rate'
-  devise_for :users
+
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   root "welcome#index"
   get "welcome/index"
 
+  post '/rate', to: 'rater#create', as:'rate'
   patch "/tasks/:id/", to: "tasks#post", as: "post"
   post "/tasks/:id/complete", to: "tasks#complete", as: "complete"
   get "/users/:id/profile", to: "users#profile", as: "user_profile"

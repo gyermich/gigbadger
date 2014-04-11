@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_merit
+
 
   mount_uploader :image, ImageUploader
   # Include default devise modules. Others available are:

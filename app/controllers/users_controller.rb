@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   def show
     @created_tasks = Task.where(owner_id: @user.id)
     @badger_tasks = @user.tasks
+    @badges = @user.badges
       unless @user == current_user
         redirect_to root_path, notice: "Sorry, you are not authorized to access this page."
       end
