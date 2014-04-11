@@ -41,11 +41,12 @@ class MessagesController < ApplicationController
     end
   end
 
-  def delete_message
-    # deletes one message from conversation
-    message = current_user.receipt
-    message.move_to_trash(current_user)
-  end
+  # def delete_message
+  #   # deletes one message from conversation
+  #   # not working yet
+  #   message = current_user.receipt
+  #   message.move_to_trash(current_user)
+  # end
 
   def move_to_trash
     # this would be nice if user can trash only one receipt, do later
@@ -58,11 +59,6 @@ class MessagesController < ApplicationController
       render :conversation
     end
   end
-
-  # def delete_conversation
-  #   # deletes conversation for one participant
-  #   conversation.move_to_trash(current_user)
-  # end
 
   def inbox
     @conversations = current_user.mailbox.inbox
