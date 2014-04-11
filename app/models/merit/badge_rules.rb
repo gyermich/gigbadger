@@ -63,6 +63,5 @@ module Merit
       # badges.each do |badge|
       #   Merit::Badge.create!(badge)
       # end
-    end
   end
 end

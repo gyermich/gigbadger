@@ -148,12 +148,12 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    merit (2.1.0)
-      ambry (~> 0.3.0)
     mailboxer (0.11.0)
       carrierwave (>= 0.5.8)
       foreigner (>= 0.9.1)
       rails (> 3.0.0)
+    merit (2.1.0)
+      ambry (~> 0.3.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.7.0)
@@ -310,8 +310,8 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   letsrate!
-  merit
   mailboxer
+  merit
   mini_magick
   net-ssh (~> 2.8.1)!
   pg
