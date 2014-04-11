@@ -50,17 +50,21 @@ a:hover {
 /* btn */
 .btn-theme {
   background: #79CDC0;
+  color:#ffffff;
 }
 .btn-theme:hover,.btn-theme:focus,.btn-theme:active{
   background: #35A49C;
+  color:#ffffff;
 }
 .btn-cta,.btn-cta.btn-lg {
-  background: #35A49C;
-  border-color: #79CDC0;
+  background: #d95c5c;
+  border-color: #d95c5c;
+  color:#ffffff;
 }
 
 .btn-cta:focus,.btn-cta:active{
    border-color: #35A49C;
+   color:#ffffff;
 }
 
 /* contact */

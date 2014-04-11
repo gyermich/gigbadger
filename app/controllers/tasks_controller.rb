@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :destroy, :update, :post]
+  before_action :set_task, only: [:show, :edit, :destroy, :update, :post, :complete]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -56,6 +56,17 @@ class TasksController < ApplicationController
       redirect_to tasks_path, notice: "Yay! Your gig is posted!"
     else
       redirect_to task_path
+    end
+  end
+
+  def complete
+    @task.update(status: "completed")
+
+    if @task.save
+      redirect_to :back
+      # owner is prompted to review badger
+    else
+      redirect_to :back, notice: "Something went wrong."
     end
   end
 
