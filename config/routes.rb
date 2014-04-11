@@ -22,6 +22,8 @@ Badger::Application.routes.draw do
   get "messages/trash"    => "messages#trash"
   get "messages/reply"    => "messages#conversation"
   post "messages/reply"   => "messages#reply"
+  post "messages"         => "messages#move_to_trash",      as: :trash_message
+  # post "messages"         => "messages#delete_conversation"
 
   resources :messages
 

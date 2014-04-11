@@ -47,10 +47,22 @@ class MessagesController < ApplicationController
     message.move_to_trash(current_user)
   end
 
-  def delete_conversation
-    # deletes conversation for one participant
-    conversation.move_to_trash(current_user)
+  def move_to_trash
+    # this would be nice if user can trash only one receipt, do later
+    @conversation = Conversation.find(params[:format])
+    @conversation.move_to_trash(current_user)
+
+    if @conversation.save
+      redirect_to messages_trash_path, notice: "Message moved to trash"
+    else
+      render :conversation
+    end
   end
+
+  # def delete_conversation
+  #   # deletes conversation for one participant
+  #   conversation.move_to_trash(current_user)
+  # end
 
   def inbox
     @conversations = current_user.mailbox.inbox
@@ -64,7 +76,6 @@ class MessagesController < ApplicationController
 
   def trash
     @conversations = current_user.mailbox.trash
-    # .page(params[:page]).per(9)
   end
 
   private

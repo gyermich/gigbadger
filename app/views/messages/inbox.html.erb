@@ -13,7 +13,8 @@
         <td><%= message.subject %></td>
         <td><%= message.created_at %></td>
         <td><%= message.is_read?(current_user) %></td>
-        <td><%= link_to "open", message_path(current_user, message) %></td>
+        <td><%= button_to "open", message_path(current_user, message), method: :get, class: "btn btn-theme pull-left"%></td>
+        <td><%= button_to "Delete Message", trash_message_path(message), method: :post, class: "btn btn-theme pull-left" %></td>
       </tr>
     <% end %>
 </table>

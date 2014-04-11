@@ -6,7 +6,7 @@
     <th>Subject</th>
     <th>Date</th>
   </tr>
-    <% @conversations.each do |message| %>
+    <% @conversations.map do |message| %>
       <tr>
         <td><%= message.originator.name %></td>
         <td><%= message.subject %></td>
