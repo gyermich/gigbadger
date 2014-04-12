@@ -10,6 +10,7 @@
   Added by <%= @task.owner.name %></br>
   <!-- button sends owner inquiry -->
   <%= button_to "Message", new_message_path(@task.owner), method: :get, placeholder: @task.name, class: "btn btn-theme pull-left" %><br>
-  <!-- below button sends owner offer to do gig, send to which page?? -->
-  <%= button_to "Offer", user_tasks_path(task_id: @task.id), class: "btn btn-theme pull-left" %>
+  <% if @task.status == "available" %>
+    <%= button_to "Offer", user_tasks_path(task_id: @task.id), class: "btn btn-theme pull-left" %>
+  <% end %>
 <% end %>
