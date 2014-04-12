@@ -73,6 +73,11 @@ class TasksController < ApplicationController
   def show
   end
 
+  def offers
+    @task = Task.find(params[:id])
+    @offers = UserTask.pending_offers_for_task(@task)
+  end
+
   def destroy
     @task.destroy
     redirect_to tasks_path

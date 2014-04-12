@@ -5,6 +5,18 @@ class Task < ActiveRecord::Base
   has_many    :task_categories
   belongs_to  :owner, class_name: "User"
 
+  def self.not_posted(user)
+    Task.where("owner_id = ? AND status = ?", user.id, "pending")
+  end
+
+  def self.posted_tasks(user)
+    Task.where("owner_id = ? AND status = ? OR status = ?", user.id, "available", "in_progress")
+  end
+
+  def in_progress
+    self.update(status: "in_progress")
+  end
+
   filterrific(
     :default_settings => { :sorted_by => 'created_at_desc' },
     :filter_names => [

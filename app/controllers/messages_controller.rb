@@ -41,13 +41,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # def delete_message
-  #   # deletes one message from conversation
-  #   # not working yet
-  #   message = current_user.receipt
-  #   message.move_to_trash(current_user)
-  # end
-
   def move_to_trash
     # this would be nice if user can trash only one receipt, do later
     @conversation = Conversation.find(params[:format])
@@ -57,6 +50,17 @@ class MessagesController < ApplicationController
       redirect_to messages_trash_path, notice: "Message moved to trash"
     else
       render :conversation
+    end
+  end
+
+  def delete_from_trash
+    @conversation = Conversation.find(params[:format])
+    @conversation.mark_as_deleted(current_user)
+
+    if @conversation.save
+      redirect_to messages_trash_path, notice: "Message permanently deleted"
+    else
+      render :trash
     end
   end
 

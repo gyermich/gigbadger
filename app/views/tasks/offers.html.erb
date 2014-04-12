@@ -1,0 +1,15 @@
+<h3>Offers for: <%= @task.name %></h3>
+
+<% if @offers.empty? == false %>
+  <div class="table">
+    <% @offers.each do |offer| %>
+      <tr>
+        <td><%= link_to offer.user.name, user_profile_path(offer.user) %></td>
+        <td><%= button_to "Message", new_message_path(offer.user), method: :get, class: "btn btn-theme pull-left"%></td>
+        <td><%= button_to "Accept", accept_path(task_id: @task.id, user_id: offer.user), class: "btn btn-theme pull-left"%></td>
+      </tr>
+    <% end %>
+  </div>
+<% else %>
+  "No pending offers for this gig"
+<% end %>
