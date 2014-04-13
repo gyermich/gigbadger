@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
   letsrate_rater
   acts_as_messageable
 
-  def name
-    return email 
-  end
+  # def name
+  #   return email
+  # end
 
   def mailboxer_email(object)
     return nil

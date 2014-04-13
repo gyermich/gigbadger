@@ -45,3 +45,10 @@ Merit::Badge.create!(
   description: "First Task",
   image: '/profile.jpg'
 )
+
+Merit::Badge.create!(
+  id: 3,
+  name: "first-task-completed",
+  description: "First Task Completed",
+  image: '/profile.jpg'
+)

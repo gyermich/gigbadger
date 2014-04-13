@@ -25,6 +25,8 @@ module Merit
       # Should be "current_user" after registration for badge to be granted.
       grant_on 'users/registrations#create', badge: 'just-registered', model_name: 'User'
 
+      grant_on 'tasks/complete', badge: 'first-task-completed', model_name: 'User'
+
       # If it has 10 comments, grant commenter-10 badge
       # grant_on 'tasks#post', badge: 'first_task' do |task|
       #   task.owner.tasks.count == 1
