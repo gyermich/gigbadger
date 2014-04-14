@@ -22,15 +22,15 @@ class MessagesController < ApplicationController
     # marks 
     conversation = current_user.mailbox.conversations.find(params[:format])
     @receipts = conversation.receipts_for(current_user)
-    @receipts.mark_as_read
+    @receipts = @receipts.paginate(:page => params[:page], :per_page => 10)
 
-    # shows conversation, last receipt shown first 
-    # newest message received
+    @receipts.mark_as_read
   end
 
   def conversation
     @conversation = current_user.mailbox.conversations.find(params[:format])
     @receipts = @conversation.receipts_for(current_user)
+    @receipts = @receipts.paginate(:page => params[:page], :per_page => 10)
   end
 
   def reply
@@ -67,18 +67,28 @@ class MessagesController < ApplicationController
     end
   end
 
+  def notifications
+    @notices = Receipt.joins(:notification).where("receiver_id = ? AND notification_code = ? OR notification_code = ? OR notification_code = ?", current_user.id, "reject_offers", "accept_offer", "badge")
+    @notices = @notices.paginate(:page => params[:page], :per_page => 10)
+  end
+
+  def show_notification
+    @notice = Notification.find(params[:format])
+  end
+
   def inbox
     @conversations = current_user.mailbox.inbox
-    # .page(params[:page]).per(9)
+    @conversations = @conversations.paginate(:page => params[:page], :per_page => 10)
   end
 
   def sent
     @conversations = current_user.mailbox.sentbox
-    # .page(params[:page]).per(9)
+    @conversations = @conversations.paginate(:page => params[:page], :per_page => 10)
   end
 
   def trash
     @conversations = current_user.mailbox.trash
+    @conversations = @conversations.paginate(:page => params[:page], :per_page => 10)
   end
 
   private

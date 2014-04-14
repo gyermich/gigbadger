@@ -66,9 +66,9 @@ class TasksController < ApplicationController
     if @task.save
       @task.workers.each do |user|
         case user.tasks.count
-        when  1 ; user.add_badge(3) ; Notice.new([user], "badge", @task)
-        when  3 ; user.add_badge(4) ; Notice.new([user], "badge", @task)
-        when  5 ; user.add_badge(5) ; Notice.new([user], "badge", @task)
+        when  1  ; user.add_badge(4) ; Notice.new([user], "badge", @task)
+        when  5  ; user.add_badge(5) ; Notice.new([user], "badge", @task)
+        when  10 ; user.add_badge(6) ; Notice.new([user], "badge", @task)
         end
       end
       redirect_to :back
