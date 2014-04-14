@@ -32,6 +32,17 @@ end
 #   Merit::Badge.create! attrs
 # end
 
+# badges = [
+# {id: 1,name: 'just-registered',image:"/images/registered.png",custom_fields:"Registered for an account"},
+# {id: 2,name: 'verified-user',image:"/images/verified-user.png",custom_fields:"Verified as a valid user" },
+# {id: 3,name: 'first-image',image:"/images/registered.png",custom_fields:"Uploaded first profile picture"},
+# {id: 4,name: 'first_vote',image:"/images/vote.png",custom_fields:"Voted for your first professor"},
+# {id: 5,name: 'autobiographer',image:"/images/biography.png",custom_fields:"Wrote a biography about yourself."}
+# ]
+# badges.each do |badge|
+#   Merit::Badge.create!(badge)
+# end
+
 Merit::Badge.create!(
   id: 1,
   name: "just-registered",

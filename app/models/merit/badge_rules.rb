@@ -27,26 +27,16 @@ module Merit
 
       grant_on 'tasks/complete', badge: 'first-task-completed', model_name: 'User'
 
-      # If it has 10 comments, grant commenter-10 badge
       grant_on 'tasks#post', badge: 'first-task' do |task|
             Task.where(owner_id: task.owner.id).count == 1
       end
 
       grant_on 'tasks#complete', badge: 'first-task-completed', to: :workers, model_name: 'Task' do |task|
-
             task.users.each do |user|
                   user.tasks.count == 1
             end
       end
-
-      # grant_on 'tasks#post', badge: 'second_task', model_name: "User" do |user|
-      #   user.tasks.count == 2
-      # end
-
-      # grant_on 'tasks#post', badge: 'first-task',  to: :user do |user|
-      #   # task.owner.tasks.count == 10
-      #   Task.where(owner_id: user.id).count == 15
-      end
+    end
 
       # If it has 5 votes, grant relevant-commenter badge
       # grant_on 'comments#vote', badge: 'relevant-commenter',
@@ -60,17 +50,6 @@ module Merit
       #   temporary: true, model_name: 'User' do |user|
       #
       #   user.name.length > 4
-      # end
-
-      # badges = [
-      # {id: 1,name: 'just-registered',image:"/images/registered.png",custom_fields:"Registered for an account"},
-      # {id: 2,name: 'verified-user',image:"/images/verified-user.png",custom_fields:"Verified as a valid user" },
-      # {id: 3,name: 'first-image',image:"/images/registered.png",custom_fields:"Uploaded first profile picture"},
-      # {id: 4,name: 'first_vote',image:"/images/vote.png",custom_fields:"Voted for your first professor"},
-      # {id: 5,name: 'autobiographer',image:"/images/biography.png",custom_fields:"Wrote a biography about yourself."}
-      # ]
-      # badges.each do |badge|
-      #   Merit::Badge.create!(badge)
       # end
   end
 end
