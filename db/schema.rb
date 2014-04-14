@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411010556) do
+ActiveRecord::Schema.define(version: 20140413135334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "awarded_badges", force: true do |t|
+    t.integer  "awardee_id"
+    t.string   "awardee_type"
+    t.string   "badge_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "awarded_badges", ["awardee_id", "awardee_type", "badge_code"], name: "awarded_badges_awardee_badge_index", unique: true, using: :btree
 
   create_table "badges_sashes", force: true do |t|
     t.integer  "badge_id"
@@ -31,6 +41,12 @@ ActiveRecord::Schema.define(version: 20140411010556) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "conversations", force: true do |t|
+    t.string   "subject",    default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "merit_actions", force: true do |t|
@@ -65,6 +81,26 @@ ActiveRecord::Schema.define(version: 20140411010556) do
     t.string  "category", default: "default"
   end
 
+  create_table "notifications", force: true do |t|
+    t.string   "type"
+    t.text     "body"
+    t.string   "subject",              default: ""
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.integer  "conversation_id"
+    t.boolean  "draft",                default: false
+    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                           null: false
+    t.integer  "notified_object_id"
+    t.string   "notified_object_type"
+    t.string   "notification_code"
+    t.string   "attachment"
+    t.boolean  "global",               default: false
+    t.datetime "expires"
+  end
+
+  add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
+
   create_table "rates", force: true do |t|
     t.integer  "rater_id"
     t.integer  "rateable_id"
@@ -89,6 +125,20 @@ ActiveRecord::Schema.define(version: 20140411010556) do
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+
+  create_table "receipts", force: true do |t|
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
+    t.integer  "notification_id",                            null: false
+    t.boolean  "is_read",                    default: false
+    t.boolean  "trashed",                    default: false
+    t.boolean  "deleted",                    default: false
+    t.string   "mailbox_type",    limit: 25
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "receipts", ["notification_id"], name: "index_receipts_on_notification_id", using: :btree
 
   create_table "sashes", force: true do |t|
     t.datetime "created_at"

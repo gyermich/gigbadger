@@ -61,7 +61,6 @@ class TasksController < ApplicationController
 
   def complete
     @task.update(status: "completed")
-    @task.users
 
     if @task.save
       redirect_to :back

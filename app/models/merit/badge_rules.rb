@@ -28,9 +28,16 @@ module Merit
       grant_on 'tasks/complete', badge: 'first-task-completed', model_name: 'User'
 
       # If it has 10 comments, grant commenter-10 badge
-      # grant_on 'tasks#post', badge: 'first_task' do |task|
-      #   task.owner.tasks.count == 1
-      # end
+      grant_on 'tasks#post', badge: 'first-task' do |task|
+            Task.where(owner_id: task.owner.id).count == 1
+      end
+
+      grant_on 'tasks#complete', badge: 'first-task-completed', to: :workers, model_name: 'Task' do |task|
+
+            task.users.each do |user|
+                  user.tasks.count == 1
+            end
+      end
 
       # grant_on 'tasks#post', badge: 'second_task', model_name: "User" do |user|
       #   user.tasks.count == 2
