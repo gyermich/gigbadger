@@ -18,18 +18,8 @@ class UserMailer < ActionMailer::Base
     devise_mail(record, :unlock_instructions, opts)
   end
 
-
   def signup_confirmation(user)
      @user = user
-     mail :to => user.email, :subject=> "Thank you for signing up with GigBadger"
-  end
-
-  # send password reset instructions
-
-  def reset_password_instructions(user)
-    @resource = user
-    mail(:to => @resource.email, :subject => "Reset password instructions", :tag => 'password-reset', :content_type => "text/html") do |format|
-     format.html { render "devise/mailer/reset_password_instructions" }
-    end
+     mail to: user.email, subject: "Thank you for signing up with GigBadger"
   end
 end
