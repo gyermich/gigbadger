@@ -22,7 +22,7 @@ class Notice
 
   def accept_offer
     subject = "Offer accepted"
-    body = "Congratulations, your offer was accepted for #{@task.name}"
+    body = "Congratulations, your offer was accepted for: <strong>#{@task.name}</strong>"
     @receivers.each do |accept|
       accept.notify(subject,body,obj = nil,sanitize_text=true,notification_code=@notification_code,send_mail=true)
     end
@@ -30,7 +30,7 @@ class Notice
 
   def reject_offers
     subject = "Offer not accepted"
-    body = "We regret to inform you that the gig owner has decided to accept another badger's offer for #{@task.name}."
+    body = "We regret to inform you that the gig owner has decided to accept another badger's offer for: #{@task.name}."
     @receivers.each do |reject|
       reject.notify(subject,body,obj = nil,sanitize_text=true,notification_code=@notification_code,send_mail=true)
     end
