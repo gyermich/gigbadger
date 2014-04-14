@@ -1,6 +1,0 @@
-class Conversation
-
-  
-
-
-end

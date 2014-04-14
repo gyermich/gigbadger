@@ -17,6 +17,9 @@ class MessagesController < ApplicationController
   end
 
   def show
+    # pulls all conversations, last received first
+    # pulls all receipts for each conversation, last received first
+    # marks 
     conversation = current_user.mailbox.conversations.find(params[:format])
     @receipts = conversation.receipts_for(current_user)
     @receipts.mark_as_read
