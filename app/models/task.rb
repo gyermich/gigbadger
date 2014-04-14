@@ -5,6 +5,21 @@ class Task < ActiveRecord::Base
   has_many    :task_categories
   belongs_to  :owner, class_name: "User"
 
+  has_many :accepted_users, through: :user_tasks,
+           :class_name => "User",
+           :source => :user,
+           :conditions => ['user_tasks.accept = ?', true]
+
+
+  has_many :pending_users, through: :user_tasks,
+           :class_name => "User",
+           :source => :user,
+           :conditions => ['user_tasks.accept = ?', false]
+
+  def workers
+    accepted_users
+  end
+
   filterrific(
     :default_settings => { :sorted_by => 'created_at_desc' },
     :filter_names => [

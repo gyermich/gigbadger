@@ -95,7 +95,11 @@
 
              </div><!--/tab-pane-->
              <div class="tab-pane" id="settings">
-                 <!--  @user.badges go here -->
+                 <ul>
+                 <% current_user.badges.each do |badge| %>
+                   <li><%= badge.name %></li>
+                 <% end %>
+                 </ul>
               </div>
 
               </div><!--/tab-pane-->
