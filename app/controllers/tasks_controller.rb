@@ -66,9 +66,9 @@ class TasksController < ApplicationController
     if @task.save
       @task.workers.each do |user|
         case user.tasks.count
-        when  1 ; user.add_badge(3)
-        when  3 ; user.add_badge(4)
-        when  5 ; user.add_badge(5)
+        when  1  ; user.add_badge(4)
+        when  5  ; user.add_badge(5)
+        when  10 ; user.add_badge(6)
         end
       end
       redirect_to :back

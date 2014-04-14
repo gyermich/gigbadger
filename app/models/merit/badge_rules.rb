@@ -21,47 +21,12 @@ module Merit
     include Merit::BadgeRulesMethods
 
     def initialize
-      # If it creates user, grant badge
-      # Should be "current_user" after registration for badge to be granted.
       grant_on 'users/registrations#create', badge: 'just-registered', model_name: 'User'
-
-      grant_on 'tasks/complete', badge: 'first-task-completed', model_name: 'User'
-
-      grant_on 'tasks#post', badge: 'first-task' do |task|
+      grant_on 'tasks#complete',             badge: 'task-completed', to: :workers
+      grant_on 'tasks#post',                 badge: 'first-task-posted' do |task|
             Task.where(owner_id: task.owner.id).count == 1
       end
-
-      # grant_on 'tasks#complete', badge: 'first-task-completed', to: :workers do |task|
-      #       task.workers.each do |user|
-      #             user.tasks.count == 1
-      #       end
-      # end
-
-      # grant_on 'tasks#complete', badge: 'third-task-completed', to: :workers do |task|
-      #       task.workers.each do |worker|
-      #             worker.tasks.count == 3
-      #       end
-      # end
-
-      # grant_on 'tasks#complete', badge: '4th-task-completed', to: :workers do |task|
-      #       task.workers.each do |worker|
-      #             worker.tasks.count == 4
-      #       end
-      # end
     end
 
-      # If it has 5 votes, grant relevant-commenter badge
-      # grant_on 'comments#vote', badge: 'relevant-commenter',
-      #   to: :user do |comment|
-      #
-      #   comment.votes.count == 5
-      # end
-
-      # Changes his name by one wider than 4 chars (arbitrary ruby code case)
-      # grant_on 'registrations#update', badge: 'autobiographer',
-      #   temporary: true, model_name: 'User' do |user|
-      #
-      #   user.name.length > 4
-      # end
   end
 end
