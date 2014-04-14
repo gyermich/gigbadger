@@ -22,4 +22,10 @@ class UserMailer < ActionMailer::Base
      @user = user
      mail to: user.email, subject: "Thank you for signing up with GigBadger"
   end
+
+  def offer_accepted(user, task)
+     @user = user
+     @task = task
+     mail to: user.email, subject: "Your offer has been accepted!"
+  end
 end
