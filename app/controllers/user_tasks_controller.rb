@@ -17,7 +17,7 @@ class UserTasksController < ApplicationController
 
   def accept_offer
     offer = UserTask.find_by(task_id: params[:task_id], user_id: params[:user_id])
-    accept = offer.accept_offer
+    accept = offer.update_status_accept
     update_task_progress
 
     if accept

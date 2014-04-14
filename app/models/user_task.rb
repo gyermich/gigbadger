@@ -22,7 +22,7 @@ class UserTask < ActiveRecord::Base
     UserTask.where("user_id = ? AND status = ?", badger.id, "accept")
   end
 
-  def accept_offer
+  def update_status_accept
     self.update(status: "accept")
     Notice.new([self.user], "accept_offer", self.task)
     UserTask.reject_offers(self.task)

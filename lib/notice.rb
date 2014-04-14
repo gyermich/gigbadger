@@ -3,7 +3,6 @@ class Notice
 
   def initialize(receivers, notification_code, task)
     @receivers = receivers
-    # @receivers << receivers
     @notification_code = notification_code
     @task = task
     

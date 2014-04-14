@@ -67,6 +67,10 @@ class MessagesController < ApplicationController
     end
   end
 
+  def notices
+    @notices = 
+  end
+
   def inbox
     @conversations = current_user.mailbox.inbox
     # .page(params[:page]).per(9)
