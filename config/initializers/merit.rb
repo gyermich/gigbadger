@@ -38,7 +38,7 @@ badges = [
 {id: 3,name: 'first-task-posted',description: "First Task Posted", custom_fields: { image: '/profile.jpg' }},
 {id: 4,name: 'first_task-completed',,description: "First Task Completed", custom_fields: { image: '/profile.jpg' }},
 {id: 5,name: '5th-task-completed',,description: "5th Task Completed", custom_fields: { image: '/profile.jpg' }},
-{id: 6,name: '10th-task-completed',,description: "10th Task Completed", custom_fields: { image: '/profile.jpg' }},
+{id: 6,name: '10th-task-completed',,description: "10th Task Completed", custom_fields: { image: '/profile.jpg' }}
 ]
 badges.each do |badge|
   Merit::Badge.create!(badge)
