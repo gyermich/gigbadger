@@ -19,6 +19,7 @@ gem 'fog'
 gem 'figaro'
 gem 'mini_magick'
 gem 'merit'
+gem 'will_paginate'
 
 
 group :doc do
