@@ -10,5 +10,5 @@
     <%= hidden_field_tag :conversation, @conversation.id %>
     <%= submit_tag 'Send message' %>
   <% end %>
-
+  <%= will_paginate @receipts %>
 </div>

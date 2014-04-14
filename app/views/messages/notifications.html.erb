@@ -1,0 +1,17 @@
+<h2>Notifications</h2>
+
+<table class="table">
+  <tr>
+    <th>Subject</th>
+    <th>Received</th>
+  </tr>
+
+  <% @notices.map do |notice| %>
+  <tr>
+    <td><%= notice.notification.subject %></td>
+    <td><%= notice.notification.created_at %></td>
+    <td><%= button_to "Open", show_notification_path(notice.notification), method: :get, class: "btn btn-theme pull-left"%></td>
+  <% end %>
+  <%= will_paginate @notices %>
+  </tr>
+</table>

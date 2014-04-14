@@ -6,5 +6,6 @@
 <%= button_to "Reply", messages_reply_path(params[:format]), method: :get, class: "btn btn-theme pull-left" %>
 
 <%= button_to "Trash", trash_message_path(params[:format]), method: :post, class: "btn btn-theme pull-left" %>
+<%= will_paginate @receipts %>
 
 
