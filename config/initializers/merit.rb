@@ -47,19 +47,33 @@ Merit::Badge.create!(
   id: 1,
   name: "just-registered",
   description: "Just Registered",
-  image: '/profile.jpg'
+  custom_fields: { image: '/profile.jpg' }
 )
 
 Merit::Badge.create!(
   id: 2,
   name: "first-task",
   description: "First Task",
-  image: '/profile.jpg'
+  custom_fields: { image: '/profile.jpg' }
 )
 
 Merit::Badge.create!(
   id: 3,
   name: "first-task-completed",
   description: "First Task Completed",
-  image: '/profile.jpg'
+  custom_fields: { image: '/profile.jpg' }
+)
+
+Merit::Badge.create!(
+  id: 4,
+  name: "third-task-completed",
+  description: "Third Task Completed",
+  custom_fields: { image: '/profile.jpg' }
+)
+
+Merit::Badge.create!(
+  id: 5,
+  name: "5th-task-completed",
+  description: "5th Task Completed",
+  custom_fields: { image: '/profile.jpg' }
 )

@@ -31,11 +31,23 @@ module Merit
             Task.where(owner_id: task.owner.id).count == 1
       end
 
-      grant_on 'tasks#complete', badge: 'first-task-completed', to: :workers, model_name: 'Task' do |task|
-            task.users.each do |user|
-                  user.tasks.count == 1
-            end
-      end
+      # grant_on 'tasks#complete', badge: 'first-task-completed', to: :workers do |task|
+      #       task.workers.each do |user|
+      #             user.tasks.count == 1
+      #       end
+      # end
+
+      # grant_on 'tasks#complete', badge: 'third-task-completed', to: :workers do |task|
+      #       task.workers.each do |worker|
+      #             worker.tasks.count == 3
+      #       end
+      # end
+
+      # grant_on 'tasks#complete', badge: '4th-task-completed', to: :workers do |task|
+      #       task.workers.each do |worker|
+      #             worker.tasks.count == 4
+      #       end
+      # end
     end
 
       # If it has 5 votes, grant relevant-commenter badge
