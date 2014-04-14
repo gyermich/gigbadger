@@ -228,6 +228,17 @@
   width: 100px;
  }
 
+ .logo {
+  margin: 0 auto;
+  width: 256px;
+ }
+
+ .tiny_logo {
+  margin: 0 auto;
+ /* width: 42px;*/
+  height: 25px;
+ }
+
  /* --- float --- */
  .float-left {
   float: left;

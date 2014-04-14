@@ -1,6 +1,8 @@
 # require 'notify'
 
 class User < ActiveRecord::Base
+  has_merit
+
 
   mount_uploader :image, ImageUploader
   # Include default devise modules. Others available are:
@@ -16,7 +18,7 @@ class User < ActiveRecord::Base
   acts_as_messageable
 
   # def name
-  #   return email  
+  #   return email
   # end
 
   def mailboxer_email(object)

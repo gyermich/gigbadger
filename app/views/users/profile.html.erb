@@ -25,3 +25,12 @@
       </div>
   </div>
 </div>
+
+<div class="tab-pane" id="settings">
+    <ul>
+    <% @user.badges.each do |badge| %>
+      <li><%= badge.name %></li>
+    <% end %>
+    </ul>
+ </div>
+

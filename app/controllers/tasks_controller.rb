@@ -62,7 +62,15 @@ class TasksController < ApplicationController
   def complete
     @task.update(status: "completed")
 
+    # this is a good task for a background job
     if @task.save
+      @task.workers.each do |user|
+        case user.tasks.count
+        when  1 ; user.add_badge(3)
+        when  3 ; user.add_badge(4)
+        when  5 ; user.add_badge(5)
+        end
+      end
       redirect_to :back
       # owner is prompted to review badger
     else

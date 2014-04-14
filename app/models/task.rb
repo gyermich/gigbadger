@@ -7,6 +7,7 @@ class Task < ActiveRecord::Base
   has_many    :task_categories
   belongs_to  :owner, class_name: "User"
 
+
   def self.not_posted(user)
     Task.where("owner_id = ? AND status = ?", user.id, "pending")
   end
@@ -17,6 +18,21 @@ class Task < ActiveRecord::Base
 
   def in_progress
     self.update(status: "in_progress")
+  end
+
+  has_many :accepted_users, through: :user_tasks,
+           :class_name => "User",
+           :source => :user,
+           :conditions => ['user_tasks.status = ?', "accept"]
+
+
+  has_many :pending_users, through: :user_tasks,
+           :class_name => "User",
+           :source => :user,
+           :conditions => ['user_tasks.status = ?', "pending"]
+
+  def workers
+    accepted_users
   end
 
   filterrific(
