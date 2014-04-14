@@ -32,48 +32,16 @@ end
 #   Merit::Badge.create! attrs
 # end
 
-# badges = [
-# {id: 1,name: 'just-registered',image:"/images/registered.png",custom_fields:"Registered for an account"},
-# {id: 2,name: 'verified-user',image:"/images/verified-user.png",custom_fields:"Verified as a valid user" },
-# {id: 3,name: 'first-image',image:"/images/registered.png",custom_fields:"Uploaded first profile picture"},
-# {id: 4,name: 'first_vote',image:"/images/vote.png",custom_fields:"Voted for your first professor"},
-# {id: 5,name: 'autobiographer',image:"/images/biography.png",custom_fields:"Wrote a biography about yourself."}
-# ]
-# badges.each do |badge|
-#   Merit::Badge.create!(badge)
-# end
+badges = [
+{id: 1,name: 'just-registered',description: "Just Registered", custom_fields: { image: '/profile.jpg' }},
+{id: 2,name: 'task-completed',description: "Task Completed", custom_fields: { image: '/profile.jpg' }},
+{id: 3,name: 'first-task-posted',description: "First Task Posted", custom_fields: { image: '/profile.jpg' }},
+{id: 4,name: 'first_task-completed',,description: "First Task Completed", custom_fields: { image: '/profile.jpg' }},
+{id: 5,name: '5th-task-completed',,description: "5th Task Completed", custom_fields: { image: '/profile.jpg' }},
+{id: 6,name: '10th-task-completed',,description: "10th Task Completed", custom_fields: { image: '/profile.jpg' }},
+]
+badges.each do |badge|
+  Merit::Badge.create!(badge)
+end
 
-Merit::Badge.create!(
-  id: 1,
-  name: "just-registered",
-  description: "Just Registered",
-  custom_fields: { image: '/profile.jpg' }
-)
 
-Merit::Badge.create!(
-  id: 2,
-  name: "first-task",
-  description: "First Task",
-  custom_fields: { image: '/profile.jpg' }
-)
-
-Merit::Badge.create!(
-  id: 3,
-  name: "first-task-completed",
-  description: "First Task Completed",
-  custom_fields: { image: '/profile.jpg' }
-)
-
-Merit::Badge.create!(
-  id: 4,
-  name: "third-task-completed",
-  description: "Third Task Completed",
-  custom_fields: { image: '/profile.jpg' }
-)
-
-Merit::Badge.create!(
-  id: 5,
-  name: "5th-task-completed",
-  description: "5th Task Completed",
-  custom_fields: { image: '/profile.jpg' }
-)
