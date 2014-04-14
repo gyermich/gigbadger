@@ -3,6 +3,7 @@ class Notice
 
   def initialize(receivers, notification_code, task)
     @receivers = receivers
+    # @receivers << receivers
     @notification_code = notification_code
     @task = task
     
@@ -21,7 +22,6 @@ class Notice
   end
 
   def accept_offer
-    # receipt = User.find(@receiver)
     subject = "Offer accepted"
     body = "Congratulations, your offer was accepted for #{@task.name}"
     @receivers.each do |accept|

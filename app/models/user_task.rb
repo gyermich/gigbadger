@@ -24,12 +24,19 @@ class UserTask < ActiveRecord::Base
 
   def accept_offer
     self.update(status: "accept")
-    self.reject_offers(self.task.id)
+    Notice.new([self.user], "accept_offer", self.task)
+    UserTask.reject_offers(self.task)
   end
 
-  def reject_offers(task)
-    offers = UserTask.where("task_id = ? AND status = ?", task, "pending")
-
+  def self.reject_offers(task)
+    offers = UserTask.pending_offers_for_task(task)
+    UserTask.send_reject_notices(offers, task)
     offers.map { |offer| offer.update(status: "reject")}
+  end
+
+  def self.send_reject_notices(offers, task)
+    badgers = []
+    offers.each { |offer| badgers << offer.user }
+    Notice.new(badgers, "reject_offers", task)
   end
 end
