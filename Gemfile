@@ -20,6 +20,7 @@ gem 'figaro'
 gem 'mini_magick'
 gem 'merit'
 gem 'will_paginate'
+gem "resque"
 
 
 group :doc do
