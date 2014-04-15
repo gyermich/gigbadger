@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm-3"><!--left col-->
+  <div class="centered pad-bot10 ">
+  <%= image_tag avatar(@user), class: "img-circle img-responsive account_img" %>
+
+  <%= rating_for @user,  dimension = nil, options = {readonly: true} %>
+
+  <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-theme" %>
+</div>
+
+      <h3>Messages</h3>
+      <ul class="list-group small">
+        <li class="list-group-item text-muted"><%= link_to 'Inbox', messages_inbox_path %>
+        <% if @unread_messages > 0 %>  
+          (<%= @unread_messages %>)
+        <% end %>
+        </li>
+        <li class="list-group-item text-muted"><%= link_to 'Notifications', messages_notifications_path(@user) %></li>
+        <li class="list-group-item text-muted"><%= link_to 'Sent', messages_sent_path %></li>
+        <li class="list-group-item text-muted"><%= link_to 'Trash', messages_trash_path %></li>
+      </ul>
+
+      <ul class="list-group small">
+        <li class="list-group-item text-muted"><%= link_to 'My Profile', user_profile_path(@user) %></li>
+        <li class="list-group-item text-muted"><%= link_to 'Change Password', edit_user_registration_path %></li>
+      </ul>
+
+    </div><!--/col-3-->

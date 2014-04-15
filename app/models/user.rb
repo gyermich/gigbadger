@@ -17,6 +17,14 @@ class User < ActiveRecord::Base
   letsrate_rater
   acts_as_messageable
 
+  def slug
+    name.downcase.gsub(" ", "-")  
+  end
+
+  def to_param
+    "#{id}-#{slug}"
+  end
+
   # def name
   #   return email
   # end

@@ -5,24 +5,7 @@
 
 
     </div>
-    <div class="row">
-      <div class="col-sm-3"><!--left col-->
-      <div class="centered pad-bot10 ">
-      <%= image_tag avatar(@user), class: "img-circle img-responsive account_img" %>
-
-      <%= rating_for @user,  dimension = nil, options = {readonly: true} %>
-
-      <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn-theme" %>
-    </div>
-
-          <ul class="list-group small">
-            <li class="list-group-item text-muted"><%= link_to 'My Profile', user_profile_path(@user) %></li>
-            <li class="list-group-item text-muted"><%= link_to 'Change Password', edit_user_registration_path %></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Joined</strong></span> <%= time_ago_in_words(@user.created_at) %> ago</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Last seen</strong></span> <%= time_ago_in_words(@user.last_sign_in_at) %> ago</li>
-          </ul>
-
-        </div><!--/col-3-->
+    <%= render 'side_navbar' %>
       <div class="col-sm-9">
 
           <ul class="nav nav-tabs" id="myTab">
