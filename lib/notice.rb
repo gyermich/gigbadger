@@ -16,7 +16,7 @@ class Notice
     when "reject_offers"
       reject_offers
     when "badge"
-      Badges.new(@receivers)
+      badge_notification
     end
   end
 
@@ -33,6 +33,14 @@ class Notice
     body = "We regret to inform you that the gig owner has decided to accept another badger's offer for: #{@task.name}."
     @receivers.each do |reject|
       reject.notify(subject,body,obj = nil,sanitize_text=true,notification_code=@notification_code,send_mail=true)
+    end
+  end
+
+  def badge_notification
+    subject = "Badge received"
+    body = "Congratulations, you received a badge"
+    @receivers.each do |user|
+      user.notify(subject,body,obj = nil,sanitize_text=true,notification_code=@notification_code,send_mail=true)
     end
   end
 

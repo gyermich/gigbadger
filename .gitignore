@@ -16,7 +16,9 @@
 /tmp
 .DS_Store
 /coverage
+dump.rdb
 
 
 # Ignore application configuration
 /config/application.yml
+

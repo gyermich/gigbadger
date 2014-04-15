@@ -64,7 +64,7 @@ class TasksController < ApplicationController
 
     # this is a good task for a background job
     if @task.save
-      Resque.enqueue(BadgeJob, @task)
+      Resque.enqueue(BadgeJob, @task.id)
       # @task.workers.each do |user|
       #   case user.tasks.count
       #   when  1  ; user.add_badge(4)
