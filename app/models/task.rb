@@ -18,8 +18,6 @@ class Task < ActiveRecord::Base
     self.update(status: "in_progress")
   end
 
-
-
   has_many :accepted_users, -> { where "user_tasks.status = 'accept'"},
            through: :user_tasks,
            source: :user
