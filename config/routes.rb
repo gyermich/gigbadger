@@ -1,4 +1,7 @@
+require 'resque/server'
+
 Badger::Application.routes.draw do
+  mount Resque::Server, :at => "/resque"
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
 

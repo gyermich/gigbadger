@@ -64,13 +64,14 @@ class TasksController < ApplicationController
 
     # this is a good task for a background job
     if @task.save
-      @task.workers.each do |user|
-        case user.tasks.count
-        when  1  ; user.add_badge(4)
-        when  5  ; user.add_badge(5)
-        when  10 ; user.add_badge(6)
-        end
-      end
+      Resque.enqueue(BadgeJob, @task.id)
+      # @task.workers.each do |user|
+      #   case user.tasks.count
+      #   when  1  ; user.add_badge(4)
+      #   when  5  ; user.add_badge(5)
+      #   when  10 ; user.add_badge(6)
+      #   end
+      # end
       redirect_to :back
       # owner is prompted to review badger
     else

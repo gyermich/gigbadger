@@ -317,6 +317,7 @@ DEPENDENCIES
   net-ssh (~> 2.8.1)!
   pg
   rails (= 4.0.2)
+  resque
   resque_spec
   rspec-rails
   sass-rails (~> 4.0.0)
