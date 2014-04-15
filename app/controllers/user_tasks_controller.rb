@@ -20,7 +20,7 @@ class UserTasksController < ApplicationController
     update_task_progress
 
     if accept
-      Resque.enqueue(EmailJob, @user, @task)
+      Resque.enqueue(EmailJob, @user.id, @task.id)
       # UserMailer.offer_accepted(@user, @task).deliver
       redirect_to root_path, notice: "You accepted an offer"
     else
