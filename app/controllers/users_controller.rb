@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     @posted_tasks = Task.posted_tasks(@user)
     @pending_offers = UserTask.pending_offers_for_badger(current_user)
     @badger_tasks = UserTask.accepted_offers_for_badger(current_user)
+    unread_messages
       unless @user == current_user
         redirect_to root_path, notice: "Sorry, you are not authorized to access this page."
       end
@@ -51,6 +52,10 @@ class UsersController < ApplicationController
   private
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def unread_messages
+    @unread_messages = current_user.mailbox.inbox({:read => false}).count || 0
   end
 
   def user_params

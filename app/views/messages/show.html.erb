@@ -1,5 +1,5 @@
 <% @receipts.map do |receipt| %>
-  Received: <%= receipt.message.created_at %><br>
+  Received: <%= display_date(receipt.message.created_at) %><br>
   Message: <%= receipt.message.body %>
 <% end %>
 

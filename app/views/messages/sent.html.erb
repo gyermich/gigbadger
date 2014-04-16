@@ -19,7 +19,7 @@
           <tr>
             <td><%= message.participants.last.name %></td>
             <td><%= message.subject %></td>
-            <td><%= message.created_at %></td>
+            <td><%= display_date(message.created_at) %></td>
           <tr>
         <% end %>
         <%= will_paginate @conversations %>

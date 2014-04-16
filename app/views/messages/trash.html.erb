@@ -19,7 +19,7 @@
           <tr>
             <td><%= message.originator.name %></td>
             <td><%= message.subject %></td>
-            <td><%= message.created_at %></td>
+            <td><%= display_date(message.created_at) %></td>
             <td><%= button_to "Open", message_path(current_user, message), method: :get, class: "btn btn-theme pull-left"%></td>
             <td><%= button_to "Delete", delete_message_path(message), class: "btn btn-theme pull-left" %></td>
           </tr>
