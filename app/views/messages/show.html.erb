@@ -1,3 +1,10 @@
+<div class="container" id="padded_container">
+  <div class="row">
+      <div class="col-sm-10 account_heading"><h1>Hiya, <%= current_user.name %>!</h1></div>
+  </div>
+  <%= render 'side_navbar' %>
+  <div class="col-sm-9">
+
 <% @receipts.map do |receipt| %>
   Received: <%= display_date(receipt.message.created_at) %><br>
   Message: <%= receipt.message.body %>

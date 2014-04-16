@@ -27,6 +27,7 @@
               <td><%= button_to "Open", message_path(current_user, message), method: :get, class: "btn btn-theme pull-left"%></td>
               <td><%= button_to "Trash", trash_message_path(message), method: :post, class: "btn btn-theme pull-left" %></td>
             </tr>
+            </a>
           <% end %>
           <%= will_paginate @conversations %>
       </table>
