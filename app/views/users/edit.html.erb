@@ -24,7 +24,7 @@
                <div class="row">
                  <div class="text_container">
                    <div class="form-group">
-                    <%= f.label :name %>
+                    <%= f.label :name, class: "small" %>
                     <%= f.text_field :name, autofocus: true, class: "form-control input"  %>
                    </div>
                  </div>
@@ -33,13 +33,13 @@
                 <div class="row">
                   <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="form-group">
-                     <%= f.label :city %>
+                     <%= f.label :city, class: "small" %>
                      <%= f.text_field :city, autofocus: true, placeholder: "City", class: "form-control input" %>
                     </div>
                   </div>
                   <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="form-group">
-                      <%= f.label :zipcode %>
+                      <%= f.label :zipcode, class: "small" %>
                       <%= f.text_field :zipcode, autofocus: true, placeholder: "Zipcode", class: "form-control input" %>
                     </div>
                   </div>
@@ -48,7 +48,7 @@
                 <div class="row">
                   <div class="text_container">
                     <div class="form-group">
-                     <%= f.label :bio %>
+                     <%= f.label :bio, class: "small" %>
                      <%= f.text_area :bio, autofocus: true, placeholder: "Tell us about yourself", class: "form-control input"  %>
                     </div>
                   </div>
@@ -57,7 +57,7 @@
              <div class="row">
                <div class="text_container">
                  <div class="form-group">
-                 <%= f.label :image, "Profile Image" %>
+                 <%= f.label :image, "Profile Image", class: "small" %>
                  <%= f.file_field :image, autofocus: true, placeholder: "Tell us about yourself", class: "form-control input"  %>
 
                  </div>
