@@ -16,6 +16,7 @@
           <th>Received</th>
         </tr>
           <% @conversations.each do |message| %>
+          <% if %>
             <tr>
               <td><%= message.originator.name %></td>
               <td><%= message.subject %></td>
