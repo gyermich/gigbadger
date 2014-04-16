@@ -11,11 +11,15 @@ class Task < ActiveRecord::Base
   end
 
   def self.posted_tasks(user)
-    Task.where("owner_id = ? AND status = ? OR status = ?", user.id, "available", "in_progress")
+    Task.where("owner_id = ? AND status = ? OR status = ?", user.id, "available", "in progress")
+  end
+
+  def self.past_posted_tasks(user)
+    Task.where("owner_id = ? AND status = ? OR status = ?", user.id, "completed", "expired")
   end
 
   def in_progress
-    self.update(status: "in_progress")
+    self.update(status: "in progress")
   end
 
   has_many :accepted_users, -> { where "user_tasks.status = 'accept'"},
