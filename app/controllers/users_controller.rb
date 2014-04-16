@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :edit, :destroy, :update, :profile]
+  before_action :unread_messages, :find_notifications, :unread_notifications
+
 
   def index
     @users = User.all
@@ -40,7 +42,6 @@ class UsersController < ApplicationController
     @archived_tasks = Task.past_posted_tasks(@user)
     @badger_pending_tasks = @user.pending_tasks
     @badger_accepted_tasks = @user.accepted_tasks
-    unread_messages
       unless @user == current_user
         redirect_to root_path, notice: "Sorry, you are not authorized to access this page."
       end
@@ -53,10 +54,6 @@ class UsersController < ApplicationController
   private
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def unread_messages
-    @unread_messages = current_user.mailbox.inbox({:read => false}).count || 0
   end
 
   def user_params

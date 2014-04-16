@@ -17,7 +17,7 @@
         </li>
         <li class="list-group-item text-muted"><%= link_to 'Notifications', messages_notifications_path(@user) %>
         <% if @notification_count != 0 %>
-          <%= (@notification_count) %>
+          (<%= @notification_count %>)
         <% end %>
         </li>
         <li class="list-group-item text-muted"><%= link_to 'Sent', messages_sent_path %></li>
