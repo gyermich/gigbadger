@@ -11,7 +11,7 @@
       <h3>Messages</h3>
       <ul class="list-group small">
         <li class="list-group-item text-muted"><%= link_to 'Inbox', messages_inbox_path %>
-        <% if @unread_messages > 0 %>  
+        <% if @unread_messages > 0 %>
           (<%= @unread_messages %>)
         <% end %>
         </li>
