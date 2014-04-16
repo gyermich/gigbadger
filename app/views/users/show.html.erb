@@ -72,10 +72,10 @@
                  <table class="table table-hover">
                    <tbody>
                      <tr>
-                       <% @badger_tasks.each do |t| %>
-                         <td><%= link_to t.task.name, task_path(t.task) %></td>
-                         <td><%=  display_date_only(t.task.due_date) %></td>
-                         <td><%=  t.task.status %></td>
+                       <% @badger_accepted_tasks.each do |t| %>
+                         <td><%= link_to t.name, task_path(t) %></td>
+                         <td><%=  display_date_only(t.due_date) %></td>
+                         <td><%=  t.status %></td>
                      </tr>
                      <% end %>
                    </tbody>
@@ -90,9 +90,9 @@
                      <tbody>
                        <tr>
                          <% @badger_pending_tasks.each do |t| %>
-                           <td><%= link_to t.task.name, task_path(t.task) %></td>
-                           <td><%=  display_date_only(t.task.due_date) %></td>
-                           <td><%=  t.task.status %></td>
+                           <td><%= link_to t.name, task_path(t) %></td>
+                           <td><%=  display_date_only(t.due_date) %></td>
+                           <td><%=  t.status %></td>
                        </tr>
                        <% end %>
                      </tbody>

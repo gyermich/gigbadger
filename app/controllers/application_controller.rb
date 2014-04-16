@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
     @notices = Receipt.joins(:notification)
                       .where("receiver_id = ? 
                               AND notification_code = ? 
-                              OR notification_code = ? 
-                              OR notification_code = ?", 
+                              AND notification_code = ? 
+                              AND notification_code = ?", 
                               current_user.id, 
                               "reject_offers", 
                               "accept_offer", 
