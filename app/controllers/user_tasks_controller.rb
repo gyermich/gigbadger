@@ -22,10 +22,10 @@ class UserTasksController < ApplicationController
     if accept
       Resque.enqueue(EmailJob, @user.id, @task.id)
       # UserMailer.offer_accepted(@user, @task).deliver
-      redirect_to root_path, notice: "You accepted an offer"
+      redirect_to user_path(current_user), notice: "You accepted an offer"
     else
       # change below later
-      redirect_to root_path, notice: "Oops, something went wrong"
+      redirect_to :back, notice: "Oops, something went wrong"
     end
   end
 
