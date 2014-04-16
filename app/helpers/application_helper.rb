@@ -9,6 +9,10 @@ module ApplicationHelper
   end
 
   def display_date(input_date)
+    return input_date.strftime("%d %B %Y at %I:%M%p")
+  end
+
+  def display_date_only(input_date)
     return input_date.strftime("%d %B %Y")
   end
 end

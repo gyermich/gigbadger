@@ -37,8 +37,9 @@ class UsersController < ApplicationController
   def show
     @created_tasks = Task.not_posted(@user)
     @posted_tasks = Task.posted_tasks(@user)
-    @pending_offers = UserTask.pending_offers_for_badger(current_user)
-    @badger_tasks = UserTask.accepted_offers_for_badger(current_user)
+    @archived_tasks = Task.past_posted_tasks(@user)
+    @badger_pending_tasks = @user.pending_tasks
+    @badger_accepted_tasks = @user.accepted_tasks
     unread_messages
       unless @user == current_user
         redirect_to root_path, notice: "Sorry, you are not authorized to access this page."

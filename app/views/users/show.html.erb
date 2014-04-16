@@ -10,15 +10,15 @@
 
           <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#home" data-toggle="tab">My Gigs</a></li>
-            <li><a href="#messages" data-toggle="tab">Messages</a></li>
-            <li><a href="#settings" data-toggle="tab">My Badges</a></li>
+            <li><a href="#assigned" data-toggle="tab">Assigned Gigs</a></li>
+            <li><a href="#archive" data-toggle="tab">Gigs Archive</a></li>
           </ul>
 
           <div class="tab-content">
             <div class="tab-pane active" id="home">
 
             <% if @created_tasks.empty? == false %>
-              <h4>My Pending Gigs</h4>  
+              <h4>My Pending Gigs</h4>
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <tbody id="items">
@@ -30,7 +30,7 @@
                           <td><%= button_to "Post", post_path(t), method: :patch, class: "btn btn-theme pull-left"%> <br></td>
                           <td></td>
                           <td></td>
-                        <% end %> 
+                        <% end %>
                       </tr>
                     </tbody>
                   </table>
@@ -44,7 +44,7 @@
                     <tr>
                       <% @posted_tasks.each do |t| %>
                         <td><%= link_to t.name, task_path(t) %></td>
-                        <td><%=  t.due_date %></td>
+                        <td><%=  display_date_only(t.due_date )%></td>
                         <td><%=  t.status %></td>
                         <td><%=  button_to "Offers", offers_path(t), method: :get, class: "btn btn-theme" %></td>
                         <td><%=  button_to "Complete", complete_path(t), class: "btn btn-theme" %></td>
@@ -60,67 +60,73 @@
                   </div>
                 </div>
               </div><!--/table-resp-->
-
-              <hr>
+             </div><!--/tab-pane-->
+             <div class="tab-pane" id="assigned">
 
               <h4>Gigs I am assigned to </h4>
-              <div class="table-responsive">
-                <table class="table table-hover">
+              <% if @badger_accepted_tasks.empty? %>
+                <em class="muted align-center">Nothing here yet</em>
+              <% else %>
+                <div class="table-responsive">
+                 <table class="table table-hover">
+                   <tbody>
+                     <tr>
+                       <% @badger_tasks.each do |t| %>
+                         <td><%= link_to t.task.name, task_path(t.task) %></td>
+                         <td><%=  t.task.due_date %></td>
+                         <td><%=  t.task.status %></td>
+                     </tr>
+                     <% end %>
+                   </tbody>
+                 </table>
+               </div>
+              <% end %>
 
-                  <tbody>
-                    <tr>
-                      <% @badger_tasks.each do |t| %>
-                        <td><%= link_to t.task.name, task_path(t.task) %></td>
-                        <td><%=  t.task.due_date %></td>
-                        <td><%=  t.task.status %></td>
-                    </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-
-              <h4>Pending Offers </h4>
-
-              <div class="table-responsive">
-                <table class="table table-hover">
-
-                  <tbody>
-                    <tr>
-                      <% @pending_offers.each do |t| %>
-                        <td><%= link_to t.task.name, task_path(t.task) %></td>
-                        <td><%=  t.task.due_date %></td>
-                        <td><%=  t.task.status %></td>
-                    </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-
-             </div><!--/tab-pane-->
-             <div class="tab-pane" id="messages">
-
-               <h2></h2>
-
-               <ul class="list-group">
-                  <li class="list-group-item text-muted">Inbox</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Here is your a link to the latest summary report from the..</a> 2.13.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Hi Joe, There has been a request on your account since that was..</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Nullam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Thllam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Wesm sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">For therepien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Also we, havesapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Swedish chef is assaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-
-                </ul>
+              <% unless @badger_pending_tasks.empty? %>
+                <h4>Pending Gigs</h4>
+                  <div class="table-responsive">
+                   <table class="table table-hover">
+                     <tbody>
+                       <tr>
+                         <% @badger_pending_tasks.each do |t| %>
+                           <td><%= link_to t.task.name, task_path(t.task) %></td>
+                           <td><%=  t.task.due_date %></td>
+                           <td><%=  t.task.status %></td>
+                       </tr>
+                       <% end %>
+                     </tbody>
+                   </table>
+                 </div>
+              <% end %>
 
              </div><!--/tab-pane-->
-             <div class="tab-pane" id="settings">
-                 <ul>
-                 <% current_user.badges.each do |badge| %>
-                   <li><%= badge.name %></li>
-                 <% end %>
-                 </ul>
+             <div class="tab-pane" id="archive">
+                <h4>Archived Gigs</h4>
+                <% if @archived_tasks.empty? %>
+                  <em class="muted align-center">Nothing here yet</em>
+                <% else %>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <tbody id="items">
+                        <tr>
+                          <% @archived_tasks.each do |t| %>
+                            <td><%= link_to t.name, task_path(t) %></td>
+                            <td><%=  t.due_date %></td>
+                            <td><%=  t.status %></td>
+                            <td><%=  button_to "Rate Badgers", rate_workers_path(t), method: :get, class: "btn btn-theme" %></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                    <hr>
+                    <div class="row">
+                      <div class="col-md-4 col-md-offset-4 text-center">
+                        <ul class="pagination" id="myPager"></ul>
+                      </div>
+                    </div>
+                  </div><!--/table-resp-->
+                  <% end %>
+
               </div>
 
               </div><!--/tab-pane-->

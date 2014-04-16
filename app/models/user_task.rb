@@ -1,5 +1,5 @@
 class UserTask < ActiveRecord::Base
-  belongs_to :user 
+  belongs_to :user
   belongs_to :task
 
   def self.badger_for_task?(user, task)
@@ -11,15 +11,6 @@ class UserTask < ActiveRecord::Base
   def self.pending_offers_for_task(task)
     # shows owner pending offers for task
     UserTask.where("task_id = ? AND status = ?", task.id, "pending")
-  end
-
-  def self.pending_offers_for_badger(badger)
-    # shows badger pending offers they sent
-    UserTask.where("user_id = ? AND status = ?", badger.id, "pending")
-  end
-
-  def self.accepted_offers_for_badger(badger)
-    UserTask.where("user_id = ? AND status = ?", badger.id, "accept")
   end
 
   def update_status_accept
