@@ -14,11 +14,10 @@ class ApplicationController < ActionController::Base
 
   def find_notifications
     @notices = Receipt.joins(:notification)
-                      .where("receiver_id = ? 
-                              AND notification_code = ? 
-                              AND notification_code = ? 
-                              AND notification_code = ?", 
-                              current_user.id, 
+                      .where("receiver_id = ?", current_user.id)
+                      .where("notification_code = ? 
+                              OR notification_code = ? 
+                              OR notification_code = ?", 
                               "reject_offers", 
                               "accept_offer", 
                               "badge")

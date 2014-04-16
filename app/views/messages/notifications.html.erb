@@ -14,7 +14,11 @@
       </tr>
 
       <% @notices.each do |notice| %>
+      <% if !notice.is_read? %>
+      <tr class="bold">
+      <% else %>
       <tr>
+      <% end %>
         <td><%= notice.notification.subject %></td>
         <td><%= display_date(notice.notification.created_at) %></td>
         <td><%= button_to "Open", show_notification_path(notice.notification), method: :get, class: "btn btn-theme pull-left"%></td>
