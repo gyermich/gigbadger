@@ -38,10 +38,9 @@ class Notice
 
   def badge_notification
     subject = "Badge received"
-    body = "Congratulations, you received a badge"
     @receivers.each do |user|
+      body = "Congratulations, you earned the #{user.badges.last.name} badge"
       user.notify(subject,body,obj = nil,sanitize_text=true,notification_code=@notification_code,send_mail=true)
     end
   end
-
 end
