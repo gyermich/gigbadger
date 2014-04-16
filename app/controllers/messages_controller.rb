@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   def show
     # pulls all conversations, last received first
     # pulls all receipts for each conversation, last received first
-    # marks 
+    # marks
     conversation = current_user.mailbox.conversations.find(params[:format])
     @receipts = conversation.receipts_for(current_user)
     @receipts = @receipts.paginate(:page => params[:page], :per_page => 10)
@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
 
   def reply
     messages = Conversation.find(params[:conversation])
-    respond = current_user.reply_to_conversation(messages, params[:body]) 
+    respond = current_user.reply_to_conversation(messages, params[:body])
 
     if respond.save
       redirect_to messages_inbox_path, notice: "Your message was sent"
@@ -94,7 +94,7 @@ class MessagesController < ApplicationController
 
   private
   def unread_messages
-    @unread_messages = current_user.mailbox.inbox({:read => false}).count
+    @unread_messages = current_user.mailbox.inbox({:read => false}).count || 0
   end
 
   def set_user
