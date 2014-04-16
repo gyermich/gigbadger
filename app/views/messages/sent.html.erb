@@ -1,19 +1,28 @@
-<h2>SENT MAIL</h2>
+<div class="container" id="padded_container">
+    <div class="row">
+        <div class="col-sm-10 account_heading"><h1>Hiya, <%= current_user.name %>!</h1></div>
+    </div>
 
-<table class="table">
-  <tr>
-    <th>Sent To</th>
-    <th>Subject</th>
-    <th>Sent</th>
+    <%= render 'users/side_navbar' %>
 
-  </tr>
-    <% @conversations.each do |message| %>
+    <div class="col-sm-9">
+
+    <h2>SENT</h2>
+
+    <table class="table">
       <tr>
-        <td><%= message.participants.last.name %></td>
-        <td><%= message.subject %></td>
-        <td><%= message.created_at %></td>
-      <tr>
-    <% end %>
-    <%= will_paginate @conversations %>
-
-</table>
+        <th>Sent To</th>
+        <th>Subject</th>
+        <th>Sent</th>
+      </tr>
+        <% @conversations.each do |message| %>
+          <tr>
+            <td><%= message.participants.last.name %></td>
+            <td><%= message.subject %></td>
+            <td><%= message.created_at %></td>
+          <tr>
+        <% end %>
+        <%= will_paginate @conversations %>
+    </table>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!, :set_user
+  before_action :authenticate_user!, :set_user, :unread_messages
 
   def new
     @user = User.find(params[:format])
@@ -77,7 +77,7 @@ class MessagesController < ApplicationController
   end
 
   def inbox
-    @unread_messages = current_user.mailbox.inbox({:read => false}).count
+    # @unread_messages = current_user.mailbox.inbox({:read => false}).count
     @conversations = current_user.mailbox.inbox
     @conversations = @conversations.paginate(:page => params[:page], :per_page => 10)
   end
@@ -93,6 +93,10 @@ class MessagesController < ApplicationController
   end
 
   private
+  def unread_messages
+    @unread_messages = current_user.mailbox.inbox({:read => false}).count
+  end
+
   def set_user
     @user = current_user
   end
