@@ -2,8 +2,6 @@
 
 class User < ActiveRecord::Base
   has_merit
-
-
   mount_uploader :image, ImageUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -17,12 +15,29 @@ class User < ActiveRecord::Base
   letsrate_rater
   acts_as_messageable
 
+  has_many :pending_tasks, -> { where "user_tasks.status = 'pending'"},
+           through: :user_tasks,
+           source: :task
+
+  has_many :accepted_tasks, -> { where "user_tasks.status = 'accept'"},
+           through: :user_tasks,
+           source: :task
+
+  has_many :rejected_tasks, -> { where "user_tasks.status = 'reject'"},
+           through: :user_tasks,
+           source: :task
+
+
   def slug
-    name.downcase.gsub(" ", "-")  
+    name.downcase.gsub(" ", "-")
   end
 
   def to_param
     "#{id}-#{slug}"
+  end
+
+  def completed_tasks
+    accepted_tasks.where(status: "completed")
   end
 
   # def name

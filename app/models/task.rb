@@ -18,16 +18,18 @@ class Task < ActiveRecord::Base
     self.update(status: "in_progress")
   end
 
-  has_many :accepted_users, through: :user_tasks,
-           :class_name => "User",
-           :source => :user,
-           :conditions => ['user_tasks.status = ?', "accept"]
+  has_many :accepted_users, -> { where "user_tasks.status = 'accept'"},
+           through: :user_tasks,
+           source: :user
 
+  has_many :pending_users, -> { where "user_tasks.status = 'pending'"},
+           through: :user_tasks,
+           source: :user
 
-  has_many :pending_users, through: :user_tasks,
-           :class_name => "User",
-           :source => :user,
-           :conditions => ['user_tasks.status = ?', "pending"]
+  has_many :rejected_users, -> { where "user_tasks.status = 'reject'"},
+           through: :user_tasks,
+           source: :user
+
 
   def workers
     accepted_users
