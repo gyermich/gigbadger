@@ -8,11 +8,6 @@ class UserTask < ActiveRecord::Base
     # return true if UserTask.find_by(user_id: user.id, task_id: task.id) != nil
   end
 
-  def self.pending_offers_for_task(task)
-    # shows owner pending offers for task
-    UserTask.where("task_id = ? AND status = ?", task.id, "pending")
-  end
-
   def update_status_accept
     self.update(status: "accept")
     Notice.new([self.user], "accept_offer", self.task)
