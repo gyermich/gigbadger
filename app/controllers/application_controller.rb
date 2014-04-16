@@ -8,7 +8,28 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :bio, :city, :zipcode, :image) }
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :bio, :city, :zipcode, :image) }
+  end
+
+  def find_notifications
+    @notices = Receipt.joins(:notification)
+                      .where("receiver_id = ? 
+                              AND notification_code = ? 
+                              OR notification_code = ? 
+                              OR notification_code = ?", 
+                              current_user.id, 
+                              "reject_offers", 
+                              "accept_offer", 
+                              "badge")
+                      .order("created_at desc")
+  end 
+
+  def unread_notifications
+    @notification_count = @notices.where(is_read: false).count || 0
+  end
+
+  def unread_messages
+    @unread_messages = current_user.mailbox.inbox({:read => false}).count || 0
+  end
 end

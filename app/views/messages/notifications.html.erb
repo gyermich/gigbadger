@@ -2,8 +2,7 @@
     <div class="row">
         <div class="col-sm-10 account_heading"><h1>Hiya, <%= current_user.name %>!</h1></div>
     </div>
-    <%= render 'users/side_navbar' %>
-
+    <%= render 'side_navbar' %>
 
   <h2>NOTIFICATIONS</h2>
 
@@ -14,7 +13,7 @@
         <th>Received</th>
       </tr>
 
-      <% @notices.map do |notice| %>
+      <% @notices.each do |notice| %>
       <tr>
         <td><%= notice.notification.subject %></td>
         <td><%= display_date(notice.notification.created_at) %></td>

@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!, :set_user, :unread_messages
+  before_action :authenticate_user!, :set_user
+  before_action :unread_messages, :find_notifications, :unread_notifications
+
 
   def new
     @user = User.find(params[:format])
@@ -17,9 +19,7 @@ class MessagesController < ApplicationController
   end
 
   def show
-    # pulls all conversations, last received first
     # pulls all receipts for each conversation, last received first
-    # marks
     conversation = current_user.mailbox.conversations.find(params[:format])
     @receipts = conversation.receipts_for(current_user)
     @receipts = @receipts.paginate(:page => params[:page], :per_page => 10)
@@ -68,35 +68,30 @@ class MessagesController < ApplicationController
   end
 
   def notifications
-    @notices = Receipt.joins(:notification).where("receiver_id = ? AND notification_code = ? OR notification_code = ? OR notification_code = ?", current_user.id, "reject_offers", "accept_offer", "badge")
     @notices = @notices.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show_notification
     @notice = Notification.find(params[:format])
+    @notice.receipts.last.update(is_read: true)
   end
 
   def inbox
-    # @unread_messages = current_user.mailbox.inbox({:read => false}).count
-    @conversations = current_user.mailbox.inbox
+    @conversations = current_user.mailbox.inbox.order("created_at desc")
     @conversations = @conversations.paginate(:page => params[:page], :per_page => 10)
   end
 
   def sent
-    @conversations = current_user.mailbox.sentbox
+    @conversations = current_user.mailbox.sentbox.order("created_at desc")
     @conversations = @conversations.paginate(:page => params[:page], :per_page => 10)
   end
 
   def trash
-    @conversations = current_user.mailbox.trash
+    @conversations = current_user.mailbox.trash.order("updated_at desc")
     @conversations = @conversations.paginate(:page => params[:page], :per_page => 10)
   end
 
   private
-  def unread_messages
-    @unread_messages = current_user.mailbox.inbox({:read => false}).count || 0
-  end
-
   def set_user
     @user = current_user
   end
