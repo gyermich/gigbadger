@@ -1,42 +1,76 @@
-<%= form_for @user, html: { multipart: true } do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this band from being saved:</h2>
+<div id="padded_container">
+  <div class="container">
+          <div class="row centered-form">
+          <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="align-center">
+                  <h1 class="panel-title">Account Details</h1>
+                </div>
+              </div>
+              <div class="panel-body">
+             <%= form_for @user, html: { multipart: true } do |f| %>
+               <% if @user.errors.any? %>
+                 <div id="error_explanation">
+                   <h2><%= pluralize(@user.errors.count, "error") %> prohibited this band from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+                   <ul>
+                   <% @user.errors.full_messages.each do |msg| %>
+                     <li><%= msg %></li>
+                   <% end %>
+                   </ul>
+                 </div>
+               <% end %>
+               <div class="row">
+                 <div class="text_container">
+                   <div class="form-group">
+                    <%= f.label :name %>
+                    <%= f.text_field :name, autofocus: true, class: "form-control input"  %>
+                   </div>
+                 </div>
+               </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
+                <div class="row">
+                  <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                     <%= f.label :city %>
+                     <%= f.text_field :city, autofocus: true, placeholder: "City", class: "form-control input" %>
+                    </div>
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                      <%= f.label :zipcode %>
+                      <%= f.text_field :zipcode, autofocus: true, placeholder: "Zipcode", class: "form-control input" %>
+                    </div>
+                  </div>
+                </div>
 
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </div>
+                <div class="row">
+                  <div class="text_container">
+                    <div class="form-group">
+                     <%= f.label :bio %>
+                     <%= f.text_area :bio, autofocus: true, placeholder: "Tell us about yourself", class: "form-control input"  %>
+                    </div>
+                  </div>
+                </div>
 
-  <div class="field">
-    <%= f.label :zipcode %><br>
-    <%= f.text_field :zipcode %>
-  </div>
+             <div class="row">
+               <div class="text_container">
+                 <div class="form-group">
+                 <%= f.label :image, "Profile Image" %>
+                 <%= f.file_field :image, autofocus: true, placeholder: "Tell us about yourself", class: "form-control input"  %>
 
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-  </div>
+                 </div>
+               </div>
+             </div>
+              </div>
+              <div class="text_container">
+                  <%= f.submit "Save", class: "btn btn-info btn-theme btn-block"%>
+              </div>
+               <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :bio %><br>
-    <%= f.text_field :bio %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
