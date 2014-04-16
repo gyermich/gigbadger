@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :destroy, :update, :post, :complete]
+  before_action :set_task, except: [:index, :reset_filterrific, :new, :create]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -29,7 +29,6 @@ class TasksController < ApplicationController
   def create
     @task = Task.create(task_params)
     if @task.save
-
       @task.categories = params[:task][:categories].present? ? Category.find_all_by_id(params[:task][:categories]) : [ ]
       redirect_to task_path(@task)
     else
@@ -50,9 +49,7 @@ class TasksController < ApplicationController
   end
 
   def post
-    @task.update(status: "available")
-
-    if @task.save
+    if @task.update(status: "available")
       redirect_to tasks_path, notice: "Yay! Your gig is posted!"
     else
       redirect_to task_path
@@ -60,29 +57,22 @@ class TasksController < ApplicationController
   end
 
   def complete
-    @task.update(status: "completed")
-
-    # this is a good task for a background job
-    if @task.save
-      @task.workers.each do |user|
-        case user.tasks.count
-        when  1  ; user.add_badge(4) ; Notice.new([user], "badge", @task)
-        when  5  ; user.add_badge(5) ; Notice.new([user], "badge", @task)
-        when  10 ; user.add_badge(6) ; Notice.new([user], "badge", @task)
-        end
-      end
-      redirect_to :back
-      # owner is prompted to review badger
+    if @task.update(status: "completed")
+      Resque.enqueue(BadgeJob, @task.id)
+      redirect_to action: :rate_workers
     else
       redirect_to :back, notice: "Something went wrong."
     end
+  end
+
+  def rate_workers
+    @workers = @task.workers
   end
 
   def show
   end
 
   def offers
-    @task = Task.find(params[:id])
     @offers = UserTask.pending_offers_for_task(@task)
   end
 

@@ -1,21 +1,33 @@
-<!-- RECEIVED MESSAGES -->
+<div class="container" id="padded_container">
+  <div class="row">
+      <div class="col-sm-10 account_heading"><h1>Hiya, <%= current_user.name %>!</h1></div>
 
-<table class="table">
-  <tr>
-    <th>Sender</th>
-    <th>Subject</th>
-    <th>Received</th>
-    <th>Read?</th>
-  </tr>
-    <% @conversations.each do |message| %>
-      <tr>
-        <td><%= message.originator.name %></td>
-        <td><%= message.subject %></td>
-        <td><%= message.created_at %></td>
-        <td><%= message.is_read?(current_user) %></td>
-        <td><%= button_to "Open", message_path(current_user, message), method: :get, class: "btn btn-theme pull-left"%></td>
-        <td><%= button_to "Trash", trash_message_path(message), method: :post, class: "btn btn-theme pull-left" %></td>
-      </tr>
-    <% end %>
-    <%= will_paginate @conversations %>
-</table>
+
+
+    </div>
+    <%= render 'users/side_navbar' %>
+    <div class="col-sm-9">
+      <h2>INBOX</h2>
+
+      <table class="table">
+        <tr>
+          <th>Sender</th>
+          <th>Subject</th>
+          <th>Received</th>
+          <th>Read?</th>
+        </tr>
+          <% @conversations.each do |message| %>
+            <tr>
+              <td><%= message.originator.name %></td>
+              <td><%= message.subject %></td>
+              <td><%= message.created_at %></td>
+              <td><%= message.is_read?(current_user) %></td>
+              <td><%= button_to "Open", message_path(current_user, message), method: :get, class: "btn btn-theme pull-left"%></td>
+              <td><%= button_to "Trash", trash_message_path(message), method: :post, class: "btn btn-theme pull-left" %></td>
+            </tr>
+          <% end %>
+          <%= will_paginate @conversations %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container" id="padded_container">
+  <h1>Please Rate Your Badgers:</h1>
+
+  <table class="table table-responsive">
+  <tbody>
+
+    <% @workers.each do |worker| %>
+    <tr>
+      <td><%= image_tag avatar(worker), class: "img-circle img-responsive tiny" %></td>
+      <td><%= worker.name %></td>
+      <td><%= rating_for worker,  dimension = nil, options = {disable_after_rate: false} %></td>
+
+    <% end %>
+   </tr>
+  </tbody>
+  </table>
+
+  <div class="small"><%= link_to "Back to My Account" %></div>
+</div>

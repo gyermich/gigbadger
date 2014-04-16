@@ -1,4 +1,7 @@
+require 'resque/server'
+
 Badger::Application.routes.draw do
+  mount Resque::Server, :at => "/resque"
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
@@ -11,6 +14,7 @@ Badger::Application.routes.draw do
   post "/tasks/:id/complete",     to: "tasks#complete",              as: :complete
   get "/tasks/:id/offers",        to: "tasks#offers",                as: :offers
   get "/users/:id/profile",       to: "users#profile",               as: :user_profile
+  get "/tasks/:id/rate",          to: "tasks#rate_workers",          as: :rate_workers
   get "messages/inbox",           to: "messages#inbox"
   get "messages/sent",            to: "messages#sent"
   get "messages/trash",           to: "messages#trash"
