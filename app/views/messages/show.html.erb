@@ -18,8 +18,9 @@
       <%= submit_tag 'Reply', class: "btn btn-theme pull-left mar-top5" %>
     <% end %>
   </div>
-  
+ 
   <div class="clear"></div>
+    Subject: <%= @conversation.subject %>
     <% @receipts.each do |receipt| %>
         <div class="message_box mar-top25">
           <p class="tiny_font float-left">From: <%= receipt.notification.sender.email %></p>

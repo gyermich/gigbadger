@@ -30,7 +30,7 @@ class Notice
 
   def reject_offers
     subject = "Offer not accepted"
-    body = "We regret to inform you that the gig owner has decided to accept another badger's offer for: #{@task.name}."
+    body = "We regret to inform you that the gig owner has decided to accept another badger's offer for: <strong>#{@task.name}</strong>."
     @receivers.each do |reject|
       reject.notify(subject,body,obj = nil,sanitize_text=true,notification_code=@notification_code,send_mail=true)
     end

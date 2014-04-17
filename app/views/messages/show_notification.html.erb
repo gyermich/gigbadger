@@ -5,5 +5,9 @@
   <%= render 'side_navbar' %>
   <div class="col-sm-9">
 
-<%= @notice.subject %><br>
-<%= @notice.body.html_safe %>
+    <div class="panel panel-default">
+      <div class="panel-heading"><h4>Subject: <%= @notice.subject %></h4></div>
+      <div class="panel-body"><%= @notice.body.html_safe %></div>
+    </div>
+  </div>
+</div>
