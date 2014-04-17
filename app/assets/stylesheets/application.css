@@ -487,7 +487,6 @@
  .nav>li>a:hover {
   color: #fff;
   background: none;
-  padding-bottom: 5px;
  }
 
  .navbar-nav {
@@ -731,6 +730,12 @@
  /*===========================
    Portfolio
  ============================ */
+ #size90 {
+  width: 90%;
+  margin: 0 auto;
+  color: black;
+ }
+
  nav#filter a {
   background-color: #EEE;
   color:#555;
@@ -746,9 +751,6 @@
      margin-bottom: 30px;
  }
 
- #portfolio img  {
-  width:100%;
- }
 
  #portfolio article p {
   margin-bottom:1.45em;/*set next row on the baseline*/
@@ -767,12 +769,19 @@
   text-decoration: none;
  }
 
+.tiny_font {
+  font-size: 13px;
+}
 
- .portfolio-items article img {width:100%;}
+ .portfolio-items article img {margin:0 auto;}
 
  .portfolio-item {
   display: block;
   position: relative;
+  height: 300px;
+  background: #CECFCA;
+  -moz-border-radius   : 5px;
+   -webkit-border-radius: 5px;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -833,7 +842,8 @@
  }
  .portfolio-item .portfolio-desc .folio-info p {
   color: #ffffff;
-  font-size: 12px;
+  font-size: 15px;
+  line-height: 1.2em;
  }
 
 

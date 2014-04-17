@@ -144,134 +144,32 @@
         <div class="row mar-bot40">
           <div class="col-md-offset-3 col-md-6">
             <div class="section-header">
-              <h2 class="section-heading animated" data-animation="bounceInUp">Browse Gigs</h2>
-              <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur, adipisci velit, sed quia non numquam.</p>
+              <h2 class="section-heading animated" data-animation="bounceInUp">Most Recent Gigs</h2>
             </div>
           </div>
         </div>
 
-                        <div class="row">
-                          <nav id="filter" class="col-md-12 text-center">
-                            <ul>
-                              <li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
-                              <li><a href="#"  class="btn-theme btn-small" data-filter=".webdesign" >Web Design</a></li>
-                              <li><a href="#"  class="btn-theme btn-small" data-filter=".photography">Photography</a></li>
-                              <li ><a href="#" class="btn-theme btn-small" data-filter=".print">Pets</a></li>
-                            </ul>
-                          </nav>
-                          <div class="col-md-12">
-                            <div class="row">
-                              <div class="portfolio-items isotopeWrapper clearfix" id="3">
 
-                                <article class="col-md-4 isotopeItem webdesign">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
+          <div class="col-md-12">
+            <div class="row">
+              <div class="portfolio-items isotopeWrapper clearfix" id="3">
+
+              <% @tasks.each do |task| %>
+                <article class="col-md-4 isotopeItem webdesign">
+                  <div class="portfolio-item pad-top30">
+                  <div class="align-center">
+                    <%= image_tag avatar(task.owner), class: "account_img img-circle" %>
+                    <p class="tiny_font muted"><em> by <%= task.owner.name %></em></p>
+                    <div id="size90"><p ><%= task.name %></p></div>
+                  </div>
                      <div class="portfolio-desc align-center">
                       <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img1.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
+                        <p><%=link_to truncate(task.summary, length: 290, omission: '... (continued)'), task, class:"fancybox" %></p>
                      </div>
                   </div>
-                                </article>
-
-                                <article class="col-md-4 isotopeItem photography">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
-                     <div class="portfolio-desc align-center">
-                      <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img2.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
-                     </div>
-                  </div>
-                                </article>
-
-
-                                <article class="col-md-4 isotopeItem photography">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
-                     <div class="portfolio-desc align-center">
-                      <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img3.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
-                     </div>
-                  </div>
-                                </article>
-
-                                <article class="col-md-4 isotopeItem print">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
-                     <div class="portfolio-desc align-center">
-                      <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img4.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
-                     </div>
-                  </div>
-                                </article>
-
-                                <article class="col-md-4 isotopeItem photography">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
-                     <div class="portfolio-desc align-center">
-                      <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img5.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
-                     </div>
-                  </div>
-                                </article>
-
-                                <article class="col-md-4 isotopeItem webdesign">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
-                     <div class="portfolio-desc align-center">
-                      <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img6.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
-                     </div>
-                  </div>
-                                </article>
-
-                                <article class="col-md-4 isotopeItem print">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
-                     <div class="portfolio-desc align-center">
-                      <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img7.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
-                     </div>
-                  </div>
-                                </article>
-
-                                <article class="col-md-4 isotopeItem photography">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
-                     <div class="portfolio-desc align-center">
-                      <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img8.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
-                     </div>
-                  </div>
-                                </article>
-
-                                <article class="col-md-4 isotopeItem print">
-                  <div class="portfolio-item">
-                    <img src="http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:62987683,w:16" alt="" />
-                     <div class="portfolio-desc align-center">
-                      <div class="folio-info">
-                        <h5><a href="#">Gig name</a></h5>
-                        <a href="img/portfolio/img9.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a>
-                       </div>
-                     </div>
-                  </div>
-                                </article>
-                                </div>
+                </article>
+                <% end %>
+              </div>
 
               </div>
 
