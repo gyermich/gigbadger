@@ -21,11 +21,10 @@ class MessagesController < ApplicationController
   def show
     # pulls all receipts for each conversation, last received first
     @conversation = current_user.mailbox.conversations.find(params[:format])
-    @receipts = @conversation.receipts.order("created_at desc")
-    # _for(current_user).order("created_at desc")
+    @receipts = @conversation.receipts_for(current_user).order("created_at desc")
     @receipts = @receipts.paginate(:page => params[:page], :per_page => 10)
 
-    @receipts.last.mark_as_read
+    @receipts.mark_as_read
   end
 
   def reply
