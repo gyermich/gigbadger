@@ -8,6 +8,7 @@ class TasksController < ApplicationController
           params[:filterrific] || session[:filterrific_students]
         )
     @tasks = Task.where(status: "available").filterrific_find(@filterrific)
+    @tasks = @tasks.paginate(page: params[:page], per_page: 12)
 
     # Persist the current filter settings in the session as a plain old Hash.
     session[:filterrific_tasks] = @filterrific.to_hash
