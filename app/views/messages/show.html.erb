@@ -5,22 +5,23 @@
   <%= render 'side_navbar' %>
   <div class="col-sm-9">
 
-  <%= image_tag avatar(@receipts.last.notification.sender), class: "tiny img-circle img-responsive" %>
-  <%= @receipts.last.notification.sender.email %>
-
+  <div>
+    <p class="tiny_font float-left"><%= image_tag avatar(@receipts.last.notification.sender), class: "tiny img-circle img-responsive" %></p>
+    <p><%= @receipts.last.notification.sender.email %></p>
+  </div>
 
   <div class="container">
     <%= form_tag({controller: "messages", action: "reply"}, method: :post) do %>
       <%= hidden_field_tag :subject, @conversation.subject %>
-      <%= text_area_tag :body, nil, class: "message_form form-control", rows: "5" %><br>
+      <%= text_area_tag :body, nil, class: "message_form form-control", rows: "5" %>
       <%= hidden_field_tag :conversation, @conversation.id %>
-      <%= submit_tag 'Reply', class: "btn btn-theme pull-left" %>
+      <%= submit_tag 'Reply', class: "btn btn-theme pull-left mar-top5" %>
     <% end %>
   </div>
   
   <div class="clear"></div>
     <% @receipts.each do |receipt| %>
-        <div class="message_box">
+        <div class="message_box mar-top25">
           <p class="tiny_font float-left">From: <%= receipt.notification.sender.email %></p>
           <p class="tiny_font float-right">Received: <%= display_date(receipt.message.created_at)%></p>
           <div class="clear"></div>
