@@ -110,6 +110,10 @@
   -webkit-border-radius: 10px;
  }
 
+ .msg_sender_color {
+  background-color: #CECFCA;
+ }
+
  form .message_form {
    -moz-border-radius : 20px;
    -webkit-border-radius: 10px !important;
