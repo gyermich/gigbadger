@@ -1,12 +1,9 @@
 <div class="container" id="padded_container">
   <div class="row">
       <div class="col-sm-10 account_heading"><h1>Hiya, <%= @user.name %>!</h1></div>
-
-
-
-    </div>
+      </div>
     <%= render 'messages/side_navbar' %>
-    
+
       <div class="col-sm-9">
 
           <ul class="nav nav-tabs" id="myTab">
@@ -39,6 +36,9 @@
             <% end %>
 
             <h4>My Posted Gigs</h4>
+            <% if @badger_accepted_tasks.empty? %>
+              <em class="muted align-center">Nothing here yet</em>
+            <% else %>
               <div class="table-responsive">
                 <table class="table table-hover">
                   <tbody id="items">
@@ -61,7 +61,9 @@
                   </div>
                 </div>
               </div><!--/table-resp-->
+              <% end %>
              </div><!--/tab-pane-->
+
              <div class="tab-pane" id="assigned">
 
               <h4>Gigs I am assigned to </h4>
@@ -99,8 +101,8 @@
                    </table>
                  </div>
               <% end %>
-
              </div><!--/tab-pane-->
+
              <div class="tab-pane" id="archive">
                 <h4>Archived Gigs</h4>
                 <% if @archived_tasks.empty? %>
@@ -127,14 +129,12 @@
                     </div>
                   </div><!--/table-resp-->
                   <% end %>
-
-              </div>
-
               </div><!--/tab-pane-->
           </div><!--/tab-content-->
 
         </div><!--/col-9-->
     </div><!--/row-->
+  </div>
 
     <%= javascript_include_tag "useraccount" %>
 
