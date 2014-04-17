@@ -6,7 +6,7 @@
   <div class="col-sm-9">
 
 <% @receipts.map do |receipt| %>
-  Received: <%= receipt.message.created_at %><br>
+  Received: <%= display_date(receipt.message.created_at) %><br>
   Message: <%= receipt.message.body %>
 <% end %>
 
@@ -19,3 +19,4 @@
   <% end %>
   <%= will_paginate @receipts %>
 </div>
+<%= button_to "Trash", trash_message_path(params[:format]), method: :post, class: "btn btn-theme pull-left" %>

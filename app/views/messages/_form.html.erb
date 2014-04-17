@@ -1,11 +1,13 @@
 <div class="container">
-  <%= form_tag({controller: "messages", action: "create"}, method: :post) do %>
-    <%= text_field_tag :subject %>
-    <%= text_area_tag :body %>
+  <%= form_tag controller: "messages", action: "create", method: :post do %>
+    <%= text_field_tag :subject, nil, placeholder: "Subject", class: "form-control input-lg" %>
+
+    <%= text_area_tag :body, nil, placeholder: "Message", class: "form-control input-lg", rows: "5" %>
     <% if  @user %>
       <%= hidden_field_tag :recipient_id, @user.id %>
     <% end %>
-    <%= submit_tag 'Send message' %>
+    <br>
+    <%= submit_tag 'Send message', class: "btn btn-theme pull-left" %>
   <% end %>
 
 </div>

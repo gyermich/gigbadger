@@ -15,17 +15,18 @@
           <th>Subject</th>
           <th>Received</th>
         </tr>
-          <% @conversations.each do |message| %>
-            <% if !message.receipts.find_by(receiver_id: current_user.id).is_read? %>
+          <% @conversations.each do |m| %>
+            <% if m.receipts_for(current_user).last.is_unread? %>
+              <!-- find_by(receiver_id: current_user.id) -->
             <tr class="bold">
             <% else %>
             <tr>
             <% end %>
-              <td><%= message.originator.name %></td>
-              <td><%= message.subject %></td>
-              <td><%= display_date(message.created_at) %></td>
-              <td><%= button_to "Open", message_path(current_user, message), method: :get, class: "btn btn-theme pull-left"%></td>
-              <td><%= button_to "Trash", trash_message_path(message), method: :post, class: "btn btn-theme pull-left" %></td>
+              <td><%= m.originator.name %></td>
+              <td><%= m.subject %></td>
+              <td><%= display_date(m.created_at) %></td>
+              <td><%= button_to "Open", message_path(current_user, m), method: :get, class: "btn btn-theme pull-left"%></td>
+              <td><%= button_to "Trash", trash_message_path(m), method: :post, class: "btn btn-theme pull-left" %></td>
             </tr>
             </a>
           <% end %>

@@ -101,6 +101,20 @@
  /*==========================================================================
    Misc & Adjust
   ========================================================================== */
+ .message_box {
+  border: 1px solid #dddddd;
+  padding: 5px;
+  margin: 5px;
+  background-color: #fff;
+  -moz-border-radius : 20px;
+  -webkit-border-radius: 10px;
+ }
+
+ form .message_form {
+   -moz-border-radius : 20px;
+   -webkit-border-radius: 10px !important;
+ }
+
  .row {
   z-index: 9999;
  }
@@ -766,6 +780,10 @@
   text-decoration: none;
  }
 
+
+ .tiny_font {
+  font-size: 13px;
+ }
 
  .portfolio-items article img {width:100%;}
 
