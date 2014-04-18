@@ -104,10 +104,13 @@
               <div class="team-member">
                 <figure class="member-photo"><%= image_tag avatar(user) %></figure>
                 <div class="team-detail">
-                  <h4><%= link_to user.name, user_path(user) %> </h4>
-                  <div class="centered">
-                    <%= rating_for user,  dimension = nil, options = {readonly: true} %>
-                  </div>
+                  <h4><%= link_to user.name, user_profile_path(user) %> </h4>
+                  <table class="centered">
+                    <tr>
+                      <td><%= rating_for user,  dimension = nil, options = {readonly: true} %></td>
+                      <td><span class="small muted">(<%= user.rates.count %>)</span></td>
+                    </tr>
+                </table>
                 </div>
               </div>
             </div>
