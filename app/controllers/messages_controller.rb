@@ -27,10 +27,6 @@ class MessagesController < ApplicationController
     @receipts.mark_as_read
   end
 
-  def find_recipient
-    @conversation.messages.last.recipients.select { |n| n.id != current_user.id }
-  end
-
   def reply
     messages = Conversation.find(params[:conversation])
     respond = current_user.reply_to_conversation(messages, params[:body])
