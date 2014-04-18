@@ -8,6 +8,8 @@ set :use_sudo, false
 set :deploy_to, '/var/www/badger'
 set :linked_files, %w{config/application.yml}
 
+
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
