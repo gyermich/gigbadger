@@ -21,7 +21,7 @@
           <table class="centered_box">
             <tr>
               <td><%= button_to "Edit", edit_task_path(@task), method: :get, class: "btn btn-theme"%></td>
-              <td><%= button_to "Delete", @task, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-theme" %></td>
+              <td><%= button_to "Delete", @task, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
             </tr>
           </table>
         <% end %>

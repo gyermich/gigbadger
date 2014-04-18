@@ -1180,7 +1180,8 @@
   border-bottom: 4px solid;
  }
  .btn-cta:hover {
-  color: #ffffff;
+  color: #ffffff !important;
+  background-color: #d64848;
  }
 
  .btn-cta {
