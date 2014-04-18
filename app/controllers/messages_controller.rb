@@ -23,8 +23,12 @@ class MessagesController < ApplicationController
     @conversation = current_user.mailbox.conversations.find(params[:format])
     @receipts = @conversation.receipts_for(current_user).order("created_at desc")
     @receipts = @receipts.paginate(:page => params[:page], :per_page => 10)
-
+ 
     @receipts.mark_as_read
+  end
+
+  def find_recipient
+    @conversation.messages.last.recipients.select { |n| n.id != current_user.id }
   end
 
   def reply

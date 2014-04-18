@@ -11,7 +11,7 @@ role :db,  %w{ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com}
 role :resque_worker, "ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com"
 role :resque_scheduler, "ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com"
 
-set :workers, { "*" => 2 }
+set :workers, { "*" => 1 }
 set :resque_environment_task, true
 
 
@@ -44,7 +44,17 @@ namespace :figaro do
   end
 end
 
+namespace :resque do
+  desc "create temp pid directory"
+  task :create_pid_dir do
+    on roles(:app) do
+      execute "mkdir -p #{current_path}/tmp/pids"
+    end
+  end
+end
+
 after "deploy:check:directories", "figaro:setup"
+after "resque:stop", "resque:create_pid_dir"
 after "deploy:restart", "resque:restart"
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

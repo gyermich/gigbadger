@@ -5,10 +5,6 @@
   <%= render 'side_navbar' %>
   <div class="col-sm-9">
 
-  <div>
-    <p class="tiny_font float-left"><%= image_tag avatar(User.find(params[:format])), class: "tiny img-circle img-responsive" %></p>
-    <p><%= User.find(params[:format]).email %></p>
-  </div>
 
   <div class="container">
     <%= form_tag({controller: "messages", action: "reply"}, method: :post) do %>
@@ -27,7 +23,7 @@
       <% else %>
         <div class="message_box mar-top25">
       <% end %>
-          <p class="tiny_font float-left">From: <%= receipt.notification.sender.email %></p>
+          <p class="tiny_font float-left"><%= image_tag avatar(receipt.notification.sender), class: "very_tiny img-circle img-responsive pull-left" %> <%= receipt.notification.sender.email %></p>
           <p class="tiny_font float-right">Received: <%= display_date(receipt.message.created_at)%></p>
           <div class="clear"></div>
           <p><%= receipt.message.body %></p>
