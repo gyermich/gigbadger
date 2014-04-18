@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
   has_many    :categories, through: :task_categories
   has_many    :task_categories
   belongs_to  :owner, class_name: "User"
+  validates_presence_of :name, :summary, :category, :date
 
 
   def self.not_posted(user)
