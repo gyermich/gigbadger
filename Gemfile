@@ -23,6 +23,7 @@ gem 'will_paginate'
 gem "resque"
 
 
+
 group :doc do
   gem 'sdoc', require: false
 end
@@ -36,6 +37,7 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
+  gem "capistrano-resque", github: "sshingler/capistrano-resque", require: false
 end
 
 group :test do

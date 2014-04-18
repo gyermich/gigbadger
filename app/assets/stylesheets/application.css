@@ -266,6 +266,10 @@
   height: 50px;
  }
 
+ img.very_tiny {
+  height: 35px;
+ }
+
  /* --- float --- */
  .float-left {
   float: left;
