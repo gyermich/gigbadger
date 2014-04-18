@@ -266,6 +266,10 @@
   height: 50px;
  }
 
+ .centered_box {
+  margin: 0 auto;
+}
+
  img.very_tiny {
   height: 35px;
  }
