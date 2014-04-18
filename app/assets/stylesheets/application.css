@@ -266,6 +266,10 @@
   height: 50px;
  }
 
+ .centered_box {
+  margin: 0 auto;
+ }
+
  /* --- float --- */
  .float-left {
   float: left;
