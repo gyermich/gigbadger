@@ -45,6 +45,6 @@
         <%= f.hidden_field :owner_id, value: current_user.id %>
       </div>
     <div class="button">
-      <%= f.submit "Preview", class: "btn btn-theme pull-left" %>
+      <%= f.submit @task.new_record? ? "Preview Gig" : "Update Gig", class: "btn btn-theme" %>
     </div>
   <% end %>

@@ -74,7 +74,7 @@ class TasksController < ApplicationController
   end
 
   def offers
-    @offers = UserTask.pending_offers_for_task(@task)
+    @offers = @task.pending_users
   end
 
   def destroy

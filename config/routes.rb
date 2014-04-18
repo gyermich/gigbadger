@@ -10,7 +10,7 @@ Badger::Application.routes.draw do
 
 
   post '/rate',                   to: 'rater#create',                as: :rate
-  patch "/tasks/:id/",            to: "tasks#post",                  as: :post
+  patch "/tasks/:id/post",        to: "tasks#post",                  as: :post
   post "/tasks/:id/complete",     to: "tasks#complete",              as: :complete
   get "/tasks/:id/offers",        to: "tasks#offers",                as: :offers
   get "/users/:id/profile",       to: "users#profile",               as: :user_profile
