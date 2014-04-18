@@ -3,28 +3,26 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
         <%= image_tag avatar(@user), class: "img-circle img-responsive profile-img" %>
-          <div class="rating">
-          <%= rating_for @user,  dimension = nil, options = {readonly: true} %>
-        </div>
+        <table class="centered">
+          <tr>
+            <td><%= rating_for @user,  dimension = nil, options = {readonly: true} %></td>
+            <td><span class="small muted">(<%= @user.rates.count %>)</span></td>
+          </tr>
+      </table>
         <h1>Hi, I am <%= @user.name %>!</h1>
         <p><%= @user.bio %></p>
+        <div class="row">
+          <% if current_user != @user %>
+            <%= hidden_field_tag :user_id, @user.id %>
+            <%= button_to "Message", new_message_path(@user), method: :get, class: "btn btn-theme "%> <br>
+          <% end %>
+        </div>
 
       </div><!-- /col-lg-8 -->
     </div><!-- /row -->
     </div> <!-- /container -->
 </div><!-- /ww -->
 <hr>
-
-<div class="container align-center">
-  <div class="row">
-      <div class="col-lg-8 col-lg-offset-2">
-        <% if current_user != @user %>
-          <%= hidden_field_tag :user_id, @user.id %>
-          <%= button_to "Message", new_message_path(@user), method: :get, class: "btn btn-theme pull-left"%> <br>
-        <% end %>
-      </div>
-  </div>
-</div>
 
 <div class="tab-pane" id="settings">
     <ul>
