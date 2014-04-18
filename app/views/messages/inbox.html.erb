@@ -17,12 +17,12 @@
         </tr>
           <% @conversations.each do |m| %>
             <% if m.receipts_for(current_user).last.is_unread? %>
-              <!-- find_by(receiver_id: current_user.id) -->
             <tr class="bold">
             <% else %>
             <tr>
             <% end %>
-              <td><%= m.originator.name %></td>
+              <td><%= m.messages.last.recipients.map { |user| user.name}.join(", ") %>
+              (<%= m.messages.count %>)</td>
               <td><%= m.subject %></td>
               <td><%= display_date(m.created_at) %></td>
               <td><%= button_to "Open", message_path(current_user, m), method: :get, class: "btn btn-theme pull-left"%></td>
