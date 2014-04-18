@@ -24,6 +24,17 @@ server 'ec2-54-187-15-251.us-west-2.compute.amazonaws.com',
     forward_agent: false,
     auth_methods: %w(publickey)
   }
+
+namespace :figaro do
+  desc "SCP transfer figaro configuration to the shared folder"
+  task :setup do
+    on roles(:app) do
+      upload! "config/application.yml", "#{shared_path}/config/application.yml", via: :scp
+    end
+  end
+end
+
+after "deploy:check:directories", "figaro:setup"
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
 # you can see them in [net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start)
