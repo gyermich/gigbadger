@@ -1,21 +1,18 @@
-
-
-
-<br>
-<br>
-<br>
-
-<!--todo: move this to the controller(model?) -->
-<h1>Top Reviewed Users</h1>
-<ul>
-<% @top_badgers.each do |user| %>
-  <li><%= link_to user.name, user_path(user) %> <%= rating_for user,  dimension = nil, options = {readonly: true} %></li>
-<% end %>
-</ul>
-
-<h1>All Users</h1>
-<ul>
-  <% @users.each do |user| %>
-    <li><%= user.name %></li>
-  <% end %>
-</ul>
+<div class="container" id="padded_container">
+  <h1 class="align-center pad-bot20">Top Reviewed Users</h1>
+  <div class="row align-center mar-bot40">
+  <% @top_badgers.each do |user| %>
+    <div class="col-md-3">
+      <div class="team-member">
+        <figure class="member-photo"><%= image_tag avatar(user) %></figure>
+        <div class="team-detail">
+          <h4><%= link_to user.name, user_path(user) %> </h4>
+          <div class="centered">
+            <%= rating_for user,  dimension = nil, options = {readonly: true} %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
