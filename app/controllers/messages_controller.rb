@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
     create = current_user.send_message(recipient, params[:body], params[:subject])
 
     if create.save
-      redirect_to root_path, notice: "Message sent"
+      redirect_to messages_sent_path, notice: "Message sent"
     else
       render :new
     end
@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
     @conversation = current_user.mailbox.conversations.find(params[:format])
     @receipts = @conversation.receipts_for(current_user).order("created_at desc")
     @receipts = @receipts.paginate(:page => params[:page], :per_page => 10)
- 
+
     @receipts.mark_as_read
   end
 

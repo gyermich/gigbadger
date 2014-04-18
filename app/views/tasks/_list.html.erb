@@ -12,8 +12,8 @@
                 <p class="tiny_font muted"><em> by <%= task.owner.name %></em></p>
                 <div id="size90"><p ><%= task.name %></p>
                   <p>
-                  <% if task.paid == true %>
-                    <%= task.pay %>
+                  <% if task.paid? %>
+                    $<%= task.pay %>
                   <% else %>
                     Unpaid
                   <% end %>

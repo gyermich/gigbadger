@@ -295,6 +295,15 @@
  }
 
  /* ---- padding ---- */
+
+ .pad-left5 {
+  padding-left: 5px;
+ }
+
+ .pad-right5 {
+  padding-right: 5px;
+ }
+
  /* top */
  .pad-top0 {
   padding-top: 0;
