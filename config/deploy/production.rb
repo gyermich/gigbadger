@@ -8,6 +8,16 @@ role :app, %w{ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com}
 role :web, %w{ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com}
 role :db,  %w{ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com}
 
+role :resque_worker, "ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com"
+role :resque_scheduler, "ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com"
+
+set :workers, { "*" => 1 }
+set :resque_environment_task, true
+
+
+# Uncomment this line if your workers need access to the Rails environment:
+# set :resque_environment_task, true
+
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server
@@ -24,6 +34,28 @@ server 'ec2-54-187-15-251.us-west-2.compute.amazonaws.com',
     forward_agent: false,
     auth_methods: %w(publickey)
   }
+
+namespace :figaro do
+  desc "SCP transfer figaro configuration to the shared folder"
+  task :setup do
+    on roles(:app) do
+      upload! "config/application.yml", "#{shared_path}/config/application.yml", via: :scp
+    end
+  end
+end
+
+namespace :resque do
+  desc "create temp pid directory"
+  task :create_pid_dir do
+    on roles(:app) do
+      execute "mkdir -p #{current_path}/tmp/pids"
+    end
+  end
+end
+
+after "deploy:check:directories", "figaro:setup"
+after "resque:stop", "resque:create_pid_dir"
+after "deploy:restart", "resque:restart"
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
 # you can see them in [net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start)
