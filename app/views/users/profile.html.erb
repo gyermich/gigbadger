@@ -1,5 +1,5 @@
 <div id="ww">
-    <div class="container align-center">
+  <div class="container align-center">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
         <%= image_tag avatar(@user), class: "img-circle img-responsive profile-img" %>
@@ -8,7 +8,7 @@
             <td><%= rating_for @user,  dimension = nil, options = {readonly: true} %></td>
             <td><span class="small muted">(<%= @user.rates.count %>)</span></td>
           </tr>
-      </table>
+        </table>
         <h1>Hi, I am <%= @user.name %>!</h1>
         <p><%= @user.bio %></p>
         <div class="row">
@@ -20,15 +20,17 @@
 
       </div><!-- /col-lg-8 -->
     </div><!-- /row -->
-    </div> <!-- /container -->
+    <hr>
+     <h1 class="align-center pad-bot20">Badges</h1>
+     <div class="row">
+       <% @user.badges.each do |badge| %>
+         <div class="col-lg-2 col-sm-3 col-xs-4">
+          <%= image_tag badge.custom_fields[:image], class: "thumbnail img-responsive" %>
+        </div>
+      <% end %>
+    </div>
+  </div> <!-- /container -->
 </div><!-- /ww -->
 <hr>
 
-<div class="tab-pane" id="settings">
-    <ul>
-    <% @user.badges.each do |badge| %>
-      <li><%= badge.name %></li>
-    <% end %>
-    </ul>
- </div>
 
