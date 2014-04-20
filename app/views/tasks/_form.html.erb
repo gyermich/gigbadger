@@ -1,50 +1,89 @@
-  <%= form_for(@task) do |f| %>
-    <% if @task.errors.any? %>
-      <% @task.errors.full_messages.each do |msg| %>
-        <%= msg %>
-      <% end %>
-    <% end %>
-    <p>
-      <div class="field">
-        <%= f.label :name %> <br>
-        <%= f.text_field :name %>
+  <div class="row centered-form">
+  <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="align-center">
+          <h1 class="panel-title">Gig Details</h1>
+        </div>
       </div>
-    </p>
-    <p>
-      <div class="field">
-      <%= f.label :category %><br>
-      <%= collection_check_boxes(:task, :categories, Category.all, :id, :name)%>
-      </div>
-    </p>
-    <p>
-      <div class="field">
-       <%= f.label :summary %> <br>
-       <%= f.text_area :summary, rows:"10", cols:"30" %>
-      </div>
-    </p>
-    <p>
-      <div class="field">
-        <%= f.label :due_date, "Date:" %> <br>
-        <%= f.date_field :due_date %>
-      </div>
-    </p>
-    <p>
-      <div class="field">
-        <%= f.label :paid, "Paid?" %> <br>
-        <%= f.check_box :paid, {}, "true", "false" %>
-      </div>
-    </p>
-    <p>
-      <div class="field">
-        <%= f.label :pay, "Price per gig(in $):" %> <br>
-        <!-- Todo: change column type to float -->
-        <%= f.number_field :pay %>
-      </div>
-    </p>
-      <div class="field">
-        <%= f.hidden_field :owner_id, value: current_user.id %>
-      </div>
-    <div class="button">
-      <%= f.submit @task.new_record? ? "Preview Gig" : "Update Gig", class: "btn btn-theme" %>
+      <div class="panel-body">
+     <%= form_for @task, html: { multipart: true } do |f| %>
+       <% if @task.errors.any? %>
+         <div id="error_explanation">
+           <h2><%= pluralize(@task.errors.count, "error") %> prohibited this band from being saved:</h2>
+
+           <ul>
+           <% @task.errors.full_messages.each do |msg| %>
+             <li><%= msg %></li>
+           <% end %>
+           </ul>
+         </div>
+       <% end %>
+       <div class="row">
+         <div class="text_container">
+           <div class="form-group">
+            <%= f.label :name, "Title", class: "small" %>
+            <%= f.text_field :name, autofocus: true, class: "form-control input"  %>
+           </div>
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="text_container">
+           <div class="form-group">
+            <%= f.label :category, class: "small" %>
+              <div class="checkbox">
+            <%= collection_check_boxes :task, :categories, Category.all, :id, :name, as: :check_boxes %>
+            </div>
+           </div>
+         </div>
+       </div>
+
+        <div class="row">
+          <div class="text_container">
+            <div class="form-group">
+             <%= f.label :summary, "Details", class: "small" %>
+             <%= f.text_area :summary, autofocus: true, class: "form-control input"  %>
+            </div>
+          </div>
+        </div>
+
+     <div class="row">
+       <div class="text_container">
+         <div class="form-group">
+         <%= f.label :due_date, "Due Date", class: "small" %>
+         <%= f.date_field :due_date, autofocus: true, class: "form-control input"  %>
+         </div>
+       </div>
+     </div>
+
+     <div class="row">
+       <div class="text_container">
+         <div class="form-group">
+         <%= f.label :paid, "Paid?", class: "small" %>
+         <%= f.check_box :paid, autofocus: true, class: "inline_label"  %>
+         </div>
+       </div>
+     </div>
+
+     <div class="row">
+       <div class="text_container">
+         <div class="form-group">
+         <%= f.label :pay, "Price per gig(in $):" , class: "small" %>
+         <%= f.number_field :pay, autofocus: true, class: "form-control input"  %>
+         </div>
+       </div>
+     </div>
+
     </div>
-  <% end %>
+    <div class="field">
+      <%= f.hidden_field :owner_id, value: current_user.id %>
+    </div>
+      <div class="text_container">
+          <%= f.submit @task.new_record? ? "Preview Gig" : "Update Gig", class: "btn btn-info btn-theme btn-block"%>
+      </div>
+       <% end %>
+      </div>
+    </div>
+  </div>
+
