@@ -20,16 +20,16 @@
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <tbody id="items">
-                      <tr>
                         <% @created_tasks.each do |t| %>
+                        <tr>
                           <td><%= link_to t.name, task_path(t) %></td>
                           <td><%= display_date_only(t.due_date) %></td>
                           <td><%= t.status %></td>
                           <td><%= button_to "Post", post_path(t), method: :patch, class: "btn btn-theme pull-left"%> <br></td>
                           <td></td>
                           <td></td>
+                        </tr>
                         <% end %>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -42,8 +42,8 @@
               <div class="table-responsive">
                 <table class="table table-hover">
                   <tbody id="items">
-                    <tr>
                       <% @posted_tasks.each do |t| %>
+                      <tr>
                         <td><%= link_to t.name, task_path(t) %></td>
                         <td><%=  display_date_only(t.due_date )%></td>
                         <td><%=  t.status %></td>
@@ -80,8 +80,8 @@
                 <div class="table-responsive">
                  <table class="table table-hover">
                    <tbody>
-                     <tr>
                        <% @badger_accepted_tasks.each do |t| %>
+                       <tr>
                          <td><%= link_to t.name, task_path(t) %></td>
                          <td><%=  display_date_only(t.due_date) %></td>
                          <td><%=  t.status %></td>
@@ -101,8 +101,8 @@
                   <div class="table-responsive">
                    <table class="table table-hover">
                      <tbody>
-                       <tr>
                          <% @badger_pending_tasks.each do |t| %>
+                         <tr>
                            <td><%= link_to t.name, task_path(t) %></td>
                            <td><%=  display_date_only(t.due_date) %></td>
                            <td><%=  t.status %></td>
@@ -121,9 +121,9 @@
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <tbody id="items">
-                      <h4>Posted Tasks</h>
-                        <tr>
+                      <h4>Posted Tasks</h4>
                           <% @archived_tasks.each do |t| %>
+                          <tr>
                             <td><%= link_to t.name, task_path(t) %></td>
                             <td><%=  display_date_only(t.due_date) %></td>
                             <td><%=  t.status %></td>

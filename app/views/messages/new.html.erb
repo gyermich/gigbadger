@@ -5,8 +5,12 @@
   <%= render 'side_navbar' %>
   <div class="col-sm-9">
 
-<table>
-<tr><td><%= image_tag avatar(@user), class: "img-circle img-responsive tiny" %></td>
-  <strong><td><%= @user.name %></strong></td></tr>
-</table>
-<%= render 'form' %>
+  <table>
+    <tr>
+      <td><%= image_tag avatar(@user), class: "img-circle img-responsive tiny" %></td>
+      <strong><td><%= @user.name %></strong></td>
+    </tr>
+  </table>
+  </div>
+  <%= render 'form' %>
+</div>
