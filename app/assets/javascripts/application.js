@@ -17,6 +17,10 @@
 //= require_tree .
 $(document).ready(function() {
 
+  $("input[type='checkbox']#paid").on('change', function(){
+    $('#pay').toggle();
+  });
+
   $('.js-datepicker').datepicker();
    $('#overlayTrigger').click(function(event) {
      event.preventDefault();

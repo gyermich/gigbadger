@@ -298,6 +298,10 @@
   display: inline !important;
  }
 
+ .pay {
+  display: none;
+ }
+
  /* ---- padding ---- */
 
  .pad-left5 {

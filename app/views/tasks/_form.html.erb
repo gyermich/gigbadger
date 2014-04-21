@@ -61,16 +61,16 @@
        <div class="text_container">
          <div class="form-group">
          <%= f.label :paid, "Paid?", class: "small" %>
-         <%= f.check_box :paid, autofocus: true, class: "inline_label"  %>
+         <%= f.check_box :paid, autofocus: true, class: "inline_label", id: "paid" %>
          </div>
        </div>
      </div>
 
-     <div class="row">
+     <div class="row" id="pay" style="display:none;">
        <div class="text_container">
          <div class="form-group">
          <%= f.label :pay, "Price per gig(in $):" , class: "small" %>
-         <%= f.number_field :pay, autofocus: true, class: "form-control input"  %>
+         <%= f.number_field :pay, autofocus: true, class: "form-control input" %>
          </div>
        </div>
      </div>
