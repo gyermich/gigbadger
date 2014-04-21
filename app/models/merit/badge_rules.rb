@@ -22,7 +22,7 @@ module Merit
 
     def initialize
       grant_on 'users/registrations#create', badge: 'just-registered', model_name: 'User'
-      grant_on 'tasks#complete',             badge: 'task-completed', to: :workers
+      grant_on 'tasks#complete',             badge: 'task-completed', multiple: true, to: :workers
       grant_on 'tasks#post',                 badge: 'first-task-posted' do |task|
             Task.where(owner_id: task.owner.id).count == 1
       end
