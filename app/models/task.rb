@@ -5,6 +5,11 @@ class Task < ActiveRecord::Base
   has_many    :task_categories
   belongs_to  :owner, class_name: "User"
   validates_presence_of :name, :summary, :due_date
+  # validates :pay, allow_blank: true, numericality: {greater_than: 0}
+  validates :pay,
+            numericality: { greater_than: 0 },
+            allow_nil: true,
+            allow_blank: true
 
 
   def self.not_posted(user)

@@ -17,9 +17,18 @@
 //= require_tree .
 $(document).ready(function() {
 
-  $("input[type='checkbox']#paid").on('change', function(){
-    $('#pay').toggle();
-  });
+  var checkbox = document.getElementById('paid');
+  var delivery_div = document.getElementById('pay');
+  var showHiddenDiv = function(){
+     if(checkbox.checked) {
+       delivery_div.style['display'] = 'block';
+     } else {
+       delivery_div.style['display'] = 'none';
+     }
+  }
+  checkbox.onclick = showHiddenDiv;
+  showHiddenDiv();
+
 
   $('.js-datepicker').datepicker();
    $('#overlayTrigger').click(function(event) {
@@ -32,4 +41,5 @@ $(document).ready(function() {
      note = document.getElementById("note");
      note.style.display = 'none';
    }, false);
+
 });
