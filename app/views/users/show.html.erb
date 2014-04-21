@@ -47,8 +47,15 @@
                         <td><%= link_to t.name, task_path(t) %></td>
                         <td><%=  display_date_only(t.due_date )%></td>
                         <td><%=  t.status %></td>
-                        <td><%=  button_to "Offers", offers_path(t), method: :get, class: "btn btn-theme" %></td>
+                        <% if t.status == "available" %>
+                          <td><%=  button_to "Offers", offers_path(t), method: :get, class: "btn btn-theme" %></td>
+                        <% elsif t.status == "in progress" %>
                         <td><%=  button_to "Complete", complete_path(t), class: "btn btn-theme" %></td>
+                        <% elsif t.status == "completed" && t.paid %>
+                          <% t.accepted_users.each do |u| %>
+                          <td><a href="mailto:<%= u.email%>?cc=cash@square.com&subject=<%=number_to_currency(t.pay) %>&body=Payment %20for%20<%=t.name%>%20%20on%20GigBadger">Pay for gig</a></td>
+                          <% end %>
+                        <% end %>
                         <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
                     </tr>
                     <% end %>
@@ -78,6 +85,10 @@
                          <td><%= link_to t.name, task_path(t) %></td>
                          <td><%=  display_date_only(t.due_date) %></td>
                          <td><%=  t.status %></td>
+                         <% if t.is_paid == false %>
+                          <td>Have you been paid?</td>
+                          <td><%= button_to "Yes", paid_worker_path(t), class: "btn btn-theme pull-left" %></td>  
+                         <% end %>
                      </tr>
                      <% end %>
                    </tbody>
@@ -104,13 +115,13 @@
              </div><!--/tab-pane-->
 
              <div class="tab-pane" id="archive">
-                <h4>Archived Gigs</h4>
                 <% if @archived_tasks.empty? %>
                   <em class="muted align-center">Nothing here yet</em>
                 <% else %>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <tbody id="items">
+                      <h4>Posted Tasks</h>
                         <tr>
                           <% @archived_tasks.each do |t| %>
                             <td><%= link_to t.name, task_path(t) %></td>

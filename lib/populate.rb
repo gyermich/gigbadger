@@ -34,14 +34,13 @@ class Populate
     task = Task.create(
       # add name
       # status "available"
-              owner_id: user.id,  
+              owner_id: user.id,
+              name: seed_array[6],  
               paid: seed_array[7],
               pay:  seed_array[8],
               status: seed_array[9],
               summary: seed_array[10],
-              due_date: seed_array[11],
-              due_time: seed_array[12],
-              num_workers: seed_array[13]
+              due_date: seed_array[11]
             )
     create_user_task(user, task)
     create_task_category(task, seed_array)
@@ -57,7 +56,7 @@ class Populate
   def self.create_task_category(task, seed_array)
     TaskCategory.create(
       task_id: task.id,
-      category_id: seed_array[14].to_i
+      category_id: seed_array[12].to_i
       )
   end
 end

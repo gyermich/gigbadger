@@ -7,12 +7,14 @@ Badger::Application.routes.draw do
 
   root "welcome#index"
   get "welcome/index"
+  get "/auth/paypal/callback",    to: "sessions#create"
 
 
   post '/rate',                   to: 'rater#create',                as: :rate
   patch "/tasks/:id/post",        to: "tasks#post",                  as: :post
   post "/tasks/:id/complete",     to: "tasks#complete",              as: :complete
   get "/tasks/:id/offers",        to: "tasks#offers",                as: :offers
+  post "/tasks/:id/is_paid",      to: "tasks#worker_is_paid",        as: :paid_worker
   get "/users/:id/profile",       to: "users#profile",               as: :user_profile
   get "/tasks/:id/rate",          to: "tasks#rate_workers",          as: :rate_workers
   get "messages/inbox",           to: "messages#inbox"

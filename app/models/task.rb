@@ -12,7 +12,7 @@ class Task < ActiveRecord::Base
   end
 
   def self.posted_tasks(user)
-    Task.where("owner_id = ? AND status = ? OR owner_id = ? AND status = ?", user.id, "available", user.id, "in progress")
+    Task.where("owner_id = ? AND status = ? OR owner_id = ? AND status = ? OR owner_id = ? AND status = ? and is_paid = ?", user.id, "available", user.id, "in progress", user.id, "completed", false)
   end
 
   def self.past_posted_tasks(user)
