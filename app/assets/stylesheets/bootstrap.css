@@ -1988,10 +1988,11 @@ textarea.form-control {
 
 .radio label,
 .checkbox label {
-  display: inline;
+  display: block;
   margin-bottom: 0;
   font-weight: normal;
   cursor: pointer;
+  font-size: 17px;
 }
 
 .radio input[type="radio"],

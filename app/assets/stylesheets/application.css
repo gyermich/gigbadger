@@ -294,6 +294,10 @@
   text-align: center;
  }
 
+ .inline_label label{
+  display: inline !important;
+ }
+
  /* ---- padding ---- */
 
  .pad-left5 {

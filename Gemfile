@@ -21,7 +21,7 @@ gem 'mini_magick'
 gem 'merit'
 gem 'will_paginate'
 gem "resque"
-
+gem 'therubyracer', platforms: :ruby
 
 
 group :doc do
@@ -46,4 +46,4 @@ group :test do
   gem 'resque_spec'
 end
 
-gem 'therubyracer', platforms: :ruby
+

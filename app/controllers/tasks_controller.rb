@@ -28,7 +28,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
+    @task = Task.new(task_params)
     if @task.save
       @task.categories = params[:task][:categories].present? ? Category.find_all_by_id(params[:task][:categories]) : [ ]
       redirect_to task_path(@task)
@@ -88,6 +88,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :owner_id, :paid, :pay, :status, :summary, :due_date, :due_time, :num_workers)
+    params.require(:task).permit(:name, :owner_id, :paid, :pay, :status, :summary, :due_date)
   end
 end
