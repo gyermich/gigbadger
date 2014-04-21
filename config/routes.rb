@@ -7,7 +7,6 @@ Badger::Application.routes.draw do
 
   root "welcome#index"
   get "welcome/index"
-  get "/auth/paypal/callback",    to: "sessions#create"
 
 
   post '/rate',                   to: 'rater#create',                as: :rate
