@@ -1,4 +1,4 @@
-<div class="container">
+<div class="col-sm-9">
   <%= form_tag controller: "messages", action: "create", method: :post do %>
     <%= text_field_tag :subject, nil, placeholder: "Subject", class: "form-control input-lg" %>
 
@@ -9,5 +9,4 @@
     <br>
     <%= submit_tag 'Send message', class: "btn btn-theme pull-left" %>
   <% end %>
-
 </div>

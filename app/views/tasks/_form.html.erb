@@ -52,7 +52,7 @@
        <div class="text_container">
          <div class="form-group">
          <%= f.label :due_date, "Due Date", class: "small" %>
-         <%= f.date_field :due_date, autofocus: true, class: "form-control input"  %>
+         <%= f.text_field(:due_date, class: "form-control input js-datepicker span2") %>
          </div>
        </div>
      </div>
@@ -61,7 +61,7 @@
        <div class="text_container">
          <div class="form-group">
          <%= f.label :paid, "Paid?", class: "small" %>
-         <%= f.check_box :paid, autofocus: true, class: "inline_label", id: "paid" %>
+         <%= f.check_box :paid, autofocus: true, class: "inline_label", id: "paid", onclick: "showHiddenDiv();"  %>
          </div>
        </div>
      </div>
@@ -86,4 +86,6 @@
       </div>
     </div>
   </div>
+
+  <%= javascript_include_tag "datepicker" %>
 

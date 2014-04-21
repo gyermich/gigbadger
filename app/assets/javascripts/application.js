@@ -15,21 +15,4 @@
 //= require bootstrap-datepicker
 //= require filterrific-jquery
 //= require_tree .
-$(document).ready(function() {
 
-  $("input[type='checkbox']#paid").on('change', function(){
-    $('#pay').toggle();
-  });
-
-  $('.js-datepicker').datepicker();
-   $('#overlayTrigger').click(function(event) {
-     event.preventDefault();
-     $('body').chardinJs('start');
-   });
-
-   close = document.getElementById("close");
-   close.addEventListener('click', function() {
-     note = document.getElementById("note");
-     note.style.display = 'none';
-   }, false);
-});
