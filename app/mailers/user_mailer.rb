@@ -24,8 +24,8 @@ class UserMailer < ActionMailer::Base
   end
 
   def offer_accepted(user, task)
-     @user = user
-     @task = task
-     mail to: user.email, subject: "Your offer has been accepted!"
+     @user = User.find(user.id)
+     @task = Task.find(task.id)
+     mail to: @user.email, subject: "Your offer has been accepted!"
   end
 end
