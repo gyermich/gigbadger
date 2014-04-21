@@ -15,7 +15,8 @@
     <div class="col-sm-9"><!--left col-->
       <div class="message_box align-center">
         <div class="account_heading align-center"><h1><%= @task.name %></h1></div>
-        <p class="tiny_font"><em>Due Date:</em> <strong> <%= display_date_only(@task.due_date) %></strong></p>
+        <p class="tiny_font"><em>Due Date:</em> <strong> <%= display_date_only(@task.due_date) %></strong></p>  
+        <p class="tiny_font"><em>Pay per gig:</em> <strong> <%= number_to_currency(@task.pay)%></strong> </p>
         <p class="align-center"><%= @task.summary %></p>
         <% if current_user && current_user.id == @task.owner_id %>
           <table class="centered_box">
@@ -32,7 +33,6 @@
         <% end %>
       </div>
     </div>
-
 
     <div class="col-sm-3">
       <div class="message_box">

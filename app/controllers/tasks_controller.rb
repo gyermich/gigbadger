@@ -66,6 +66,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def worker_is_paid
+    if @task.update(is_paid: true)
+      redirect_to user_path(current_user)
+    else
+      redirect_to :back, notice: "Something went wrong."
+    end
+  end
+
   def rate_workers
     @workers = @task.workers
   end

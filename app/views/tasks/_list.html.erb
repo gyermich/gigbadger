@@ -13,7 +13,7 @@
                 <div id="size90"><p ><%= task.name %></p>
                   <p>
                   <% if task.paid? %>
-                    $<%= task.pay %>
+                    <%= number_to_currency(task.pay) %>
                   <% else %>
                     Unpaid
                   <% end %>
