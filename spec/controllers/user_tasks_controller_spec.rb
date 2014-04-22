@@ -24,5 +24,19 @@ describe UserTasksController do
         expect(flash[:notice]).to include "Your offer was sent"
       end
     end
+
+    context "when badger does exist" do  
+      let(:user) { create(:user)}
+      it "redirects to task path" do 
+        task = create(:task)
+        UserTask.create(user: @user, task: task)
+
+        post :create, task_id: task.id
+
+        expect(response).to redirect_to(task_path(task))
+
+        expect(flash[:notice]).to include "You already placed an offer"
+      end
+    end
   end
 end
