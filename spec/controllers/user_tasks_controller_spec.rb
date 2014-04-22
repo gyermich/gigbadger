@@ -20,6 +20,8 @@ describe UserTasksController do
         expect(response).to redirect_to(task_path(task))
 
         expect(UserTask.find_by(user_id: @user.id, task_id: task.id)).to_not be nil
+
+        expect(flash[:notice]).to include "Your offer was sent"
       end
     end
   end
