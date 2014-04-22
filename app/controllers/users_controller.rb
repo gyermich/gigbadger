@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   def show
     @created_tasks = Task.not_posted(@user)
     @posted_tasks = Task.posted_tasks(@user)
+    @check_paid_tasks = @posted_tasks.select { |b| b[:paid] == true}
     @archived_tasks = Task.past_posted_tasks(@user)
     @badger_archived_tasks = @user.paid_tasks
     @badger_pending_tasks = @user.pending_tasks

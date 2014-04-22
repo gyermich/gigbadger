@@ -28,6 +28,7 @@
                           <td><%= display_date_only(t.due_date) %></td>
                           <td><%= t.status %></td>
                           <td><%= button_to "Post", post_path(t), method: :patch, class: "btn btn-theme pull-left"%> <br></td>
+                          <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
                           <td></td>
                           <td></td>
                         </tr>
@@ -38,6 +39,12 @@
             <% end %>
 
             <h4>My Posted Gigs</h4>
+            <div>
+              <% if !@check_paid_tasks.empty? %>
+              <p class="tiny_font well disclaimer">
+                At this time, GigBadger does not support functional payment processing within this site. We can only recommend using Square Cash as an option to send or receive payments. Square Cash is a free service and allows you to send or request cash using email and a debit card. If you have any questions or concerns, please read more about <a href="https://squareup.com/help/en-us/topic/139-square-cash">Square Cash</a>.  It is between the gig owner and worker to arrange payment terms with each other.</p>
+              <% end %>
+            </div>
             <% if @posted_tasks.empty? %>
               <em class="muted align-center">Nothing here yet</em>
             <% else %>
@@ -51,25 +58,16 @@
                         <td><%=  t.status %></td>
                         <% if t.status == "available" %>
                           <td><%=  button_to "Offers", offers_path(t), method: :get, class: "btn btn-theme" %></td>
+                          <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
                         <% elsif t.status == "in progress" %>
                         <td><%=  button_to "Complete", complete_path(t), class: "btn btn-theme" %></td>
-                        <% elsif t.status == "completed" && t.paid %>
+                        <% elsif t.status == "completed" && t.is_paid == false %>
                           <% t.accepted_users.each do |u| %>
-                          <td><a class="popper" href=""><a href="mailto:<%= u.email%>?cc=cash@square.com&subject=<%=number_to_currency(t.pay) %>&body=Payment %20for%20<%=t.name%>%20%20on%20GigBadger">Pay for gig</a></a></td></br>
-                          <div id="pop">
-                            <p>I am a popup!</p>
-                          </div>
-
-                          <a class="popper" href="">Hover Over!!!</a></br>
-                           <div id="pop">
-                             <p>I am a popup!</p>
-                           </div>
-
-                          
+                            <td><a href="mailto:<%= u.email%>?cc=cash@square.com&subject=<%=number_to_currency(t.pay) %>&body=Payment %20for%20<%=t.name%>%20%20on%20GigBadger">Pay for gig</a>
+                            </td>
                           <% end %>
                         <% end %>
-                        <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
-                    </tr>
+                      </tr>
                     <% end %>
                   </tbody>
                 </table>
