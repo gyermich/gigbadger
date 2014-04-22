@@ -42,7 +42,7 @@
           <%= image_tag avatar(@task.owner), class: "img-circle img-responsive account_img" %>
           <p class="tiny_font"><em>Added by: </em><br> <strong> <%= @task.owner.name %></strong></p>
           <% if current_user && current_user.id != @task.owner_id %>
-            <%= link_to "Message", new_message_path(id: @task.owner, subject: @task.name), class: "btn btn-theme" %>
+            <%= link_to "Message", new_message_path(@task.owner, subject: @task.name), class: "btn btn-theme" %>
           <% end %>
         </div>
       </div>
