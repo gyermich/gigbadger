@@ -6,15 +6,15 @@
   <div class="col-sm-9">
 
 
-  <div class="container">
+
     <%= form_tag({controller: "messages", action: "reply"}, method: :post) do %>
       <%= hidden_field_tag :subject, @conversation.subject %>
       <%= text_area_tag :body, nil, class: "message_form form-control", rows: "5" %>
       <%= hidden_field_tag :conversation, @conversation.id %>
       <%= submit_tag 'Reply', class: "btn btn-theme pull-left mar-top5" %>
     <% end %>
-  </div>
- 
+
+
   <div class="clear"></div>
     <h3>Subject: <%= @conversation.subject %></h3>
     <% @receipts.each do |receipt| %>
