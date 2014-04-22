@@ -1,6 +1,6 @@
 <div class="col-sm-9">
   <%= form_tag controller: "messages", action: "create", method: :post do %>
-    <%= text_field_tag :subject, nil, placeholder: "Subject", class: "form-control input-lg" %>
+    <%= text_field_tag :subject, title, placeholder: "Subject", class: "form-control input-lg" %>
 
     <%= text_area_tag :body, nil, placeholder: "Message", class: "form-control input-lg", rows: "5" %>
     <% if  @user %>
