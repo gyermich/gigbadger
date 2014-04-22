@@ -5,6 +5,7 @@
           <div class="portfolio-items isotopeWrapper clearfix" id="3">
 
           <% @tasks.each do |task| %>
+          <% unless task.owner.nil? %>
             <article class="col-md-4 isotopeItem webdesign">
               <div class="portfolio-item pad-top30">
               <div class="align-center">
@@ -27,6 +28,7 @@
                 </div>
             </article>
             <% end %>
+          <% end %>
           </div>
         </div>
       </div>
