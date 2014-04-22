@@ -34,11 +34,11 @@ end
 
 badges = [
 {id: 1,name: 'just-registered',description: "Just Registered", custom_fields: { image: '/badges/just_registered.png' }},
-{id: 2,name: 'task-completed',description: "Task Completed", custom_fields: { image: '/badges/task_completed.png' }},
-{id: 3,name: 'first-task-posted',description: "First Task Posted", custom_fields: { image: '/badges/first_task_posted.png' }},
-{id: 4,name: 'first_task-completed',description: "First Task Completed", custom_fields: { image: '/badges/first_task_completed.png' }},
-{id: 5,name: '5th-task-completed',description: "5th Task Completed", custom_fields: { image: '/badges/5th_task_completed.png' }},
-{id: 6,name: '10th-task-completed',description: "10th Task Completed", custom_fields: { image: '/badges/10th_task_completed.png' }}
+{id: 2,name: 'task-completed',description: "Gig Completed", custom_fields: { image: '/badges/task_completed.png' }},
+{id: 3,name: 'first-task-posted',description: "First Gig Posted", custom_fields: { image: '/badges/first_task_posted.png' }},
+{id: 4,name: 'first_task-completed',description: "First Gig Completed", custom_fields: { image: '/badges/first_task_completed.png' }},
+{id: 5,name: '5th-task-completed',description: "5th Gig Completed", custom_fields: { image: '/badges/5th_task_completed.png' }},
+{id: 6,name: '10th-task-completed',description: "10th Gig Completed", custom_fields: { image: '/badges/10th_task_completed.png' }}
 ]
 badges.each do |badge|
   Merit::Badge.create!(badge)
