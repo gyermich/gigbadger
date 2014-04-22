@@ -7,6 +7,7 @@ Badger::Application.routes.draw do
 
   root "welcome#index"
   get "welcome/index"
+  get "/about",                   to: "welcome#about"
 
 
   post '/rate',                   to: 'rater#create',                as: :rate

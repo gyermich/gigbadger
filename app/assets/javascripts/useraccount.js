@@ -111,5 +111,11 @@ $.fn.pageMe = function(opts){
     }
 };
 
+$(function() {
+    $('a.popper').hover(function() {
+        $('#pop').toggle();
+    });
+});
+
 $('#items').pageMe({pagerSelector:'#myPager',childSelector:'tr',showPrevNext:true,hidePageNumbers:false,perPage:5});
 /****/

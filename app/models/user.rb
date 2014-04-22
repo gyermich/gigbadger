@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
            through: :user_tasks,
            source: :task
 
+  # has_many :paid_tasks, -> { where "user_tasks.task.paid"},
+  #           through: :user_tasks,
+  #           source: :task
+
   has_many :rejected_tasks, -> { where "user_tasks.status = 'reject'"},
            through: :user_tasks,
            source: :task
@@ -47,6 +51,10 @@ class User < ActiveRecord::Base
 
   def completed_tasks
     accepted_tasks.where(status: "completed")
+  end
+
+  def paid_tasks
+    completed_tasks.where(is_paid: true)
   end
 
   # def name
