@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @created_tasks = Task.not_posted(@user)
     @posted_tasks = Task.posted_tasks(@user)
     @archived_tasks = Task.past_posted_tasks(@user)
+    @badger_archived_tasks = @user.paid_tasks
     @badger_pending_tasks = @user.pending_tasks
     @badger_accepted_tasks = @user.accepted_tasks
       unless @user == current_user
