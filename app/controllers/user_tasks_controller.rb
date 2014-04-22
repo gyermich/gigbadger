@@ -3,12 +3,13 @@ class UserTasksController < ApplicationController
   before_action :set_user, except: [:create, :update_task_progress]
 
   def create
-    if badger_exists?(@task) == nil
-      UserTask.create(task_id: @task.id, user_id: current_user.id)
-      redirect_to task_path(@task), notice: "Your offer was sent!"
-    else
+    if badger_exists?(@task)
       redirect_to task_path(@task), notice: "You already placed an offer for this task. Please wait for a response."
+      return
     end
+
+    UserTask.create(task_id: @task.id, user_id: current_user.id)
+    redirect_to task_path(@task), notice: "Your offer was sent!"
   end
 
   def accept_offer
