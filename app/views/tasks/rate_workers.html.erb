@@ -8,7 +8,7 @@
     <tr>
       <td class="pad-left5 pad-right5"><%= image_tag avatar(worker), class: "img-circle img-responsive tiny" %></td>
       <td class="pad-left5 pad-right5"><%= worker.name %></td>
-      <td class="pad-left5 pad-right5"><%= rating_for worker,  dimension = nil, options = {disable_after_rate: false} %></td>
+      <td class="pad-left5 pad-right5"><%= rating_for worker,  dimension = nil, options = {} %></td>
 
     <% end %>
    </tr>
