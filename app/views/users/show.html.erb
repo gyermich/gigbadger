@@ -61,7 +61,7 @@
                           <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
                         <% elsif t.status == "in progress" %>
                         <td><%=  button_to "Complete", complete_path(t), class: "btn btn-theme" %></td>
-                        <% elsif t.status == "completed" && t.is_paid == false %>
+                        <% elsif t.status == "completed" && !t.is_paid? %>
                           <% t.accepted_users.each do |u| %>
                             <td><a href="mailto:<%= u.email%>?cc=cash@square.com&subject=<%=number_to_currency(t.pay) %>&body=Payment %20for%20<%=t.name%>%20%20on%20GigBadger">Pay for gig</a>
                             </td>
@@ -97,7 +97,7 @@
                          <td><%=  t.status %></td>
                          <% if t.is_paid == false %>
                           <td>Have you been paid?</td>
-                          <td><%= button_to "Yes", paid_worker_path(t), class: "btn btn-theme pull-left" %></td>  
+                          <td><%= button_to "Yes", paid_worker_path(t), class: "btn btn-theme pull-left" %></td>
                          <% end %>
                      </tr>
                      <% end %>
@@ -125,7 +125,7 @@
              </div><!--/tab-pane-->
 
              <div class="tab-pane" id="archive">
-                <% if @archived_tasks.empty? && @badger_archived_tasks.empty? %>
+                <% if @archived_tasks.empty? %>
                   <em class="muted align-center">Nothing here yet</em>
                 <% else %>
                   <div class="table-responsive">
@@ -140,7 +140,17 @@
                             <td><%=  button_to "Rate Badgers", rate_workers_path(t), method: :get, class: "btn btn-theme" %></td>
                           <% end %>
                           </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <% end %>
 
+                    <% if @badger_archived_tasks.empty? %>
+                      <em class="muted align-center">Nothing here yet</em>
+                    <% else %>
+                      <div class="table-responsive">
+                        <table class="table table-hover">
+                          <tbody id="items">
                           <h4>Tasks completed</h4>
                           <% @badger_archived_tasks.each do |t| %>
                             <td><%= link_to t.name, task_path(t) %></td>
