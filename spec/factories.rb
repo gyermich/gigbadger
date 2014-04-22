@@ -10,6 +10,8 @@ FactoryGirl.define do
   factory :task do
     name "Hello World"
     summary "This is a task"
+    due_date Date.tomorrow
   end
+
 
 end

@@ -31,7 +31,6 @@ class UserTasksController < ApplicationController
   end
 
   private
-
   def badger_exists?(task)
     return true if UserTask.find_by(user_id: current_user.id, task_id: task.id)
   end
