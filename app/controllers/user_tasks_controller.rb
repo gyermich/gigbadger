@@ -32,7 +32,7 @@ class UserTasksController < ApplicationController
 
   private
   def badger_exists?(task)
-    return true if UserTask.find_by(user_id: current_user.id, task_id: task.id)
+    UserTask.find_by(user_id: current_user.id, task_id: task.id)
   end
 
   def set_task
