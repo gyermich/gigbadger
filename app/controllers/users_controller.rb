@@ -28,9 +28,12 @@ class UsersController < ApplicationController
     @posted_tasks = Task.posted_tasks(@user)
     @check_paid_tasks = @posted_tasks.select { |b| b[:paid] == true}
     @archived_tasks = Task.past_posted_tasks(@user)
-    @badger_archived_tasks = @user.paid_tasks
+    
+    @badger_archived_tasks = @user.badger_paid_tasks
+    raise
+
     @badger_pending_tasks = @user.pending_tasks
-    @badger_accepted_tasks = @user.accepted_tasks
+    @badger_accepted_tasks = @user.accepted_not_paid
       unless @user == current_user
         redirect_to root_path, notice: "Sorry, you are not authorized to access this page."
       end

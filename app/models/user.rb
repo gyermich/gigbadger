@@ -32,10 +32,6 @@ class User < ActiveRecord::Base
            through: :user_tasks,
            source: :task
 
-  # has_many :paid_tasks, -> { where "user_tasks.task.paid"},
-  #           through: :user_tasks,
-  #           source: :task
-
   has_many :rejected_tasks, -> { where "user_tasks.status = 'reject'"},
            through: :user_tasks,
            source: :task
@@ -53,8 +49,12 @@ class User < ActiveRecord::Base
     accepted_tasks.where(status: "completed")
   end
 
-  def paid_tasks
-    completed_tasks.where(is_paid: true)
+  def accepted_not_paid
+    accepted_tasks.where("is_paid = ? OR paid = ?", false, false)
+  end
+
+  def badger_paid_tasks
+    accepted_tasks.where(is_paid: true, status: "completed")
   end
 
   # def name
