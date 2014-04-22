@@ -63,7 +63,7 @@
                         <td><%=  button_to "Complete", complete_path(t), class: "btn btn-theme" %></td>
                         <% elsif t.status == "completed" && !t.is_paid? %>
                           <% t.accepted_users.each do |u| %>
-                            <td><a href="mailto:<%= u.email%>?cc=cash@square.com&subject=<%=number_to_currency(t.pay) %>&body=Payment %20for%20<%=t.name%>%20%20on%20GigBadger">Pay for gig</a>
+                            <td><a href="mailto:<%= u.email%>?cc=cash@square.com&subject=<%=number_to_currency(t.pay) %>&body=Payment %20for%20<%=t.name%>%20%20on%20GigBadger" class="btn btn-theme">Pay for gig</a>
                             </td>
                           <% end %>
                         <% end %>
@@ -125,9 +125,10 @@
              </div><!--/tab-pane-->
 
              <div class="tab-pane" id="archive">
-                <% if @archived_tasks.empty? %>
+                <% if @archived_tasks.empty? && @badger_archived_tasks.empty? %>
                   <em class="muted align-center">Nothing here yet</em>
-                <% else %>
+                <% end %>
+                <% unless @archived_tasks.empty? %>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <tbody id="items">
@@ -145,9 +146,7 @@
                     </div>
                     <% end %>
 
-                    <% if @badger_archived_tasks.empty? %>
-                      <em class="muted align-center">Nothing here yet</em>
-                    <% else %>
+                    <% unless @badger_archived_tasks.empty? %>
                       <div class="table-responsive">
                         <table class="table table-hover">
                           <tbody id="items">
