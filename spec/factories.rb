@@ -11,4 +11,5 @@ FactoryGirl.define do
     name "Hello World"
     summary "This is a task"
   end
+
 end

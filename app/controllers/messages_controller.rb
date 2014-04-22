@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     recipient = User.find(params[:recipient_id])
     create = current_user.send_message(recipient, params[:body], params[:subject])
 
-    if create.save
+    if create
       redirect_to messages_sent_path, notice: "Message sent"
     else
       render :new
