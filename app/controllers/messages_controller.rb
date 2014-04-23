@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
 
   def new
-    @user = User.find(params[:id])
+    @user = User.find(params[:format])
   end
 
   def create
