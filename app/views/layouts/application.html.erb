@@ -22,7 +22,6 @@
           <li><a href="/users">Badgers</a></li>
           <li><a href="/tasks">Gigs</a></li>
           <li><a href="/tasks/new">New Gig</a></li>
-          <li><a href="/about">About</a></li>
             <% if current_user && user_signed_in? %>
               <li><%= link_to "My account", user_path(current_user) %> </li>
               <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
@@ -43,4 +42,18 @@
   </div>
     <%= yield %>
   </body>
+
+  <section id="footer" class=" footer">
+    <div class="row small pad-top20">
+      <div class="container footer-align">
+
+            <a href="/about"> About </a>|
+            <a href="https://github.com/gyermich/gigbadger" target='_blank'> Github </a>|
+            <a href="https://twitter.com/GigBadger" target='_blank'> Twitter </a>|
+
+            <p class="muted">© 2013 GigBadger.com</p>
+          </div>
+        </div>
+
+  </section>
 </html>
