@@ -14,7 +14,7 @@
       <%= submit_tag 'Reply', class: "btn btn-theme pull-left mar-top5" %>
     <% end %>
   </div>
- 
+
   <div class="clear"></div>
     <h3>Subject: <%= @conversation.subject %></h3>
     <% @receipts.each do |receipt| %>
@@ -30,8 +30,10 @@
         </div>
     <% end %>
   </div>
-
-<%= will_paginate @receipts, class: "pagination", id: "myPager" %>
+  <div class="align-center">
+    <%= will_paginate @receipts, class: "pagination", id: "myPager" %>
+  </div>
+</div>
 </div>
 
 
