@@ -24,8 +24,6 @@ class Populate
 
   def self.create_task(user,seed_array)
     task = Task.create(
-      # add name
-      # status "available"
               owner_id: user.id,
               name: seed_array[6],  
               paid: seed_array[7],
