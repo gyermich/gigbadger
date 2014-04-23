@@ -293,34 +293,39 @@
   height: 35px;
  }
 
- .foot-fixed-bottom {
-  bottom: 0;
-  display: block;
-  left: 0;
-  margin-bottom: 0;
-  position: fixed;
-  right: 0;
-  z-index: 1030;
- }
- .foot-fixed-bottom .container {
-  background-color: rgba(0, 0, 0, 0.8);
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 2px;
- }
- .foot-fixed-bottom hr {
-  border-image: none;
-  border-style: solid none;
-  border-width: 1px 0;
-  margin: 0 0 5px;
-  width: 100%;
- }
- .foot-fixed-bottom p {
-  color: rgb(255, 255, 255);
-  font-size: 14px;
-  margin: 0 12px 15px;
+ .footer-align {
+ text-align: center !important;
  }
 
+ .about {
+  height: 100% !important;
+  width: 70%;
+  margin: 0 auto;
+ }
+
+ html,
+ body {
+   height: 100%;
+   /* The html and body elements cannot have any padding or margin. */
+ }
+ /* Wrapper for page content to push down footer */
+ #wrap {
+   min-height: 100%;
+   height: auto !important;
+   height: 100%;
+   /* Negative indent footer by it's height */
+   margin: 0 auto -60px;
+ }
+
+ /* Lastly, apply responsive CSS fixes as necessary */
+ @media (max-width: 767px) {
+ #footer {
+   margin-left: -20px;
+   margin-right: -20px;
+   padding-left: 20px;
+   padding-right: 20px;
+ }
+ }
 
  /* --- float --- */
  .float-left {
