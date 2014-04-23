@@ -68,6 +68,7 @@
 
      <div class="row" id="pay" style="display:none;">
        <div class="text_container">
+         <p class="well tiny_font">At this time, GigBadger does not support payment processing within this site. We recommend using Square Cash as an option to send or receive payments. Square Cash is a free service and allows you to send or request cash using email and a debit card. If you have any questions or concerns, please read more about <a href="https://squareup.com/help/en-us/topic/139-square-cash" target="_blank">Square Cash</a>.  It is between the gig owner and badger to arrange payment terms.</p>
          <div class="form-group">
          <%= f.label :pay, "Price per gig(in $):" , class: "small" %>
          <%= f.number_field :pay, autofocus: true, class: "form-control input" %>
@@ -87,5 +88,4 @@
     </div>
   </div>
 
-  <%= javascript_include_tag "datepicker" %>
 

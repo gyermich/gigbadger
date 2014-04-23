@@ -1,3 +1,3 @@
 $(function() {
-  $('.js-datepicker').datepicker();
+  $('.js-datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true});
 });

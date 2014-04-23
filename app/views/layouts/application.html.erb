@@ -3,13 +3,9 @@
   <head>
     <title>GigBadger</title>
     <%= stylesheet_link_tag    "application", media: "all" %>
-    <%= stylesheet_link_tag    "bootstrap.css" %>
-    <%= stylesheet_link_tag    "overwrites.css" %>
-    <%= stylesheet_link_tag    "datepicker.css" %>
     <%= stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Montserrat:400,700" %>
     <%= stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Ubuntu:300,400,700" %>
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag 'jquery.raty.js','letsrate.js'%>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -26,6 +22,7 @@
           <li><a href="/users">Badgers</a></li>
           <li><a href="/tasks">Gigs</a></li>
           <li><a href="/tasks/new">New Gig</a></li>
+          <li><a href="/about">About</a></li>
             <% if current_user && user_signed_in? %>
               <li><%= link_to "My account", user_path(current_user) %> </li>
               <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>

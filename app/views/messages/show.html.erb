@@ -1,39 +1,38 @@
 <div class="container" id="padded_container">
   <div class="row">
-      <div class="col-sm-10 account_heading"><h1>Hiya, <%= current_user.name %>!</h1></div>
+    <div class="col-sm-10 account_heading"><h1>Hiya, <%= current_user.name %>!</h1></div>
   </div>
   <%= render 'side_navbar' %>
   <div class="col-sm-9">
 
 
-  <div class="container">
-    <%= form_tag({controller: "messages", action: "reply"}, method: :post) do %>
+
+      <%= form_tag({controller: "messages", action: "reply"}, method: :post) do %>
       <%= hidden_field_tag :subject, @conversation.subject %>
       <%= text_area_tag :body, nil, class: "message_form form-control", rows: "5" %>
       <%= hidden_field_tag :conversation, @conversation.id %>
       <%= submit_tag 'Reply', class: "btn btn-theme pull-left mar-top5" %>
-    <% end %>
-  </div>
-
-  <div class="clear"></div>
-    <h3>Subject: <%= @conversation.subject %></h3>
-    <% @receipts.each do |receipt| %>
-      <% if receipt.notification.sender == current_user %>
-        <div class="message_box mar-top25 msg_sender_color">
-      <% else %>
-        <div class="message_box mar-top25">
       <% end %>
+
+    <div class="clear"></div>
+      <h3>Subject: <%= @conversation.subject %></h3>
+      <% @receipts.each do |receipt| %>
+        <% if receipt.notification.sender == current_user %>
+          <div class="message_box mar-top25 msg_sender_color">
+        <% else %>
+          <div class="message_box mar-top25">
+        <% end %>
           <p class="tiny_font float-left"><%= image_tag avatar(receipt.notification.sender), class: "very_tiny img-circle img-responsive pull-left" %> <%= receipt.notification.sender.email %></p>
           <p class="tiny_font float-right">Received: <%= display_date(receipt.message.created_at)%></p>
           <div class="clear"></div>
           <p><%= receipt.message.body %></p>
         </div>
-    <% end %>
+      <% end %>
+    </div>
+    <div class="align-center">
+      <%= will_paginate @receipts, class: "pagination", id: "myPager" %>
+    </div>
   </div>
-  <div class="align-center">
-    <%= will_paginate @receipts, class: "pagination", id: "myPager" %>
-  </div>
-</div>
 </div>
 
 

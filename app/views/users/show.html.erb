@@ -1,3 +1,5 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+
 <div class="container" id="padded_container">
   <div class="row">
       <div class="col-sm-10 account_heading"><h1>Hiya, <%= @user.name %>!</h1></div>
@@ -26,6 +28,7 @@
                           <td><%= display_date_only(t.due_date) %></td>
                           <td><%= t.status %></td>
                           <td><%= button_to "Post", post_path(t), method: :patch, class: "btn btn-theme pull-left"%> <br></td>
+                          <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
                           <td></td>
                           <td></td>
                         </tr>
@@ -36,6 +39,12 @@
             <% end %>
 
             <h4>My Posted Gigs</h4>
+            <div>
+              <% if !@check_paid_tasks.empty? %>
+              <p class="tiny_font well disclaimer">
+                At this time, GigBadger does not support functional payment processing within this site. We can only recommend using Square Cash as an option to send or receive payments. Square Cash is a free service and allows you to send or request cash using email and a debit card. If you have any questions or concerns, please read more about <a href="https://squareup.com/help/en-us/topic/139-square-cash" target="_blank">Square Cash</a>.  It is between the gig owner and worker to arrange payment terms with each other.</p>
+              <% end %>
+            </div>
             <% if @posted_tasks.empty? %>
               <em class="muted align-center">Nothing here yet</em>
             <% else %>
@@ -49,15 +58,16 @@
                         <td><%=  t.status %></td>
                         <% if t.status == "available" %>
                           <td><%=  button_to "Offers", offers_path(t), method: :get, class: "btn btn-theme" %></td>
+                          <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
                         <% elsif t.status == "in progress" %>
                         <td><%=  button_to "Complete", complete_path(t), class: "btn btn-theme" %></td>
-                        <% elsif t.status == "completed" && t.paid %>
+                        <% elsif t.status == "completed" && !t.is_paid? %>
                           <% t.accepted_users.each do |u| %>
-                          <td><a href="mailto:<%= u.email%>?cc=cash@square.com&subject=<%=number_to_currency(t.pay) %>&body=Payment %20for%20<%=t.name%>%20%20on%20GigBadger">Pay for gig</a></td>
+                            <td><a href="mailto:<%= u.email%>?cc=cash@square.com&subject=<%=number_to_currency(t.pay) %>&body=Payment %20for%20<%=t.name%>%20%20on%20GigBadger" class="btn btn-theme">Pay for gig</a>
+                            </td>
                           <% end %>
                         <% end %>
-                        <td><%=  button_to "Delete", t, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
-                    </tr>
+                      </tr>
                     <% end %>
                   </tbody>
                 </table>
@@ -87,7 +97,7 @@
                          <td><%=  t.status %></td>
                          <% if t.is_paid == false %>
                           <td>Have you been paid?</td>
-                          <td><%= button_to "Yes", paid_worker_path(t), class: "btn btn-theme pull-left" %></td>  
+                          <td><%= button_to "Yes", paid_worker_path(t), class: "btn btn-theme pull-left" %></td>
                          <% end %>
                      </tr>
                      <% end %>
@@ -115,9 +125,10 @@
              </div><!--/tab-pane-->
 
              <div class="tab-pane" id="archive">
-                <% if @archived_tasks.empty? %>
+                <% if @archived_tasks.empty? && @badger_archived_tasks.empty? %>
                   <em class="muted align-center">Nothing here yet</em>
-                <% else %>
+                <% end %>
+                <% unless @archived_tasks.empty? %>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <tbody id="items">
@@ -128,8 +139,23 @@
                             <td><%=  display_date_only(t.due_date) %></td>
                             <td><%=  t.status %></td>
                             <td><%=  button_to "Rate Badgers", rate_workers_path(t), method: :get, class: "btn btn-theme" %></td>
-                        </tr>
-                        <% end %>
+                          <% end %>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <% end %>
+
+                    <% unless @badger_archived_tasks.empty? %>
+                      <div class="table-responsive">
+                        <table class="table table-hover">
+                          <tbody id="items">
+                          <h4>Tasks completed</h4>
+                          <% @badger_archived_tasks.each do |t| %>
+                            <td><%= link_to t.name, task_path(t) %></td>
+                            <td><%=  display_date_only(t.due_date) %></td>
+                            <td><%=  t.status %></td>
+                          <% end %>
                       </tbody>
                     </table>
                     <hr>

@@ -5,7 +5,7 @@ class Notice
     @receivers = receivers
     @notification_code = notification_code
     @task = task
-    
+
     notification_type
   end
 
@@ -39,7 +39,7 @@ class Notice
   def badge_notification
     subject = "Badge received"
     @receivers.each do |user|
-      body = "Congratulations, you earned the #{user.badges.last.name} badge"
+      body = "Congratulations, you earned the #{user.badges.last.description} badge"
       user.notify(subject,body,obj = nil,sanitize_text=true,notification_code=@notification_code,send_mail=true)
     end
   end

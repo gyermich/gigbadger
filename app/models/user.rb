@@ -49,6 +49,14 @@ class User < ActiveRecord::Base
     accepted_tasks.where(status: "completed")
   end
 
+  def accepted_not_paid
+    accepted_tasks.where("is_paid = ? OR paid = ?", false, false)
+  end
+
+  def badger_paid_tasks
+    accepted_tasks.where(is_paid: true, status: "completed")
+  end
+
   # def name
   #   return email
   # end

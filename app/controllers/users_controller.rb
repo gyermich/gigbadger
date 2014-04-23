@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @users = User.all
     @top_badgers = User.joins(:rate_average_without_dimension)
                        .order('rating_caches.avg DESC')
-                       .first(10)
+                       .first(20)
   end
 
 
@@ -26,9 +26,11 @@ class UsersController < ApplicationController
   def show
     @created_tasks = Task.not_posted(@user)
     @posted_tasks = Task.posted_tasks(@user)
+    @check_paid_tasks = @posted_tasks.select { |b| b[:paid] == true}
     @archived_tasks = Task.past_posted_tasks(@user)
+    @badger_archived_tasks = @user.badger_paid_tasks
     @badger_pending_tasks = @user.pending_tasks
-    @badger_accepted_tasks = @user.accepted_tasks
+    @badger_accepted_tasks = @user.accepted_not_paid
       unless @user == current_user
         redirect_to root_path, notice: "Sorry, you are not authorized to access this page."
       end

@@ -7,6 +7,7 @@ class BadgeJob
     # Resque only accepts simple objects - string, integer, hash, array
     task = Task.find(id)
     task.workers.each do |user|
+      Notice.new([user], "badge", task)
       case user.completed_tasks.count
       when  1  ; user.add_badge(4) ; Notice.new([user], "badge", task)
       when  5  ; user.add_badge(5) ; Notice.new([user], "badge", task)

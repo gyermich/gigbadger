@@ -15,16 +15,18 @@
     <div class="col-sm-9"><!--left col-->
       <div class="message_box align-center">
         <div class="account_heading align-center"><h1><%= @task.name %></h1></div>
-        <p class="tiny_font"><em>Due Date:</em> <strong> <%= display_date_only(@task.due_date) %></strong></p>  
+        <p class="tiny_font"><em>Due Date:</em> <strong> <%= display_date_only(@task.due_date) %></strong></p>
         <p class="tiny_font"><em>Pay per gig:</em> <strong> <%= number_to_currency(@task.pay)%></strong> </p>
         <p class="align-center"><%= @task.summary %></p>
         <% if current_user && current_user.id == @task.owner_id %>
-          <table class="centered_box">
-            <tr>
-              <td><%= button_to "Edit", edit_task_path(@task), method: :get, class: "btn btn-theme"%></td>
-              <td><%= button_to "Delete", @task, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
-            </tr>
-          </table>
+          <% if @task.status == "available" or @task.status == "pending" %>
+            <table class="centered_box">
+              <tr>
+                <td><%= button_to "Edit", edit_task_path(@task), method: :get, class: "btn btn-theme"%></td>
+                <td><%= button_to "Delete", @task, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-cta" %></td>
+              </tr>
+            </table>
+            <% end %>
         <% end %>
         <% unless current_user.id ==  @task.owner_id%>
           <% if @task.status == "available" %>
@@ -40,7 +42,7 @@
           <%= image_tag avatar(@task.owner), class: "img-circle img-responsive account_img" %>
           <p class="tiny_font"><em>Added by: </em><br> <strong> <%= @task.owner.name %></strong></p>
           <% if current_user && current_user.id != @task.owner_id %>
-            <%= button_to "Message", new_message_path(@task.owner), method: :get, placeholder: @task.name, class: "btn btn-theme" %>
+            <%= link_to "Message", new_message_path(@task.owner, subject: @task.name), class: "btn btn-theme" %>
           <% end %>
         </div>
       </div>
