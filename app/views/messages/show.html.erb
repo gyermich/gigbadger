@@ -17,6 +17,7 @@
 
   <div class="clear"></div>
     <h3>Subject: <%= @conversation.subject %></h3>
+    <div id='chat'>
     <% @receipts.each do |receipt| %>
       <% if receipt.notification.sender == current_user %>
         <div class="message_box mar-top25 msg_sender_color">
@@ -30,6 +31,7 @@
         </div>
     <% end %>
   </div>
+</div>
 
 <%= will_paginate @receipts, class: "pagination", id: "myPager" %>
 </div>

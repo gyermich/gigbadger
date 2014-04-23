@@ -1,0 +1,4 @@
+<% broadcast "/messages/show" do %>
+  $("#chat").append("<%= escape_javascript render(@receipts) %>");
+<% end %>
+$('#new_message')[0].reset;

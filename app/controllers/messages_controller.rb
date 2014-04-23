@@ -9,9 +9,9 @@ class MessagesController < ApplicationController
 
   def create
     recipient = User.find(params[:recipient_id])
-    create = current_user.send_message(recipient, params[:body], params[:subject])
+    receipt = current_user.send_message(recipient, params[:body], params[:subject])
 
-    if create.save
+    if receipt.save
       redirect_to messages_sent_path, notice: "Message sent"
     else
       render :new
@@ -31,8 +31,12 @@ class MessagesController < ApplicationController
     messages = Conversation.find(params[:conversation])
     respond = current_user.reply_to_conversation(messages, params[:body])
 
+
     if respond.save
-      redirect_to messages_inbox_path, notice: "Your message was sent"
+      message = {:channel => "/conversations/#{messages.id}", :data => respond.message.to_json}
+      uri = URI.parse("http://localhost:9292/faye")
+      Net::HTTP.post_form(uri, :message => message.to_json)
+      redirect_to :back, notice: "Your message was sent"
     else
       render :conversation
     end

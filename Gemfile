@@ -22,6 +22,8 @@ gem 'merit'
 gem 'will_paginate'
 gem "resque"
 gem 'therubyracer', platforms: :ruby
+gem 'faye'
+gem 'thin'
 
 
 
