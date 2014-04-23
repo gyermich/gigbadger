@@ -277,7 +277,7 @@
 
  .tiny_logo {
   margin: 0 auto;
- /* width: 42px;*/
+  width:25px;
   height: 25px;
  }
 
@@ -299,24 +299,29 @@
 
  .about {
   min-height: 100% !important;
-  width: 70%;
-  margin: 0 auto;
  }
+
+
 
  html,
  body {
    height: 100%;
-   /* The html and body elements cannot have any padding or margin. */
  }
 
- /* Lastly, apply responsive CSS fixes as necessary */
  @media (max-width: 767px) {
- #footer {
+  #footer {
    margin-left: -20px;
    margin-right: -20px;
    padding-left: 20px;
    padding-right: 20px;
  }
+ }
+
+ @media (min-width: 767px) {
+  .maxwidth {
+    width: 700px;
+    margin: 0 auto;
+   }
  }
 
  /* --- float --- */
