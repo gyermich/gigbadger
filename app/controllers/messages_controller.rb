@@ -9,8 +9,7 @@ class MessagesController < ApplicationController
 
   def create
     recipient = User.find(params[:recipient_id])
-    create = current_user.send_message(recipient, params[:body], params[:subject])
-
+    create = current_user.send_message(recipient, params[:body], subject)
     if create.save
       redirect_to messages_sent_path, notice: "Message sent"
     else
@@ -86,6 +85,14 @@ class MessagesController < ApplicationController
   end
 
   private
+  def subject
+    if params[:subject].empty?
+      "no subject"
+    else
+      params[:subject]
+    end
+  end
+
   def set_user
     @user = current_user
   end
