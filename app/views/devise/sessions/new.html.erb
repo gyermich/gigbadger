@@ -1,16 +1,16 @@
 <div class = "about">
-<div id="padded_container">
-  <div class="container">
-    <div class="row centered-form">
-      <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="align-center">
-              <h1 class="panel-title">Sign In</h1>
+  <div id="padded_container">
+    <div class="container">
+      <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="align-center">
+                <h1 class="panel-title">Sign In</h1>
+              </div>
             </div>
-          </div>
-          <div class="panel-body">
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="panel-body">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-6">
                   <div class="form-group">
@@ -20,29 +20,30 @@
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6">
                   <div class="form-group">
-                     <% f.label :password %>
-                     <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control input" %>
-                  </div>
-                </div>
-              </div>
+                   <% f.label :password %>
+                   <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control input" %>
+                 </div>
+               </div>
+             </div>
 
-            <div class="row">
+             <div class="row">
               <div class="text_container">
                 <% if devise_mapping.rememberable? -%>
-                    <div><%= f.check_box :remember_me %> <%= f.label :remember_me, class: "small" %></div>
-                  <% end -%>
+                <div><%= f.check_box :remember_me %> <%= f.label :remember_me, class: "small" %></div>
+                <% end -%>
               </div>
             </div>
-          <div class="text_container">
+            <div class="text_container">
              <div><%= f.submit "Sign in", class: "btn btn-info btn-theme btn-block" %></div>
-          </div>
+           </div>
            <% end %>
-          </div>
-          <div class="text_container">
-            <%= render "devise/shared/links" %>
-          </div>
+         </div>
+         <div class="text_container">
+          <%= render "devise/shared/links" %>
+        </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 </div>
