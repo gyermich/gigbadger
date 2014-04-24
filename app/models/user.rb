@@ -50,14 +50,10 @@ class User < ActiveRecord::Base
   end
 
   def accepted_badger_tasks
-    accepted_tasks.where(paid: false, status: "in progress") + 
+    accepted_tasks.where(paid: false, status: "in progress") +
     accepted_paid +
     completed_tasks.where(paid: true, is_paid: false)
   end
-
-  # accepted paid is false, status in progress
-  # accepted paid is true, status in progress
-  # completed paid is true, is_paid is false
 
   def accepted_paid
     accepted_tasks.where(paid: true, status: "in progress")
@@ -70,10 +66,6 @@ class User < ActiveRecord::Base
   def badger_unpaid_tasks
     completed_tasks.where(paid: false)
   end
-
-  # def name
-  #   return email
-  # end
 
   def mailboxer_email(object)
     return nil
