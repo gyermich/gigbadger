@@ -16,7 +16,11 @@
       <div class="message_box align-center">
         <div class="account_heading align-center"><h1><%= @task.name %></h1></div>
         <p class="tiny_font"><em>Due Date:</em> <strong> <%= display_date_only(@task.due_date) %></strong></p>
-        <p class="tiny_font"><em>Pay per gig:</em> <strong> <%= number_to_currency(@task.pay)%></strong> </p>
+        <% if @task.paid %>
+          <p class="tiny_font"><em>Pay per gig:</em> <strong> <%= number_to_currency(@task.pay)%></strong> </p>
+        <% else %>
+          <p class="tiny_font"><em>Unpaid</em></p>
+        <% end %>
         <p class="align-center"><%= @task.summary %></p>
         <% if current_user && current_user.id == @task.owner_id %>
           <% if @task.status == "available" or @task.status == "pending" %>
