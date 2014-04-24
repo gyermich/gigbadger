@@ -16,5 +16,12 @@
 //= require filterrific-jquery
 //= require_tree .
 
+$(function() {
+  var faye = new Faye.Client('http://localhost:9292/faye');
+  faye.subscribe("/conversations/6", function(data) {
+    alert(data);
+  });
+});
+
 
 

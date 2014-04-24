@@ -2,7 +2,7 @@
   <%= form_tag controller: "messages", action: "create", method: :post do %>
     <%= text_field_tag :subject, subject, placeholder: "Subject", class: "form-control input-lg" %>
 
-    <%= text_area_tag :body, nil, placeholder: "Message", class: "form-control input-lg", rows: "5" %>
+    <%= text_area_tag :body, nil, placeholder: "Message", class: "form-control input-lg", rows: "5", remote: true %>
     <% if  @user %>
       <%= hidden_field_tag :recipient_id, @user.id %>
     <% end %>
