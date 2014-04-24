@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
     respond = current_user.reply_to_conversation(messages, params[:body])
 
     if respond.save
-      redirect_to messages_inbox_path, notice: "Your message was sent"
+      redirect_to :back, notice: "Your message was sent"
     else
       render :conversation
     end
