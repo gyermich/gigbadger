@@ -19,24 +19,39 @@ class Task < ActiveRecord::Base
   def self.posted_tasks(user)
     Task.where("owner_id = ?", user.id)
         .where("status = ? 
+                OR status = ?
                 OR status = ? 
-                OR status = ? 
-                AND is_paid = ?", 
+                AND is_paid = ?
+                AND paid = ?",
                 "available", 
-                "in progress", 
-                "completed", 
-                false)
+                "in progress",
+                "completed",
+                false,
+                true)
+  end
+
+  def self.posted_not_paid(user)
+    Task.where("owner_id = ?", user.id)
+          .where("status = ? 
+                  AND is_paid =?",
+                   "completed",
+                    false)
   end
 
   def self.past_posted_tasks(user)
-    Task.where("owner_id = ? 
-                AND status = ? 
-                OR owner_id = ? 
-                AND status = ?", 
-                user.id, 
-                "completed", 
-                user.id, 
-                "expired")
+    Task.where("owner_id = ?", user.id)
+          .where("status = ?
+                  AND paid = ? 
+                  OR status = ?
+                  OR status = ?
+                  AND is_paid = ?
+                  AND paid = ?",
+                  "completed",
+                  false,
+                  "expired", 
+                  "completed",
+                  true,
+                  true)
   end
 
   def in_progress

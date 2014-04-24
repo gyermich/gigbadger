@@ -10,7 +10,6 @@ class MessagesController < ApplicationController
   def create
     recipient = User.find(params[:recipient_id])
     receipt = current_user.send_message(recipient, params[:body], params[:subject])
-
     if receipt.save
       redirect_to messages_sent_path, notice: "Message sent"
     else
@@ -33,10 +32,12 @@ class MessagesController < ApplicationController
 
 
     if respond.save
+
       message = {:channel => "/conversations/#{messages.id}", :data => respond.message.to_json}
       uri = URI.parse("http://localhost:9292/faye")
       Net::HTTP.post_form(uri, :message => message.to_json)
-      redirect_to :back, notice: "Your message was sent"
+
+      # redirect_to :back, notice: "Your message was sent"
     else
       render :conversation
     end
@@ -90,6 +91,14 @@ class MessagesController < ApplicationController
   end
 
   private
+  def subject
+    if params[:subject].empty?
+      "no subject"
+    else
+      params[:subject]
+    end
+  end
+
   def set_user
     @user = current_user
   end

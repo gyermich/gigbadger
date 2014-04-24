@@ -1,3 +1,4 @@
+<div class = "about">
 <div class="container" id="padded_container">
 
   <%= form_for @filterrific, html: {class: "well form-inline"} do |f| %>
@@ -39,5 +40,6 @@
 
   <%= render( :partial => 'tasks/list', :locals => { :tasks => @tasks } )%>
 
+</div>
 </div>
 
