@@ -127,10 +127,16 @@
    .flex-video { padding-top: 0; }
  }
 
-
  /*==========================================================================
    Misc & Adjust
   ========================================================================== */
+  .box{
+    background: rgb(105, 105, 105) transparent;
+    background: rgba(105, 105, 105, 0.4);
+    -moz-border-radius : 20px;
+    -webkit-border-radius: 10px;
+  }
+
   #pop{
       display              : none;
       position             : absolute;
