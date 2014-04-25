@@ -127,10 +127,16 @@
    .flex-video { padding-top: 0; }
  }
 
-
  /*==========================================================================
    Misc & Adjust
   ========================================================================== */
+  .box{
+    background: rgb(0, 0, 0) transparent;
+    background: rgba(0, 0, 0, 0.3);
+    -moz-border-radius : 20px;
+    -webkit-border-radius: 10px;
+  }
+
   #pop{
       display              : none;
       position             : absolute;
@@ -843,6 +849,7 @@
     -moz-border-radius:50%;
       border-radius:50%;
       width: 100px;
+      height: 100px;
  }
 
  .team-detail h4 {
