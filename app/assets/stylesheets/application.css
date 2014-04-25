@@ -131,8 +131,8 @@
    Misc & Adjust
   ========================================================================== */
   .box{
-    background: rgb(105, 105, 105) transparent;
-    background: rgba(105, 105, 105, 0.4);
+    background: rgb(0, 0, 0) transparent;
+    background: rgba(0, 0, 0, 0.3);
     -moz-border-radius : 20px;
     -webkit-border-radius: 10px;
   }
