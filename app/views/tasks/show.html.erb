@@ -32,7 +32,7 @@
             </table>
             <% end %>
         <% end %>
-        <% unless current_user.id ==  @task.owner_id%>
+        <% unless current_user && current_user.id ==  @task.owner_id%>
           <% if @task.status == "available" %>
             <%= button_to "Send Request", user_tasks_path(task_id: @task.id), class: "btn btn-theme " %>
           <% end %>

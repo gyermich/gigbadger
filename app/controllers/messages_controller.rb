@@ -2,7 +2,6 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, :set_user
   before_action :unread_messages, :find_notifications, :unread_notifications
 
-
   def new
     @user = User.find(params[:format])
   end

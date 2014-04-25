@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, except: [:index, :reset_filterrific, :new, :create]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :reset_filterrific]
 
   def index
     @filterrific = Filterrific.new(

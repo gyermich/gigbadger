@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
     end
 
   def find_notifications
-    @notices = Receipt.joins(:notification)
+    if current_user
+      @notices = Receipt.joins(:notification)
                       .where("receiver_id = ?", current_user.id)
                       .where("notification_code = ?
                               OR notification_code = ?
@@ -22,14 +23,19 @@ class ApplicationController < ActionController::Base
                               "accept_offer",
                               "badge")
                       .order("created_at desc")
+    end
   end
 
   def unread_notifications
-    @notification_count = @notices.where(is_read: false).count || 0
+    if current_user
+      @notification_count = @notices.where(is_read: false).count || 0
+    end
   end
 
   def unread_messages
-    @unread_messages = current_user.mailbox.inbox({:read => false}).count || 0
+    if current_user 
+      @unread_messages = current_user.mailbox.inbox({:read => false}).count || 0
+    end
   end
 
 end

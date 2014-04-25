@@ -1,6 +1,8 @@
 class UserTasksController < ApplicationController
   before_action :set_task
   before_action :set_user, except: [:create, :update_task_progress]
+  before_action :authenticate_user!, only: :create
+
 
   def create
     if badger_exists?(@task)
