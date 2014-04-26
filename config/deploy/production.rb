@@ -4,12 +4,12 @@
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
-role :app, %w{ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com}
-role :web, %w{ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com}
-role :db,  %w{ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com}
+role :app, %w{ubuntu@ec2-54-187-80-194.us-west-2.compute.amazonaws.com}
+role :web, %w{ubuntu@ec2-54-187-80-194.us-west-2.compute.amazonaws.com}
+role :db,  %w{ubuntu@ec2-54-187-80-194.us-west-2.compute.amazonaws.com}
 
-role :resque_worker, "ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com"
-role :resque_scheduler, "ubuntu@ec2-54-187-15-251.us-west-2.compute.amazonaws.com"
+role :resque_worker, "ubuntu@ec2-54-187-80-194.us-west-2.compute.amazonaws.com"
+role :resque_scheduler, "ubuntu@ec2-54-187-80-194.us-west-2.compute.amazonaws.com"
 
 set :workers, { "*" => 1 }
 set :resque_environment_task, true
@@ -24,9 +24,9 @@ set :resque_environment_task, true
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'ec2-54-187-15-251.us-west-2.compute.amazonaws.com', user: 'ubuntu', roles: %w{gigbadger}, my_property: :my_value
+server 'ec2-54-187-80-194.us-west-2.compute.amazonaws.com', user: 'ubuntu', roles: %w{gigbadger}, my_property: :my_value
 
-server 'ec2-54-187-15-251.us-west-2.compute.amazonaws.com',
+server 'ec2-54-187-80-194.us-west-2.compute.amazonaws.com',
   user: 'ubuntu',
   roles: %w{webapp},
   ssh_options: {
